@@ -1,0 +1,23 @@
+// :root{
+//     --blockColor:rgb( 0, 0, 0, 85% );
+//     --mainColor:#41403C;
+//     --btnColor:#EACE49;
+//     --titleColor:#383838;
+//     --textColor:#FBFBFB;
+//     --pColor:#727271;
+//     --bgColor:#EDEFEE;
+//     --iindColor:#AA210F;
+// }
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+img{
+	width: 100%;
+}
+.sr_only{
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+}

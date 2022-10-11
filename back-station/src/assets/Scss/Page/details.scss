@@ -1,0 +1,41 @@
+.page_section{
+    margin-top: 80px;
+    margin-left: 230px;
+}
+.project_header{
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    color:red;
+}
+table{
+    width: 100%;
+    margin: 30px 0px;
+    display: flex;
+    justify-content: space-around;
+    border-collapse: collapse;
+}
+td, tr{
+    text-align: left;
+    font-size: 18px;
+    letter-spacing: 2px;
+    line-height: 46px;
+}
+.btn{
+    margin: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+button{
+    margin: 0 6px;
+    width: 70px;
+    height: 40px;
+    border: 1px solid #454545;
+    border-radius: 5px;
+    color: #454545;
+    background-color: #168D80;
+}
+button:hover{
+    border: none;
+    background-color: #eeeeee;
+}

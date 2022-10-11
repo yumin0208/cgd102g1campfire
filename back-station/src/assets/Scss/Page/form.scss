@@ -1,0 +1,43 @@
+.page_section{
+    margin-top: 80px;
+    margin-left: 230px;
+}
+.project_header{
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    color:red;
+}
+form{
+    margin: 20px;
+}
+
+form div{
+    padding: 10px;
+}
+form input, select, textarea {
+    width: 300px;
+    height: 20px;
+    margin-left: 30px;
+}
+#tent_info{
+    height: 100px;
+}
+.btn{
+    margin: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+button{
+    margin: 0 6px;
+    width: 70px;
+    height: 40px;
+    border: 1px solid #454545;
+    border-radius: 5px;
+    color: #454545;
+    background-color: #FFFFFF;
+}
+button:hover{
+    border: none;
+    background-color: #eeeeee;
+}

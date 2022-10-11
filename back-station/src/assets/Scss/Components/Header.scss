@@ -1,0 +1,72 @@
+.project_nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top:0;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 3px 0 rgb(0, 0, 0, 10%);
+}
+.nav_left{
+    padding: 16px;
+}
+.nav_right, .nav_account{
+    display: flex;
+}
+.nav_account{
+    margin-left: 18px;
+    padding: 16px;
+    background-color: #F3F3F9;
+}
+.nav_serch{
+    margin-left: 250px;
+    display: flex;
+    align-items: center;
+}
+.header_title{
+    padding-right: 14px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #454545;
+}
+input{
+    width: 300px;
+    height: 40px;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    background-color: #F3F3F9;
+}
+.account_photo{
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+.nav_logout{
+    width: 80px;
+    height: 40px;
+    margin: auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #168D80;
+}
+.nav_logout:hover{
+    background-color: #0E685E;
+}
+.logout_btn{
+    
+    color: #FFFFFF;
+}
+.account_text{
+    margin: auto;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #454545;
+}

@@ -1,0 +1,95 @@
+.project_logo{
+    margin: auto;
+    width: 170px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.aside_menu{
+    width: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    color: #FFFFFF;
+    z-index: 444;
+    background-color: #064544;
+}
+.menu_zone{
+    width: 100%;
+    font-size: 14px;
+}
+.menu_row{
+    width: 100%;
+}
+.menu_row input[type='radio']{
+    display: none;
+}
+.menu_row input[type='radio']:checked + label {
+    background-color: #4D8084;
+}
+.menu_row input[type='radio']:checked ~ .content {
+    max-height: 300px;
+    opacity: 1;
+    z-index: 10;
+    overflow-y: auto;
+}
+.menu_row label{
+    cursor: pointer;
+    width: 100%;
+    padding: 16px 20px;
+    display: table;
+    position: relative;
+}
+.menu_row label:before{
+    content: " ";
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 1px;
+    border-top: 1px solid #848484;
+}
+.menu_row label:hover{
+    background-color: #4D8084;
+}
+.more{
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+.more::after{
+    content: '';
+    padding: 4px;
+    display: inline-block;
+    position: relative;
+    right: -110px;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.content{
+    max-height: 0;
+    position: relative;
+    opacity: 0;
+    overflow: hidden;
+}
+ul li:hover {
+    cursor: pointer;
+}
+.router_list{
+    padding: 16px 30px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+.router_list:hover{
+    color: #000000;
+    background-color: #8DCCB9;
+}
+.router-link-active{
+    color: #000000;
+    background-color: #8DCCB9;
+}
+.project_logo{
+    background-color:transparent;
+}
