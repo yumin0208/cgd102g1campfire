@@ -4,26 +4,29 @@
 
     require_once("./connect_cgd102g1.php");
 
-    // 欄位名稱
-    
-    $sql1 = "select tent_style_no from tent_style 
+    // 欄位名稱先取得對應營帳類型編號資料  
+    $sql = "select tent_style_no from tent_style 
                     where 
                         area_no = 1
                     and tent_style_people = 2
                     and tent_style_type = 2;";
 
-    $discuss = $pdo->query($sql1);
-    $discusses = $discuss->fetchAll(PDO::FETCH_ASSOC);
+    $getTentStyle = $pdo->query($sql);
+    $getTentStyle = $getTentStyle->fetchObject();
+    $getTentStyle =  $getTentStyle->tent_style_no;
+    echo $getTentStyle;
+    
+    // $getTentStyle = $getTentStyle->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php
 
-    $data = [];
+    // $data = [];
 
-    foreach($discusses as $i => $content){
-        $data[]=$content;
-    }
+    // foreach($getTentStyle as $i => $content){
+    //     $data[]=$content;
+    // }
 
-    echo json_encode($data);
+    // echo json_encode($data);
 
 ?>
