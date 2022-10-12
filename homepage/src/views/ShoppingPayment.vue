@@ -56,33 +56,26 @@
             <div class="user_input_box">
               <label for="name"
                 >姓名
-                <input type="text" id="name" placeholder="營火叢" required />
+                <input type="text" id="name" v-model="member.mem_name" required />
               </label>
               <label for="tel"
                 >電話
-                <input type="tel" placeholder="01-123456" required />
+                <input type="tel" v-model="member.mem_phone" required />
               </label>
               <label for="email"
                 >E-mail
-                <input type="email" placeholder="123@xxx.com" required />
+                <input type="email" v-model="member.mem_email" required />
               </label>
             </div>
             <div class="user_input_box">
               <label for="city"
                 >縣市
-                <select name="" id="">
-                  <option value="">桃園市</option>
-                </select>
+                <input type="text" v-model="member.mem_city" required/>
               </label>
-              <label for=""
-                >鄉鎮市區
-                <select name="" id="">
-                  <option value="">中壢市</option>
-                </select>
-              </label>
+              
               <label for=""
                 >詳細地址
-                <input type="text" placeholder="桃園市中壢市復興市46號9樓" />
+                <input type="text" v-model="member.mem_addr" />
               </label>
             </div>
           </form>
@@ -163,7 +156,7 @@
       </div>
     </div>
   </section>
-  <ShopOrderConfirm v-if="confirmBox" @cancelBox="closeBox"></ShopOrderConfirm>
+  <ShopOrderConfirm v-if="confirmBox" @cancelBox="closeBox" :confirmation="creditInfo[0]"></ShopOrderConfirm>
   <MainFooter></MainFooter>
 </template>
 <script>
@@ -176,11 +169,30 @@ export default {
   data() {
     return {
       orderList: [],
+      creditInfo: [],
       itemTotal: 0,
       confirmBox: false,
     };
   },
   methods: {
+    scrollToTop(){
+      window.scrollTo(0,0)
+    },
+    //確認有無登入，用click事件，判斷提示
+    checkId() {
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            alert("請先登入");
+        }else{
+            this.discuss_show = true;
+        }
+    },
+    //拿到會員資料
+    getMemData(){
+        this.member = JSON.parse(sessionStorage.getItem('member'));
+        this.memId = this.member.mem_id;
+        // console.log(this.member)  
+    },
     // 從 shopOrderConfirm 的component $emit 調資料過來
     closeBox(closeBox) {
       this.confirmBox = closeBox
@@ -200,9 +212,20 @@ export default {
       );
     },
   },
+  mounted(){
+    this.scrollToTop()
+  },
   created() {
+    this.getMemData();
     this.getOrderList();
     this.itemSum();
+    //是否有登入狀態
+    let checkLogin = sessionStorage.getItem('member');
+    if(checkLogin == null){
+        return
+    }else{
+        this.discuss_show = true;
+    }
   },
 };
 </script>

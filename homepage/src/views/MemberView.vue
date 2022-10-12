@@ -12,7 +12,7 @@
         <button class="member_tabs mem_button" @click="activeTab = 'product'"
                 :class="{mem_btn_active:activeTab === 'product'}">商品訂單查詢</button>
         <button class="member_tabs mem_button" @click="activeTab = 'signout'">
-            <router-link to ="/HomeView" class="mem_signout">登出</router-link>
+            <div @click="logout" class="mem_signout">登出</div>
         </button>
         <!-- 會員資料修改專區 -->
         <div v-if="activeTab === 'memdata'" class="mem_content">
@@ -34,15 +34,35 @@
 import MemberModify from '@/components/MemberModify.vue'
 import MemberCampsiteOrder from '@/components/MemberCampsiteOrder.vue'
 import MemberProductOrder from '@/components/MemberProductOrder.vue'
+import { useRouter } from "vue-router";
 export default {
     components:{
         MemberModify,
         MemberCampsiteOrder,
         MemberProductOrder,
     },
+    created(){
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            let thus = this;
+            thus.router.push({path:'/'})
+        }
+    },
     data(){
         return{
             activeTab: 'memdata',
+            router:useRouter()
+        }
+    },
+    methods:{
+        logout(){
+            let xhr = new XMLHttpRequest();
+            xhr.open("get", process.env.VUE_APP_PHP_PATH + 'logout.php',true);
+            xhr.send(null);
+            sessionStorage.removeItem("member", JSON.stringify(this.session));
+            alert("已登出");
+            let thus = this;
+            thus.router.push({path:'/'})
         }
     }
 }

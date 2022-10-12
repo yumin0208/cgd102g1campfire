@@ -38,7 +38,7 @@
                             <p class="report_txt">{{item.discuss_content}}</p>
                         </div>
                         <div class="report_btn">
-                            <ReportLightBox/>
+                            <ReportBoxDiscuss/>
                             <!-- 連結使用抓取報告的id，discuss_no，使用query傳遞資料，?no=1-->
                             <!-- <router-link class="message_icon" :to="`/reportMessage?discuss_no=${item.discuss_no}`"> -->
                             <router-link 
@@ -77,13 +77,14 @@
 </template>
 
 <script>
-import ReportLightBox from '../components/ReportLightBox.vue';
+import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
 
 export default {
+    props: ['disCard'],
     name: "ReportCard",
     el: '#discussCard',
     components: {
-        ReportLightBox,
+        ReportBoxDiscuss,
     },
     data(){
         return {
@@ -91,13 +92,13 @@ export default {
             current: 1,
             paginate: 6,
             // 原始資料
-            discussCard: [],
+            // discussCard: [],
         }
     },
     computed: {
         paginateTotal() {
             //卡片長度 除以 一頁可顯示的數量，會有小數點所以要用Math無條件進位
-            return Math.ceil(this.discussCard.length / this.paginate)
+            return Math.ceil(this.disCard.length / this.paginate)
         },
         //因為直接在computed做計算，資料是彈性的，做熱門和時間判斷
         //key值要抓報告編號，只有編號都會是不樣的
@@ -110,12 +111,12 @@ export default {
         hotData() {
             //根據留言數做比較排序
             // console.log(this.discussCard.comment_count);
-            return [...this.discussCard].sort( function(a,b) {
+            return [...this.disCard].sort( function(a,b) {
                 return b.comment_count - a.comment_count;
             });
         },
         timeDate() {
-            return [...this.discussCard].sort( function(a,b) {
+            return [...this.disCard].sort( function(a,b) {
                 return Date.parse(b.discuss_post_time) - Date.parse(a.discuss_post_time);
                 //將時間轉換成秒數
             });
@@ -135,31 +136,29 @@ export default {
         selectPage(val){
             this.current = val
         },
-        // 把留言寫入資料庫
-        FetchAPIDiscuss(){
-            // https://tibamef2e.com/cgd102/g1/firefly_camp_php/discuss_card.php
-            // http://localhost/phpLab_CGD102/firefly_camp_php/discuss_card.php
-            fetch('http://localhost/phpLab_CGD102/firefly_camping_php/discuss_card.php').then((response) => {
-                this.fetchError = (response.status !== 200)
-                //json(): 返回 Promise，resolves 是 JSON 物件
-                return response.json()
-            }).then(responseText => {
-                const discussData = responseText
-                this.discussCard = discussData;
-                console.log(this.discussCard);
-            }).catch((err) => {
-                this.discussCard = true
-            })
-        },
+        // 抓取報告資訊
+        // FetchAPIDiscuss(){
+        //     fetch(process.env.VUE_APP_PHP_PATH + 'discussCard.php').then((response) => {
+        //         this.fetchError = (response.status !== 200)
+        //         //json(): 返回 Promise，resolves 是 JSON 物件
+        //         return response.json()
+        //     }).then(responseText => {
+        //         const discussData = responseText
+        //         this.discussCard = discussData;
+        //         console.log(this.discussCard);
+        //     }).catch((err) => {
+        //         this.discussCard = true
+        //     })
+        // },
         //把資料庫撈出來的時間，在做轉換喧染
         formatDate(date) {
             const myDate = new Date(date); 
             return `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}` 
         }, 
     },
-    created() {
-        this.FetchAPIDiscuss();
-    },
+    // created() {
+    //     this.FetchAPIDiscuss();
+    // },
     watch: {
         // 做監聽，不管在最新和最熱都要回第一頁
         activeBtn(){

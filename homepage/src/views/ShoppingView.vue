@@ -72,11 +72,6 @@ export default {
     return {
       cart_count: 0,
       userAllData: [],
-      // 先寫固定的會員資料
-      member: {
-        memId: 'tibame',
-        memPsw: 'tibame',
-      },
 
       // itemList: [
       //   // {} 包住的為 object
@@ -126,6 +121,9 @@ export default {
     };
   },
   methods: {
+    scrollToTop(){
+      window.scrollTo(0,0)
+      },
     //119 的tempStock - 當html 的商品 selectToDetails 被點擊時，會先暫存到tempStock
     selectToDetails(tempStock) {
       //tempStorage - 是 localStorage 裡面存放的變數名稱
@@ -134,7 +132,7 @@ export default {
       localStorage.setItem('tempStorage', JSON.stringify(tempStock));
     },
     FetchAPIFunc(){
-      fetch('http://127.0.0.1/Group%20project/firefly_camp_php/product.php').then((response) => {
+      fetch(process.env.VUE_APP_PHP_PATH + 'product.php').then((response) => {
         this.fetchError = (response.status !== 200)
         //json(): 返回 Promise，resolves 是 JSON 物件
         return response.json()
@@ -147,6 +145,9 @@ export default {
         this.userAllData = true
       })
     },
+    mounted(){
+    this.scrollToTop()
+    }
   }
 };
 </script>

@@ -41,6 +41,7 @@
 </template>
 <script>
 export default {
+    props: ['confirmation'],
     data () {
         return {
             confirmBox: false,
