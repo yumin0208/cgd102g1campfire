@@ -3,8 +3,6 @@
 <Header></Header>
 
 <section class="page_section">
-
-  <!-- <Breadcrum></Breadcrum> -->
   
   <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
@@ -37,14 +35,10 @@
 </template>
 
 <script>
+
 import Menu from "@/components/Menu.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import Breadcrum from "@/components/Breadcrum.vue";
-
-
-// @ is an alias to /src
-
 
 export default {
 name: 'HomeView',
@@ -52,7 +46,6 @@ components: {
     Menu,
     Header,
     Footer,
-    Breadcrum
 },
 data() {
   return {
