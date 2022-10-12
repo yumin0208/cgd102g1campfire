@@ -6,13 +6,47 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      .ring-1 {
+        width: 10px;
+        height: 10px;
+        margin: 0 auto;
+        padding: 10px;
+        border: 7px dashed #4b9cdb;
+        border-radius: 100%;
+      }
+      .load-4 .ring-1 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top:0;
+        bottom:0;
+        margin: auto;
+        animation: loadingD 1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+      }
+      @keyframes loadingD {
+        0% {
+        transform: rotate(0deg);
+        }
+        50% {
+        transform: rotate(180deg);
+        }
+        100% {
+        transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
       
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <div class="load-4">
+        <div class="ring-1"></div>
+      </div>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>
