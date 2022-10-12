@@ -445,6 +445,7 @@ import { useRouter } from "vue-router";
                 xhr.onload = ()=>{
                     console.log(xhr.responseText);
                     if(xhr.status == 200){
+                        
                         if(xhr.responseText != 0){
                             alert("登入成功！");
                             this.session = JSON.parse(xhr.responseText);
