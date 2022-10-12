@@ -62,7 +62,7 @@ export default {
                             myname:'營帳類型管理',
                         },
                         {
-                            path: '/LngredientsPlan',
+                            path: '/FoodPlan',
                             myname:'食材方案管理',
                         },
                         {
@@ -79,7 +79,7 @@ export default {
                             myname:'營火報告管理',
                         },
                         {
-                            path: '/Message',
+                            path: '/Comment',
                             myname:'留言管理',
                         },
                         {
@@ -135,7 +135,7 @@ export default {
                     title: '員工專區',
                     routes:[
                         {
-                            path: '/CrewInfo',
+                            path: '/Employee',
                             myname:'員工資訊管理',
                         },
                     ],

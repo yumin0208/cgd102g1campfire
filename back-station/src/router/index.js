@@ -38,10 +38,10 @@ const routes = [
     component: () => import('../views/c_service/TentType.vue'),
   },
   {
-    path: '/LngredientsPlan',
-    name: 'LngredientsPlan',
+    path: '/FoodPlan',
+    name: 'FoodPlan',
     chtName: '食材方案管理',
-    component: () => import('../views/c_service/LngredientsPlan.vue'),
+    component: () => import('../views/c_service/FoodPlan.vue'),
   },
   {
     path: '/EquipmentPlan',
@@ -56,10 +56,10 @@ const routes = [
     component: () => import('../views/d_report/Report.vue'),
   },
   {
-    path: '/Message',
-    name: 'Message',
+    path: '/Comment',
+    name: 'Comment',
     chtName: '留言管理',
-    component: () => import('../views/d_report/Message.vue'),
+    component: () => import('../views/d_report/Comment.vue'),
   },
   {
     path: '/Challenge',
@@ -116,10 +116,10 @@ const routes = [
     component: () => import('../views/g_member/MemberInfo.vue'),
   },
   {
-    path: '/CrewInfo',
-    name: 'CrewInfo',
+    path: '/Employee',
+    name: 'Employee',
     chtName: '員工資訊管理',
-    component: () => import('../views/h_crew/CrewInfo.vue'),
+    component: () => import('../views/h_employee/Employee.vue'),
   },
 ]
 

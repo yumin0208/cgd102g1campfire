@@ -1,139 +1,100 @@
 <template>
-
+<Menu></Menu>
+<Header></Header>
 <section class="page_section">
   <div class="breadcrum">
     <div class="breadcrum_left">
-      <p class="router_name">{{ chtName }}</p>
+        <p class="router_name">{{chtName}}</p>
     </div>
     <div class="breadcrum_right">
-      <div class="breadcrumb_text">
-        <p class="breadcrumb_text_title">{{ title }}</p>
-        <p>{{ chtName }}</p>
-      </div>
+        <div class="breadcrumb_text">
+            <p class="breadcrumb_text_title">{{title}}</p>
+            <router-link class="breadcrumb_text_chtname" :to="path">{{chtName}}</router-link>
+        </div>
     </div>
   </div>
   <div class="serch_bar">
-    <input type="text" placeholder="搜尋">
+    <input type="text" placeholder="搜尋"/>
     <button>新增</button>
     <button>修改</button>
     <button>刪除</button>
-  </div>  
+  </div>
   <table>
     <tr class="table_title">
-      <th v-for="title in titles" :class="{title_list: titleList==i}">{{title.thName}}</th>
+      <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
-    </tr>
-    <tr v-for="item,index in items" :class="{item_content: itemContent==i}">
-      <td v-for="list in item.lists" :class="{list_content: listContent==i}">{{list.tdName}}</td>
+    <tr v-for="item in tent_style" :key="item">
+      <td>{{item.tent_style_no}}</td>
+      <td>{{item.tent_style_people}}</td>
+      <td>{{item.area_no}}</td>
+      <td>{{item.tent_style_type}}</td>
+      <td>{{item.tent_style_name}}</td>
+      <td>{{item.tent_style_pic}}</td>
+      <td>{{item.tent_style_info}}</td>
+      <td>{{item.tent_style_price}}</td>
+      <td>{{item.tent_qty}}</td>
+      <td>{{item.tent_status}}</td>
+      <td><button>更多</button></td>
     </tr>
   </table>
 </section>
+<Footer></Footer>
 </template>
-    
-<script>
-// @ is an alias to /src
 
+<script>
+
+import Menu from "@/components/Menu.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
-  name: 'HomeView',
-  components: {
-
+name: 'HomeView',
+components: {
+  Menu,
+  Header,
+  Footer,
+},
+data() {
+  return {
+    chtName: '營帳類型管理',
+    title: '營區服務',
+    path:'/TentType',
+    titles: [
+      '營帳類型編號',
+      '營帳可住人數',
+      '地區編號',
+      '營帳種類',
+      '營帳名稱',
+      '營帳種類照片',
+      '營帳類型介紹',
+      '營帳價格',
+      '營帳數量',
+      '營帳狀態',
+    ],
+    tent_style: [],
+  };
+},
+methods: {
+  FetchAPIComment() {
+    fetch(``)
+      .then((response) => {
+        if (response) {
+          this.fetchError = response.status !== 200;
+          return response.json();
+        }
+      })
+      .then((responseText) => {
+        this.tent_style = responseText;
+      })
+      .catch((err) => {
+        this.tent_style = [];
+      });
   },
-  data() {
-    return {
-      chtName: '營帳類型管理',
-      title:'營區服務',
-      titles:[
-        {
-          thName:'營帳類型編號',
-        },
-        {
-          thName:'營帳可住人數',
-        },
-        {
-          thName:'地區編號',
-        },
-        {
-          thName:'營帳種類',
-        },
-        {
-          thName:'營帳名稱',
-        },
-        {
-          thName:'營帳種類照片',
-        },
-        {
-          thName:'營帳類型介紹',
-        },
-        {
-          thName:'營帳價格',
-        },
-        {
-          thName:'營帳數量',
-        },
-        {
-          thName:'營帳狀態',
-        },
-      ],
-      items:[       
-        {
-          lists:[
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-            {
-              tdName:'test',
-            },
-          ]
-        },
-      ]
-    }
+},
+created() {
+  this.FetchAPIComment();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

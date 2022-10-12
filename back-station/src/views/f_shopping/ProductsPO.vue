@@ -1,15 +1,16 @@
 <template>
-
+<Menu></Menu>
+<Header></Header>
 <section class="page_section">
   <div class="breadcrum">
     <div class="breadcrum_left">
-      <p class="router_name">{{ chtName }}</p>
+        <p class="router_name">{{chtName}}</p>
     </div>
     <div class="breadcrum_right">
-      <div class="breadcrumb_text">
-        <p class="breadcrumb_text_title">{{ title }}</p>
-        <p>{{ chtName }}</p>
-      </div>
+        <div class="breadcrumb_text">
+            <p class="breadcrumb_text_title">{{title}}</p>
+            <router-link class="breadcrumb_text_chtname" :to="path">{{chtName}}</router-link>
+        </div>
     </div>
   </div>
   <div class="serch_bar">
@@ -32,17 +33,22 @@
     </tr>
   </table>
 </section>
+<Footer></Footer>
 </template>
   
 <script>
-// @ is an alias to /src
 
+import Menu from "@/components/Menu.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
 name: 'HomeView',
 components: {
-  
-},
+    Menu,
+    Header,
+    Footer,
+  },
 beforeMount() {
     // 後端抓資料
     this.FetchAPIProductOrderList();
@@ -51,7 +57,8 @@ data() {
   return {
     productOrderList: [],
     chtName: '商品訂單管理',
-    title:'營火商城',
+    title: '營火商城',
+    path:'/ProductsPO',
     titles:[
       '商品訂單編號',
       '商品編號',
