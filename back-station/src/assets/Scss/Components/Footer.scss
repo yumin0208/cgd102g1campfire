@@ -1,14 +1,17 @@
 .footer{
-    margin-left: 230px;
-    position: fixed;
+    width: 80%;
+    position:fixed;
     bottom: 0;
-    display: flex;
-    justify-content: center;
-
+    right: 0;
+    z-index: 444;
 }
 .copyright{
-    padding: 10px;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
     font-size: 14px;
     color: #454545;
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 3px 3px rgb(32, 33, 36, 10%);
 
 }
