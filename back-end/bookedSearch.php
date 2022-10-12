@@ -19,7 +19,7 @@
     
     $sql1 = "select 
                 date_format(o.checkin_date, '%Y-%m-%d') $checkInDate,
-                date_format(o.checkout_date, '%Y-%m-%d') $checkOutDate,
+                date_format(o.checkout_date, '%Y-%m-%d') $checkOutDate
             from orders o join tent_style t on o.tent_style_no = t.tent_style_no
             where 
             date_format(o.checkin_date, '%Y-%m') = concat($whatYear ,'-', $whatMonth)

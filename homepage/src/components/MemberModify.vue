@@ -68,37 +68,37 @@
             <ul class="tabcontent_img">
                 <li>
                     <label for="sloth" class="select_img">
-                        <input type="radio" id="sloth" name="namepic" class="input_none" value="1" v-model="mem_pic">
-                        <img src="@/assets/images/report/report_avatar_1.png">
+                        <input type="radio" id="sloth" name="namepic" class="input_none" value="1" v-model="mem_pic" :checked="mem_pic==1">
+                        <img src="@/assets/images/report/report_avatar_1.png" >
                     </label>
                 </li>
                 <li>
                     <label for="bear" class="select_img">
-                        <input type="radio" id="bear" name="namepic" class="input_none" v-model="mem_pic" value="2">
+                        <input type="radio" id="bear" name="namepic" class="input_none" v-model="mem_pic" value="2" :checked="mem_pic==2">
                         <img src="@/assets/images/report/report_avatar_2.png" >
                     </label>
                 </li>
                 <li>
                     <label for="fox" class="select_img">
-                        <input type="radio" id="fox" name="namepic" class="input_none" value="3" v-model="mem_pic">
+                        <input type="radio" id="fox" name="namepic" class="input_none" value="3" v-model="mem_pic" :checked="mem_pic==3">
                         <img src="@/assets/images/report/report_avatar_3.png">
                     </label>
                 </li>
                 <li>
                     <label for="snake" class="select_img">
-                        <input type="radio" id="snake" name="namepic" class="input_none" value="4" v-model="mem_pic">
-                        <img src="@/assets/images/report/report_avatar_4.png">
+                        <input type="radio" id="snake" name="namepic" class="input_none" value="4" v-model="mem_pic" :checked="mem_pic==4">
+                        <img src="@/assets/images/report/report_avatar_4.png" >
                     </label>
                 </li>
                 <li>
                     <label for="penguin" class="select_img">
-                        <input type="radio" id="penguin" name="namepic" class="input_none" value="5" v-model="mem_pic">
-                        <img src="@/assets/images/report/report_avatar_5.png">
+                        <input type="radio" id="penguin" name="namepic" class="input_none" value="5" v-model="mem_pic" :checked="mem_pic==5">
+                        <img src="@/assets/images/report/report_avatar_5.png" >
                     </label>
                 </li>
                 <li>
                     <label for="dinosaur" class="select_img" >
-                        <input type="radio" id="dinosaur" name="namepic" class="input_none" value="6" v-model="mem_pic">
+                        <input type="radio" id="dinosaur" name="namepic" class="input_none" value="6" v-model="mem_pic" :checked="mem_pic==6">
                         <img src="@/assets/images/report/report_avatar_6.png">
                     </label>
                 </li>
@@ -169,6 +169,7 @@ export default {
                 this.mem_city = responseText.mem_city;
                 this.mem_addr = responseText.mem_addr;
                 this.mem_phone = responseText.mem_phone;
+                this.mem_pic = responseText.mem_pic;
             }).catch((err) => {
                 this.memmodifydata = true
             });
