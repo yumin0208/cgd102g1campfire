@@ -168,18 +168,18 @@
         }
     },methods:{
       FetchAPIFunc(){
-        fetch('http://localhost/CGD102G1/back_end/activity.php').then((response) => {
-        this.fetchError = (response.status !== 200)
-        //json(): 返回 Promise，resolves 是 JSON 物件
-        return response.json()
+        fetch(process.env.VUE_APP_PHP_PATH + 'activity.php').then((response) => {
+          this.fetchError = (response.status !== 200)
+          //json(): 返回 Promise，resolves 是 JSON 物件
+          return response.json()
       }).then(responseText => {
-      console.log("------",responseText)
-      const useData = responseText
-      this.activitydata = useData
-      console.log(this.activitydata);
-    }).catch((err) => {
-      this.activitydata = true
-    });
+          console.log("------",responseText)
+          const useData = responseText
+          this.activitydata = useData
+          console.log(this.activitydata);
+      }).catch((err) => {
+          this.activitydata = true
+      });
   },
 },
   mounted() {

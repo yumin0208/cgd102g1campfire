@@ -74,7 +74,17 @@ const routes = [
     component: () => import('../views/e_news/NewsRelease.vue'),
   },
   {
+<<<<<<< HEAD
     path: '/ProductsInfo',
+=======
+    path: '/NewsInfo',
+    name: 'NewsInfo',
+    chtName: '最新消息詳細資料',
+    component: () => import('../views/News/NewsInfoView.vue'),
+  },
+  {
+    path: '/ProductsInfoView',
+>>>>>>> c4eed6b6e73de6250eb460dc319401710f565cff
     name: 'ProductsInfo',
     chtName: '商品資訊管理',
     component: () => import('../views/f_shopping/ProductsInfo.vue'),

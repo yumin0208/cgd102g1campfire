@@ -99,7 +99,7 @@ export default {
     },
   },
   created(){
-      fetch('http://localhost/phpLab/firefly_camping_php/home_news.php')
+      fetch(process.env.VUE_APP_PHP_PATH + 'home_news.php')
       .then((res)=>{
       // this.fetchError = (response.status !== 200)
       return res.json()

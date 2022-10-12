@@ -64,6 +64,7 @@
                     <ActivityCarousel :activity_block="item.name"/> 
                 </div>
                 <div class="activity_introduction_text" >
+                    <h3>{{item.name}}</h3>
                     <h4>{{item.infoSub}}</h4>
                     <p>{{ item.infoText }}</p>
                     <div class="activity_introduction_text_pic" :class="{reverse_pic: index%2 === 1}">
@@ -130,6 +131,7 @@ export default {
             textFir:'看著來自各國的專業飛行員駕駛碩大的夢幻熱氣球，滿載觀眾們的興奮期盼漫天飄遠，徜徉在縱谷間的大峽谷之中，是這裡不可錯過的一大美景。熱氣球自由飛空中遊覽，除了現場體驗升空的感動，還有視覺及聽覺浪漫激盪的精采饗宴。',
             titleSen:'攀岩體驗',
             textSen:'峽谷運動攀登將先鋒攀登保護支點都已經事先用錨栓打好的路線，該些錨栓在路線上的距離配置均勻，不會讓攀登者的墜落距離過長。錨栓通常都是路線開發者從路線上方垂降下來時打進岩壁的。天然岩場用錨栓架設的路線，以及人工岩場中可供先鋒的路線，都是屬於運動攀登路線。',
+            infoSub:'崖壁陡直、氣勢磅礡，欣賞自然的壯麗之美',
             infoText:'荒野峽谷地區是由河流向下切蝕形成河谷，但由於河谷兩旁的谷壁易因侵蝕或崩塌，不斷擴大而形成V形橫剖面，不需飛到美國也可以就近體驗峽谷的壯觀景色，如果想在天上目睹峽谷全貌的話，可以乘坐熱氣球，由專人為您導覽解說，讓您可以一邊享受壯麗景觀的同時，也可以更了解峽谷地形的形成演變史。',
             imgUrl:require('@/assets/images/activity/activity_18.png'),
             imgShadow:require('@/assets/images/activity/activity_2.png'),
