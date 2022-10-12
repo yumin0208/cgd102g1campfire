@@ -6,13 +6,13 @@
             </div>
             <!-- 報告卡片 -->
             <div class="row_home_report">
-                <div class="col_home_report" v-for="item in hotData" :key="item.mem_no">
+                <div class="col_home_report" v-for="item in filterData" :key="item.mem_no">
                     <div class="report_user">
                         <div class="user_pic">
                             <img :src="require(`@/assets/images/report/report_avatar_${item.mem_pic}.png`)" alt="avatar">
                         </div>
                         <div class="user_data">
-                            <h4 class="user_name">{{item.mem_name}}</h4>
+                            <h4 class="user_name">{{item.mem_nick_name}}</h4>
                             <p class="release_time">{{item.discuss_post_time}}</p>
                         </div>
                     </div>
@@ -21,7 +21,7 @@
                         <p class="report_txt">{{item.discuss_content}}</p>
                     </div>
                     <div class="report_btn">
-                        <ReportLightBox/>
+                        <ReportBoxDiscuss/>
                         <router-link 
                             class="message_icon" 
                             :to="{
@@ -45,12 +45,12 @@
 </template>
 
 <script>
-import ReportLightBox from '../components/ReportLightBox.vue';
+import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
 
 export default {
     name: "ReportCard",
     components: {
-        ReportLightBox
+        ReportBoxDiscuss
     },
     data(){
         return {
@@ -60,6 +60,16 @@ export default {
         }
     },
     computed: {
+        paginateTotal() {
+            //卡片長度 除以 一頁可顯示的數量，會有小數點所以要用Math無條件進位
+            return Math.ceil(this.discussCard.length / this.paginate)
+        },
+        filterData() {
+            //一頁有幾筆數目，透過slice做計算，所以不能寫discussCard原始資料
+            //array.slice((page_number - 1) * page_size, page_number * page_size);
+            let arr = this.hotData ? this.hotData : this.filterData;
+            return arr.slice((this.current - 1) * this.paginate , this.current * this.paginate);
+        },
         hotData() {
             //根據留言數做比較排序
             // console.log(this.discussCard.comment_count);
@@ -71,8 +81,13 @@ export default {
     methods: {
         FetchAPIDiscuss(){
             // https://tibamef2e.com/cgd102/g1/firefly_camp_php/discuss_card.php
+<<<<<<< HEAD
             // http://localhost/phpLab_CGD102/firefly_camp_php/discuss_card.php
             fetch(process.env.VUE_APP_PHP_PATH + 'discuss_card.php').then((response) => {
+=======
+            // http://localhost/cgd102g1campfire/back-end/discussCard.php
+            fetch('http://localhost/cgd102g1campfire/back-end/discussCard.php').then((response) => {
+>>>>>>> yishan
                 this.fetchError = (response.status !== 200)
                 return response.json()
             }).then(responseText => {
@@ -84,6 +99,11 @@ export default {
                 this.discussCard = true
             })
         },
+        //把資料庫撈出來的時間，在做轉換喧染
+        formatDate(date) {
+            const myDate = new Date(date); 
+            return `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}` 
+        }, 
     },
     created() {
         this.FetchAPIDiscuss();

@@ -8,8 +8,8 @@
     $discuss_no = $_REQUEST['discuss_no'];
     // echo $discuss_no;
 
-    $sql1 = "select m.mem_no, m.mem_name, m.mem_pic, 
-                d.discuss_no, d.discuss_title, d.discuss_content, date_format(d.discuss_post_time, '%Y-%m-%d') discuss_post_time, d.discuss_status, d.background_type, count(c.discuss_no) comment_count
+    $sql1 = "select m.mem_no, m.mem_nick_name, m.mem_pic, 
+                d.discuss_no, d.discuss_title, d.discuss_content, d.discuss_post_time, discuss_post_time, d.discuss_status, d.background_type, count(c.discuss_no) comment_count
             from member m join discuss d on m.mem_no = d.mem_no
                 left join comment c on d.discuss_no = c.discuss_no
             where d.discuss_no=$discuss_no              
@@ -20,7 +20,7 @@
 
 
     $sql2 = " select c.discuss_no, c.comment_no, c.comment_content, 
-                    date_format(c.comment_date, '%Y-%m-%d') comment_date,
+                    comment_date,
                     m.mem_no, m.mem_name, m.mem_pic
             from comment c join member m on c.mem_no = m.mem_no
             where discuss_no=$discuss_no";

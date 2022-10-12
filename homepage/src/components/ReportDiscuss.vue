@@ -10,7 +10,7 @@
 
                     <!-- 檢舉 留言 button -->
                     <div class="report_btn">
-                        <ReportLightBox/>
+                        <ReportBoxDiscuss/>
                         <div class="message_icon">
                             <img src="@/assets/images/report/report_msg_1.png" alt="report">
                             <p class="message_count">{{discuss.comment_count}}</p>
@@ -42,13 +42,13 @@
 </template>
 
 <script>
-import ReportLightBox from '../components/ReportLightBox.vue';
+import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
 
 export default {
     props: ['discuss'],
     name: "ReportDiscuss",
     components: {
-        ReportLightBox,
+        ReportBoxDiscuss,
     },
     data() {
         return {
