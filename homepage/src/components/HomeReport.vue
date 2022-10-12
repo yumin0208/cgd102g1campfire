@@ -80,14 +80,7 @@ export default {
     },
     methods: {
         FetchAPIDiscuss(){
-            // https://tibamef2e.com/cgd102/g1/firefly_camp_php/discuss_card.php
-<<<<<<< HEAD
-            // http://localhost/phpLab_CGD102/firefly_camp_php/discuss_card.php
-            fetch(process.env.VUE_APP_PHP_PATH + 'discuss_card.php').then((response) => {
-=======
-            // http://localhost/cgd102g1campfire/back-end/discussCard.php
-            fetch('http://localhost/cgd102g1campfire/back-end/discussCard.php').then((response) => {
->>>>>>> yishan
+            fetch(process.env.VUE_APP_PHP_PATH + 'discussCard.php').then((response) => {
                 this.fetchError = (response.status !== 200)
                 return response.json()
             }).then(responseText => {
