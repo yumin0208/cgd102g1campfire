@@ -1,18 +1,120 @@
 <!DOCTYPE html>
 <html lang="">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fascinate&family=Raleway:wght@800&display=swap"
+        rel="stylesheet">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+    <style>
+        :root{
+            --text-color: #A4CEC1;
+            --ring-bg-color: #5DA091;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
+        }
+
+        /* .ring-1 {
+            width: 10px;
+            height: 10px;
+            margin: 0 auto;
+            padding: 10px;
+            border: 7px dashed var(--ring-bg-color);
+            border-radius: 100%;
+        } */
+
+        /* .load-4 .ring-1 {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            animation: loadingD 1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
+        } */
+
+        /* @keyframes loadingD {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        } */
+        .wave {
+            position: relative;
+        }
+        .wave span {
+            position: absolute;
+            text-align: center;
+            top:0;
+            left: 0;
+            right: 0;
+            line-height: 500px;
+            font-size: 150px;
+            text-transform: uppercase;
+        }
+
+        span:nth-child(1) {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--text-color);
+        }
+
+        span:nth-child(2) {
+            color: var(--text-color);
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                clip-path: polygon(0% 38%, 21% 40%, 38% 51%, 54% 57%, 75% 57%, 100% 52%, 100% 100%, 0% 100%);
+            }
+
+            50% {
+                clip-path: polygon(0 49%, 16% 56%, 33% 55%, 55% 50%, 75% 42%, 100% 40%, 100% 100%, 0% 100%);
+            }
+
+            100% {
+                clip-path: polygon(0% 38%, 21% 40%, 38% 51%, 54% 57%, 75% 57%, 100% 52%, 100% 100%, 0% 100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-      
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
+
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+        <div class="load-4">
+            <div class="ring-1"></div>
+        </div>
+        <div class="wave">
+            <span>loading...</span>
+            <span>loading...</span>
+        </div>
+
+    </div>
     <!-- built files will be auto injected -->
-  </body>
+</body>
+
 </html>

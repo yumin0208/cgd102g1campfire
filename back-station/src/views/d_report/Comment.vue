@@ -23,19 +23,13 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in member" :key="item">
+    <tr v-for="item in comment" :key="item">
+      <td>{{item.comment_no}}</td>
+      <td>{{item.discuss_no}}</td>
+      <td>{{item.comment_content}}</td>
       <td>{{item.mem_no}}</td>
-      <td>{{item.mem_id}}</td>
-      <td>{{item.mem_psw}}</td>
-      <td>{{item.mem_name}}</td>
-      <td>{{item.mem_nick_name}}</td>
-      <td>{{item.mem_email}}</td>
-      <td>{{item.mem_city}}</td>
-      <td>{{item.mem_addr}}</td>
-      <td>{{item.mem_phone}}</td>
-      <td>{{item.mem_pic}}</td>
-      <td>{{item.mem_status}}</td>
-      <td>{{item.register_date}}</td>
+      <td>{{item.comment_date}}</td>
+      <td>{{item.comment_status}}</td>
       <td><button>更多</button></td>
     </tr>
   </table>
@@ -58,24 +52,18 @@ components: {
 },
 data() {
   return {
-    chtName: '會員資訊管理',
-    title: '會員中心',
-    path:'/MemberInfo',
+    chtName: '留言管理',
+    title: '營火報告',
+    path:'/Comment',
     titles: [
+      '留言編號',
+      '報告編號',
+      '留言內容',
       '會員編號',
-      '會員帳號',
-      '會員密碼',
-      '會員姓名',
-      '會員暱稱',
-      '會員信箱',
-      '縣市',
-      '詳細住址',
-      '電話',
-      '大頭照',
-      '會員狀態',
-      '註冊日期',
+      '留言日期',
+      '留言狀態',
     ],
-    member: [],
+    comment: [],
   };
 },
 methods: {
@@ -88,10 +76,10 @@ methods: {
         }
       })
       .then((responseText) => {
-        this.member = responseText;
+        this.comment = responseText;
       })
       .catch((err) => {
-        this.member = [];
+        this.comment = [];
       });
   },
 },

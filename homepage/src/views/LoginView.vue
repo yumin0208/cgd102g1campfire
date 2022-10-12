@@ -19,7 +19,6 @@
                                 v-model="id"
                                 maxlength="20"
                                 @focus="register_id_block =1"
-                                @blur="register_id_block =0"
                                 >
                         <label for="register_id">帳號</label>
                         <div id="check_id" class="btn_submit" @click="checkId">
@@ -35,7 +34,6 @@
                                 v-model="psw"
                                 maxlength="20"
                                 @focus="register_psw =2"
-                                @blur="register_psw =0"
                                 >
                         <label for="register_psw">密碼</label>
                     </div>
@@ -47,7 +45,6 @@
                                 v-model="checkpsw"
                                 maxlength="20"
                                 @focus="register_check_psw =3"
-                                @blur="register_check_psw =0"
                                 >
                         <label for="register_check_psw">確認密碼</label>
                     </div>            
@@ -59,7 +56,6 @@
                                 v-model="email"
                                 maxlength="100"
                                 @focus="register_mem_email =4"
-                                @blur="register_mem_email =0"
                                 >
                         <label for="register_mem_email">信箱</label>
                     </div>            
@@ -71,7 +67,6 @@
                                 v-model="name"
                                 maxlength="100"
                                 @focus="register_mem_name =5"
-                                @blur="register_mem_name =0"
                                 >
                         <label for="register_mem_name">姓名</label>
                     </div>            
@@ -83,7 +78,6 @@
                                 v-model="nick_name"
                                 maxlength="20"
                                 @focus="register_nickname =6"
-                                @blur="register_nickname =0"
                                 >
                         <label for="register_nickname">暱稱</label>
                     </div>    
@@ -95,7 +89,6 @@
                                 v-model="phone"
                                 maxlength="30"
                                 @focus="register_phone =7"
-                                @blur="register_phone =0"
                                 >
                         <label for="register_phone">電話</label>
                     </div>           
@@ -138,7 +131,6 @@
                                 v-model="addr"
                                 maxlength="300"
                                 @focus="register_addr =8"
-                                @blur="register_addr =0"
                                 >
                         <label for="register_addr">地址</label>
                     </div>            
@@ -157,7 +149,6 @@
                                 id="login_id"
                                 v-model="id"
                                 @click="login_id =9"
-                                @blur="login_id =0"
                                 >
                         <label for="login_id">帳號</label>
                     </div>
@@ -168,7 +159,6 @@
                                 id="login_psw" 
                                 v-model="psw"
                                 @focus="login_psw =10"
-                                @blur="login_psw =0"
                                 >
                         <label for="login_psw">密碼</label>
                     </div>
@@ -411,13 +401,6 @@ import { useRouter } from "vue-router";
             show_register(index){
                 this.index += 1;
             },
-            // focus_txtb(focus_index){
-                // this.focus_index += 1;
-            // },
-            // blur_txtb(focus_index){
-            //     this.focus_index -= 1;
-            //     console.log(focus_index);
-            // }
             checkId(){
                 var xhr = new XMLHttpRequest();
                     xhr.onload = ()=>{
