@@ -3,12 +3,12 @@
   <div class="banner">
     <img src="@/assets/images/main/banner_activity.png" alt="banner" />
   </div>
-  <ActivityTour/>
-  <ActivityInfo/>
+    <ActivityTour/>
+    <ActivityInfo/>
   <!-- <div class="carousel_jungle">
     <ActivityCarousel/>
   </div> -->
-  <div class="box">
+    <div class="box">
       <ScrollDrop/> 
     </div>
   <MainFooter/>  
@@ -35,7 +35,6 @@ export default {
       mounted(){
         //要用到mounted，不能用在created中，因為Dom元件還沒被掛載，讀不到window
         this.scrollToTop()
-
       }
     }
 </script>

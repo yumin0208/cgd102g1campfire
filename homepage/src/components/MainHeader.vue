@@ -97,6 +97,7 @@
 
 <script>
 import { routes } from '@/router/index.js';
+import { useRouter } from "vue-router";
 
 export default {
     created(){
@@ -145,6 +146,7 @@ export default {
                     name: '營火商城',
                 },
             ],
+            router:useRouter()
         }
     },
     methods: {
@@ -166,7 +168,9 @@ export default {
             xhr.send(null);
             sessionStorage.removeItem("member", JSON.stringify(this.session));
             alert("已登出");
-            location.replace("/");
+            let thus = this;
+            thus.router.push({path:'/'})
+            // location.replace("/");
             // session()->forget('mem_id');
         }
     }

@@ -371,7 +371,7 @@
 </template>
 <script>
 import { watch } from '@vue/runtime-core'
-
+import { useRouter } from "vue-router";
     export default{
         data(){
                 return{
@@ -397,7 +397,8 @@ import { watch } from '@vue/runtime-core'
                 addr:'',
                 city:'',
                 mem_data:[],
-                activeTab:'login'
+                activeTab:'login',
+                router:useRouter()
                 }
         },
         methods:{
@@ -450,9 +451,10 @@ import { watch } from '@vue/runtime-core'
                             console.log(this.session)
                             sessionStorage.setItem("member", JSON.stringify(this.session));
                             this.loginStatus = sessionStorage.getItem("member")
+                            let thus = this
                             if (this.loginStatus != '') {
-                                location.replace("/Member");
-                            // this.$router.push("/Login");
+                                // location.replace("/Member");
+                                thus.router.push({path:'/Member'});
                             }
                         }else if(xhr.responseText == 0){
                             alert("帳號或密碼錯誤");
@@ -517,10 +519,11 @@ import { watch } from '@vue/runtime-core'
                     xhr.onload = ()=>{
                         console.log(xhr.responseText);
                         if(xhr.status == 200){
+                            let thus = this
                             if(xhr.responseText == 1){
                                 alert("註冊成功,請重新登入");
                                 // location.replace("/Login");
-                                // this.$router.push("/Login");
+                                thus.router.push({path:"/Login"});
                             }else if(xhr.responseText == 0){
                                 alert("此帳號已存在");
                             }
