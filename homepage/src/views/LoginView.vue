@@ -397,7 +397,8 @@ import { useRouter } from "vue-router";
                 addr:'',
                 city:'',
                 mem_data:[],
-                activeTab:'login'
+                activeTab:'login',
+                router:useRouter()
                 }
         },
         methods:{
