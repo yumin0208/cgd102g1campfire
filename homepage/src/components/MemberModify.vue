@@ -113,10 +113,6 @@ import { useRouter } from "vue-router";
 export default {
     name: "MemberModify",
     created(){
-        let checkLogin = sessionStorage.getItem('member');
-        if(checkLogin == null){
-            location.replace("/HomeView");
-        }
         this.getMemData()
         this.fetchMemData()
     },
