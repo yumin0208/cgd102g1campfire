@@ -143,6 +143,6 @@ export default {
 
 <style lang="scss" scoped>
 
-@import'@/assets/Scss/Page/table.scss';
+@import'@/assets/scss/components/table.scss';
 
 </style>

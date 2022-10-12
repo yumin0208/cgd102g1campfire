@@ -66,72 +66,37 @@ export default {
     },
     data() {
     return {
-        chtName: '裝備方案管理',
-        title:'營區服務',
+        chtName: '主題地區管理',
+        title:'營區導覽',
         titles:[
         {
-            thName:'test',
+            thName:'地區編號',
         },
         {
-            thName:'test',
+            thName:'地區名稱',
         },
         {
-            thName:'test',
+            thName:'地區副標題',
         },
         {
-            thName:'test',
+            thName:'地區介紹',
         },
-        {
-            thName:'test',
-        },
-        {
-            thName:'test',
-        },
-        {
-            thName:'test',
-        },
-        {
-            thName:'test',
-        },
-        {
-            thName:'test',
-        },
-        {
-            thName:'test',
-        },
+   
         ],
         items:[       
         {
             lists:[
             {
-                tdName:'test',
+                tdName:'1',
             },
             {
-                tdName:'test',
+                tdName:'2',
             },
             {
-                tdName:'test',
+                tdName:'3',
             },
             {
-                tdName:'test',
-            },
-            {
-                tdName:'test',
-            },
-            {
-                tdName:'test',
-            },
-            {
-                tdName:'test',
-            },
-            {
-                tdName:'test',
-            },
-            {
-                tdName:'test',
-            },
-            {
-                tdName:'test',
+                tdName:'4',
             },
             ]
         },
@@ -143,6 +108,6 @@ export default {
 
 <style lang="scss" scoped>
 
-@import'@/assets/Scss/Page/table.scss';
+@import'@/assets/scss/components/table.scss';
 
 </style>

@@ -66,7 +66,7 @@ export default {
   },
   data() {
     return {
-      chtName: '檢舉管理',
+      chtName: '留言管理',
       title:'營火報告',
       titles:[
         {
@@ -143,6 +143,6 @@ export default {
 
 <style lang="scss" scoped>
 
-@import'@/assets/Scss/Page/table.scss';
+@import'@/assets/scss/components/table.scss';
 
 </style>

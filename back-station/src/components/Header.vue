@@ -12,7 +12,7 @@
         </div>    
         <div class="nav_account">
             <div class="account_photo">
-                <img src="../assets/Image/icon/header_icon_account.png" alt="Staff">
+                <img src="../assets/image/icon/header_icon_account.png" alt="Staff">
             </div>
             <p class="account_text">您好！{{staffName}}</p>
         </div> 

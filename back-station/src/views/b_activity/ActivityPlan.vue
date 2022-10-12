@@ -66,37 +66,48 @@ export default {
     },
     data() {
     return {
-        chtName: '主題地區管理',
+        chtName: '活動方案管理',
         title:'營區導覽',
         titles:[
-        {
-            thName:'地區編號',
-        },
-        {
-            thName:'地區名稱',
-        },
-        {
-            thName:'地區副標題',
-        },
-        {
-            thName:'地區介紹',
-        },
-   
+        '活動編號',
+        '活動名稱',
+        '活動介紹副標題',
+        '活動簡介',
+        '活動介紹',
+        '活動圖片',
+        '活動價格',
+        '活動適合族群',
+        '活動注意事項',
         ],
         items:[       
         {
             lists:[
             {
-                tdName:'1',
+                tdName:'test',
             },
             {
-                tdName:'2',
+                tdName:'test',
             },
             {
-                tdName:'3',
+                tdName:'test',
             },
             {
-                tdName:'4',
+                tdName:'test',
+            },
+            {
+                tdName:'test',
+            },
+            {
+                tdName:'test',
+            },
+            {
+                tdName:'test',
+            },
+            {
+                tdName:'test',
+            },
+            {
+                tdName:'test',
             },
             ]
         },
@@ -108,6 +119,6 @@ export default {
 
 <style lang="scss" scoped>
 
-@import'@/assets/Scss/Page/table.scss';
+@import'@/assets/scss/components/table.scss';
 
 </style>

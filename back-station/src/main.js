@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import Main from './components/Main.vue'
-import "@/assets/Scss/Style.scss"
+import '@/assets/scss/style.scss'
 
 const app =  createApp(App)
 app.use(store)

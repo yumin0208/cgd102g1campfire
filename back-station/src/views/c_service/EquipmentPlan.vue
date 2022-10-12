@@ -66,22 +66,46 @@ export default {
     },
     data() {
     return {
-        chtName: '活動方案管理',
-        title:'營區導覽',
+        chtName: '裝備方案管理',
+        title:'營區服務',
         titles:[
-        '活動編號',
-        '活動名稱',
-        '活動介紹副標題',
-        '活動簡介',
-        '活動介紹',
-        '活動圖片',
-        '活動價格',
-        '活動適合族群',
-        '活動注意事項',
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
+        {
+            thName:'test',
+        },
         ],
         items:[       
         {
             lists:[
+            {
+                tdName:'test',
+            },
             {
                 tdName:'test',
             },
@@ -119,6 +143,6 @@ export default {
 
 <style lang="scss" scoped>
 
-@import'@/assets/Scss/Page/table.scss';
+@import'@/assets/scss/components/table.scss';
 
 </style>
