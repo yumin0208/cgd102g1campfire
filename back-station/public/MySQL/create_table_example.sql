@@ -1,7 +1,7 @@
 
--- drop database tibamefe_cgd102g1;
--- CREATE DATABASE tibamefe_cgd102g1;
--- use tibamefe_cgd102g1;
+--  drop database tibamefe_cgd102g1;
+--  CREATE DATABASE tibamefe_cgd102g1;
+--  use tibamefe_cgd102g1;
 
 
 -- CREATE TABLE 後面加TABLE名稱 (欄位名稱_欄位類型_欄位特性) _代表空白
@@ -379,7 +379,7 @@ VALUES(1,1,'遊覽動物','在叢林中遊覽各種動物的英姿','當您在�
 
 create table orders(
 orders_no int PRIMARY KEY AUTO_INCREMENT,
-tent_no int not null,
+tent_no int,
 mem_no int not null,
 tent_style_no int not null,
 activity_no int,
@@ -388,7 +388,7 @@ equip_no int,
 area_no tinyint not null,
 payment_methods tinyint not null,
 payment_time datetime ,
-account_no varchar(5) not null,
+account_no varchar(5) ,
 payment_status tinyint not null,
 orders_total int not null,
 orders_time datetime not null,
