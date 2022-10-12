@@ -69,6 +69,9 @@ export default {
         };
     },
     methods: {
+        scrollToTop(){
+        window.scrollTo(0,0)
+        },
         loginBox (response) {
             this.login = response
         },
@@ -145,6 +148,9 @@ export default {
             if (!tempProduct || tempProduct === 'undefined') return
             this.orderList = JSON.parse(tempProduct)
         }
+    },
+    mounted(){
+    this.scrollToTop()
     },
     created() {
         this.getStorage();

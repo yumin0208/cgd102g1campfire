@@ -371,7 +371,7 @@
 </template>
 <script>
 import { watch } from '@vue/runtime-core'
-
+import { useRouter } from "vue-router";
     export default{
         data(){
                 return{
@@ -397,7 +397,8 @@ import { watch } from '@vue/runtime-core'
                 addr:'',
                 city:'',
                 mem_data:[],
-                activeTab:'login'
+                activeTab:'login',
+                router:useRouter()
                 }
         },
         methods:{
@@ -428,7 +429,7 @@ import { watch } from '@vue/runtime-core'
                             }
                         }
                     }
-                    xhr.open("POST","http://localhost/phpLab_CGD102/firefly_camping_php/checkId.php", true);
+                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'checkId.php', true);
 
 
                     let mem_deta = `mem_id=${this.id}&`;
@@ -444,22 +445,24 @@ import { watch } from '@vue/runtime-core'
                 xhr.onload = ()=>{
                     console.log(xhr.responseText);
                     if(xhr.status == 200){
+                        
                         if(xhr.responseText != 0){
                             alert("登入成功！");
                             this.session = JSON.parse(xhr.responseText);
                             console.log(this.session)
                             sessionStorage.setItem("member", JSON.stringify(this.session));
                             this.loginStatus = sessionStorage.getItem("member")
+                            let thus = this
                             if (this.loginStatus != '') {
-                                location.replace("/Member");
-                            // this.$router.push("/Login");
+                                // location.replace("/Member");
+                                thus.router.push({path:'/Member'});
                             }
                         }else if(xhr.responseText == 0){
                             alert("帳號或密碼錯誤");
                         }
                     }
                 }
-                xhr.open("POST","http://localhost/phpLab_CGD102/firefly_camping_php/doLogin.php", true);
+                xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'doLogin.php', true);
 
                 let mem_deta = `mem_id=${this.id}&mem_psw=${this.psw}`;
                 let formData = new FormData();
@@ -476,7 +479,7 @@ import { watch } from '@vue/runtime-core'
                 //         $id("spanLogin").innerText = "登出";          
                 //     }
                 // }
-                xhr.open("get","http://localhost/phpLab/firefly_camping_php/getMemberInfo.php",true);
+                xhr.open("get",process.env.VUE_APP_PHP_PATH + 'getMemberInfo.php',true);
                 xhr.send(null);
             },
             doRegister(){
@@ -517,16 +520,17 @@ import { watch } from '@vue/runtime-core'
                     xhr.onload = ()=>{
                         console.log(xhr.responseText);
                         if(xhr.status == 200){
+                            let thus = this
                             if(xhr.responseText == 1){
                                 alert("註冊成功,請重新登入");
                                 // location.replace("/Login");
-                                // this.$router.push("/Login");
+                                thus.router.push({path:"/Login"});
                             }else if(xhr.responseText == 0){
                                 alert("此帳號已存在");
                             }
                         }
                     }
-                    xhr.open("POST","http://localhost/phpLab_CGD102/firefly_camping_php/register.php", true);
+                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'register.php', true);
 
 
                     let mem_deta = `mem_id=${this.id}&mem_psw=${this.psw}&mem_name=${this.name}&mem_email=${this.email}&mem_nick_name=${this.nick_name}&mem_city=${this.city}&mem_addr=${this.addr}&mem_phone=${this.phone}`;
