@@ -1,17 +1,28 @@
 <template>
-
-
+<Menu></Menu>
+<Header></Header>
+<Footer></Footer>
 </template>
-
+  
 <script>
 
-// @ is an alias to /src
-
+import Menu from "@/components/Menu.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: 'HomeView',
   components: {
-
-}
-}
+    Menu,
+    Header,
+    Footer,
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+
+@import'@/assets/scss/style.scss';
+
+</style>
+  
