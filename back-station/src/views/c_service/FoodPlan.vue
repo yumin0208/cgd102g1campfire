@@ -23,12 +23,13 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in equip" :key="item">
-        <td>{{item.equip_no}}</td>
-        <td>{{item.equip_name}}</td>
-        <td>{{item.equip_price}}</td>
-        <td>{{item.equip_pic}}</td>
-        <td>{{item.equip_info}}</td>
+    <tr v-for="item in food" :key="item">
+        <td>{{item.food_no}}</td>
+        <td>{{item.food_name}}</td>
+        <td>{{item.food_price}}</td>
+        <td>{{item.food_info}}</td>
+        <td>{{item.food_pic}}</td>
+        <td>{{item.food_status}}</td>
         <td><button>更多</button></td>
     </tr>
     </table>
@@ -51,17 +52,18 @@ export default {
     },
     data() {
         return {
-        chtName: '裝備方案管理',
+        chtName: '食材方案管理',
         title: '營區服務',
-        path:'/EquipmentPlan',
+        path:'/FoodPlan',
         titles: [
-            '裝備編號',
-            '裝備名稱',
-            '裝備價格',
-            '裝備圖片',
-            '裝備介紹',
+            '食材方案編號',
+            '食材方案名稱',
+            '食材價格',
+            '食材介紹',
+            '食材圖片',
+            '食材狀態',
         ],
-        equip: [],
+        food: [],
         };
     },
     methods: {
@@ -74,10 +76,10 @@ export default {
             }
             })
             .then((responseText) => {
-            this.equip = responseText;
+            this.food = responseText;
             })
             .catch((err) => {
-            this.equip = [];
+            this.food = [];
             });
         },
     },

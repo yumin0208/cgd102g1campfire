@@ -3,15 +3,15 @@
 <Header></Header>
 <section class="page_section">
     <div class="breadcrum">
-    <div class="breadcrum_left">
-        <p class="router_name">{{chtName}}</p>
-    </div>
-    <div class="breadcrum_right">
-        <div class="breadcrumb_text">
-            <p class="breadcrumb_text_title">{{title}}</p>
-            <router-link class="breadcrumb_text_chtname" :to="path">{{chtName}}</router-link>
+        <div class="breadcrum_left">
+            <p class="router_name">{{chtName}}</p>
         </div>
-    </div>
+        <div class="breadcrum_right">
+            <div class="breadcrumb_text">
+                <p class="breadcrumb_text_title">{{title}}</p>
+                <router-link class="breadcrumb_text_chtname" :to="path">{{chtName}}</router-link>
+            </div>
+        </div>
     </div>
     <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
@@ -23,12 +23,14 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in equip" :key="item">
-        <td>{{item.equip_no}}</td>
-        <td>{{item.equip_name}}</td>
-        <td>{{item.equip_price}}</td>
-        <td>{{item.equip_pic}}</td>
-        <td>{{item.equip_info}}</td>
+    <tr v-for="item in employee" :key="item">
+        <td>{{item.employee_no}}</td>
+        <td>{{item.employee_name}}</td>
+        <td>{{item.employee_auth}}</td>
+        <td>{{item.employee_sex}}</td>
+        <td>{{item.employee_email}}</td>
+        <td>{{item.employee_phone}}</td>
+        <td>{{item.employee_status}}</td>
         <td><button>更多</button></td>
     </tr>
     </table>
@@ -51,17 +53,19 @@ export default {
     },
     data() {
         return {
-        chtName: '裝備方案管理',
-        title: '營區服務',
-        path:'/EquipmentPlan',
+        chtName: '員工資訊管理',
+        title: '員工專區',
+        path:'/Employee',
         titles: [
-            '裝備編號',
-            '裝備名稱',
-            '裝備價格',
-            '裝備圖片',
-            '裝備介紹',
+            '員工編號',
+            '員工姓名',
+            '權限',
+            '員工性別',
+            '員工信箱',
+            '員工電話',
+            '員工狀態',
         ],
-        equip: [],
+        employee: [],
         };
     },
     methods: {
@@ -74,10 +78,10 @@ export default {
             }
             })
             .then((responseText) => {
-            this.equip = responseText;
+            this.employee = responseText;
             })
             .catch((err) => {
-            this.equip = [];
+            this.employee = [];
             });
         },
     },

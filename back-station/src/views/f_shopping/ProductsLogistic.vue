@@ -1,15 +1,16 @@
 <template>
-
+<Menu></Menu>
+<Header></Header>
 <section class="page_section">
   <div class="breadcrum">
     <div class="breadcrum_left">
-      <p class="router_name">{{ chtName }}</p>
+        <p class="router_name">{{chtName}}</p>
     </div>
     <div class="breadcrum_right">
-      <div class="breadcrumb_text">
-        <p class="breadcrumb_text_title">{{ title }}</p>
-        <p>{{ chtName }}</p>
-      </div>
+        <div class="breadcrumb_text">
+            <p class="breadcrumb_text_title">{{title}}</p>
+            <router-link class="breadcrumb_text_chtname" :to="path">{{chtName}}</router-link>
+        </div>
     </div>
   </div>
   <div class="serch_bar">
@@ -30,22 +31,27 @@
       </tr>
   </table>
 </section>
+<Footer></Footer>
 </template>
   
 <script>
-// @ is an alias to /src
-
+import Menu from "@/components/Menu.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
 name: 'HomeView',
 components: {
-
-},
+    Menu,
+    Header,
+    Footer,
+  },
 data() {
   return {
     productsType: [],
-    chtName: '商品類別管理',
-    title:'營火商城',
+    chtName: '商品物流管理',
+    title: '營火商城',
+    path:'/ProductsLogistic',
     titles:[
       '商品類別編號',
       '商品類別名稱',
