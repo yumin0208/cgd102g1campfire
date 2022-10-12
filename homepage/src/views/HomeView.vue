@@ -16,6 +16,7 @@
   <HomeReservation
     :openCalendar="calendarTrigger"
     @abc="openCalendarGo"
+    @closeTriggerGo="closeCalendar"
     @update-result="getItem"
   />
   <HomeNews />
@@ -35,6 +36,7 @@ import HomeActivityIsland from '@/components/HomeActivityIsland.vue';
 import HomeReport from '@/components/HomeReport.vue';
 import HomeProducts from '@/components/HomeProducts.vue';
 import HomeCalender from '@/components/HomeCalendar.vue';
+import dayjs from 'dayjs';
 
 // 之後要作轉場動畫的設定
 export default {
@@ -68,6 +70,9 @@ export default {
         alert('請先選取搜尋範圍');
       }
     },
+    closeCalendar(triggerOff) {
+      this.calendarTrigger = triggerOff;
+    },
     getItem({ whichArea, howMany, whichType }) {
       console.log(whichArea, howMany, whichType);
       this.whichArea = whichArea;
@@ -75,6 +80,7 @@ export default {
       this.whichType = whichType;
     },
   },
+  created() {},
 };
 </script>
 
@@ -95,8 +101,8 @@ export default {
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      right: 10px;
-      top: 10px;
+      right: -15px;
+      top: -15px;
       background-color: #168d80;
       border: none;
       cursor: pointer;
@@ -122,8 +128,21 @@ export default {
       background-color: #f5f2e9;
 
       .calendar_header {
-        font-size: 28px;
+        display: flex;
+        font-size: 20px;
         color: #168d80;
+        justify-content: center;
+        padding: 20px 0;
+        button {
+          border: none;
+          background-color: transparent;
+          img {
+            width: 100%;
+          }
+        }
+        .now_days {
+          width: 160px;
+        }
       }
       .ant-picker-panel {
         background-color: #f5f2e9;

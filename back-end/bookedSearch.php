@@ -5,29 +5,25 @@
     require_once("./connect_cgd102g1.php");
 
     // 欄位名稱
-    $tentNo = 'tentNo';
-    $checkInDate = 'checkInDate';
-    $checkOutDate = 'checkOutDate';
-    $areaNo = 'areaNo';
-    $howManyPeople = 'howManyPeople';
-    $tentType = 'tentType';
+    $checkInDate = 'checkIn';
+    $checkOutDate = 'checkOut';
 
     // 接收到的條件資料
-    $whichTentType = $_REQUEST[''];
-    $howManyPeopleGet = $_REQUEST[''];
-    $areaNoGet = $_REQUEST[''];
+    $whichTentType = $GET['whichTentType'];
+    $howManyPeopleGet = $GET['howManyPeopleGet'];
+    $areaNoGet = $GET['areaNoGet'];
+    $whatYear = $GET['whatYear'];
+    $whatMonth = $GET['whatMonth'];
 
     // $discuss_no = $_REQUEST['discuss_no'];
     
     $sql1 = "select 
-                o.tent_style_no $tentNo,
                 date_format(o.checkin_date, '%Y-%m-%d') $checkInDate,
                 date_format(o.checkout_date, '%Y-%m-%d') $checkOutDate,
-                t.area_no $areaNo,
-                t.tent_style_people $howManyPeople,
-                t.tent_style_type $tentType
             from orders o join tent_style t on o.tent_style_no = t.tent_style_no
-            where t.tent_style_type = $whichTentType
+            where 
+            date_format(o.checkin_date, '%Y-%m') = concat($whatYear ,'-', $whatMonth)
+            and   t.tent_style_type = $whichTentType
             and   t.area_no = $areaNoGet 
             and   t.tent_style_people = $howManyPeopleGet;";
 
