@@ -30,10 +30,7 @@
                         <img :src="require(`@/assets/images/report/report_postcard_${background_type}.jpg`)" alt="postcard">
                     </div>
                 </div>
-
-                <!-- method="POST"
-                action="http://localhost/phpLab_CGD102/firefly_camping_php/report_publish.php" -->
-                <!-- 輸入欄 0929-->
+                <!-- 輸入欄 -->
                 <form 
                     class="col_write_text" 
                 >
@@ -74,10 +71,17 @@
 // import LoginLightBox from '../components/LoginLightBox.vue';
 
 export default {
+    props: ['disPublish'],
+    // inject: ['reload'],
     components:{
         // LoginLightBox,
     },
     name: 'ReportPublish',
+    provide(){
+        return{
+            reload: this.reload
+        }
+    },
     data() {
         return {
             discuss_no:'',
@@ -92,7 +96,7 @@ export default {
             mem_nick_name: '',
             mem_pic: '0',
             discuss_show: false, 
-            // discuss_show == true ，就秀出
+            // isRouterAlive: true,
         };
     },
     methods:{
@@ -102,10 +106,16 @@ export default {
             this.memId = this.member.mem_id;
             // console.log(this.member)  
         },
-        //寫入新報告
+        // reload(){
+        //     this.isRouterAlive = false;
+        //     this.$nextTick(function () {
+        //         this.isRouterAlive = true;
+        //     });
+        // },
+        // //寫入新報告
         DiscussSend(){
             let xhr = new XMLHttpRequest();
-            xhr.open("POST","http://localhost/phpLab_CGD102/firefly_camping_php/DiscussSend.php",true);
+            xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussSend.php',true);
             // xhr.send(null);
 
             // let discuss_data = `mem_no=${this.member.mem_no}&
@@ -119,6 +129,8 @@ export default {
             formData.append('background_type', this.background_type);
             xhr.send(formData);
             // this.FetchAPIDiscuss();
+            location.reload();
+            // this.$emit('update-result', true);
             alert("發佈成功");
             this.discuss_title = '';
             this.discuss_content = '';
@@ -134,7 +146,7 @@ export default {
             }
         }
     },
-    //created 是一開始就做
+    // created 是一開始就做
     created(){
         //是否有登入狀態
         let checkLogin = sessionStorage.getItem('member');

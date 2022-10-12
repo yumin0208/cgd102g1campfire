@@ -5,15 +5,21 @@
                 <div class="modal_container" @click.self="toggleModal">
                     <div class="modal_body">
                         <p>檢舉原因</p>
-                        <form action="">
+                        <form>
                             <textarea 
                                     class="inform_txt" 
                                     type="text" 
                                     maxlength="150" 
-                                    placeholder="請寫入檢舉原因(150字以內)"
+                                    placeholder="請輸入內文(150字以內)"
                             >
                             </textarea>
-                            <button class="btn_confirm" type="button">送出</button>
+                            <button 
+                                class="btn_confirm" 
+                                type="button"
+                                @click="reportDiscuss"
+                            >
+                            送出
+                        </button>
                         </form>
                         <span class="btn_closure">
                             <img src="@/assets/images/main/main_icon_closure.png" alt="closure" @click.self="toggleModal">
@@ -26,7 +32,6 @@
     <a class="inform_icon" @click="isShow = true">
         <img src="@/assets/images/report/report_icon_caution.png" alt="caution">
     </a>
-    <!-- <button @click="isShow = true">Click Me</button> -->
 </template>
 
 <script>
@@ -111,6 +116,7 @@ export default {
     margin-bottom: 20px;
     border: 1px solid $color-main-green;
     resize: none;
+    color: #aaa;
 }
 //叉叉
 .btn_closure{
