@@ -109,98 +109,120 @@
 </template>
 
 <script>
-    export default {
-        name: "MemberModify",
-        created(){
-            let checkLogin = sessionStorage.getItem('member');
-            if(checkLogin == null){
-                location.replace("/HomeView");
-            }
-            this.getMemData()
-            this.fetchtest()
-        },
-        data(){
-            return {
-                city:[
-                    '基隆市','嘉義市','台北市','嘉義縣','新北市','台南市','桃園市','高雄市','新竹市','屏東縣','新竹縣','台東縣','苗栗縣','花蓮縣','台中市','宜蘭縣','彰化縣','澎湖縣','南投縣','金門縣','雲林縣','連江縣'
-                ],
-
-                selected: '',
-                memmodifydata:{},
-                memId: '',
-                memdata:'',
-                member:'',
-                mem_id:'',
-                mem_name:'',
-                mem_email:'',
-                mem_nick_name:'',
-                mem_city:'',
-                mem_addr:'',
-                mem_phone:'',
-                mem_pic:'',
-                mem_deta:[]
-            }
-        },
-        methods:{
-            getMemData(){
-                this.member = JSON.parse(sessionStorage.getItem('member'));
-                this.mem_id = this.member.mem_id;
-                // this.mem_name = this.member.mem_name;
-                // this.mem_email = this.member.mem_email;
-                // this.mem_nick_name = this.member.mem_nick_name;
-                // this.mem_city = this.member.mem_city;
-                // this.mem_addr = this.member.mem_addr;
-                // this.mem_phone = this.member.mem_phone;
-                console.log(this.member)
-                console.log(this.mem_id)
-    
-            },
-            fetchtest(){
-                console.log(this.mem_id)
-                fetch(`http://localhost/CGD102G1/back_end/membermodifytest.php?memId=${this.mem_id}`
-                ,
-                {method:'GET'})                
-                .then((response) => {
-                    this.fetchError = (response.status !== 200)
-                //json(): 返回 Promise，resolves 是 JSON 物件
-                    return response.json()
-                }).then(responseText => {
-                    console.log(responseText)
-                    const useData = responseText
-                    this.memmodifydata = useData[0]
-                    this.mem_name = responseText.mem_name;
-                    this.mem_email = responseText.mem_email;
-                    this.mem_nick_name = responseText.mem_nick_name;
-                    this.mem_city = responseText.mem_city;
-                    this.mem_addr = responseText.mem_addr;
-                    this.mem_phone = responseText.mem_phone;
-                }).catch((err) => {
-                    this.memmodifydata = true
-                });
-            },
-            update(e){
-                if (
-                    //指定css選擇器的節點
-                        e.target.closest('button') &&
-                        e.target.closest('button').id === 'submit'
-                    ) {
-                    //取消預設submit事件
-                        e.preventDefault()
-                        
-                
-                var xhr = new XMLHttpRequest();
-               
-                xhr.open("POST","http://localhost/CGD102G1/back_end/updatemember.php", true);
-                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                let mem_deta = `mem_id=${this.mem_id}&mem_name=${this.mem_name}&mem_email=${this.mem_email}&mem_nick_name=${this.mem_nick_name}&mem_city=${this.mem_city}&mem_addr=${this.mem_addr}&mem_phone=${this.mem_phone}&mem_pic=${this.mem_pic}`;
-                    xhr.send(mem_deta);
-                alert("修改成功");
-                }
-
-            }
+export default {
+    name: "MemberModify",
+    created(){
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            location.replace("/HomeView");
         }
+        this.getMemData()
+        this.fetchMemData()
+    },
+    data(){
+        return {
+            city:[
+                '台北市','新北市','桃園市','台中市','台南市','高雄市','基隆市','新竹市','嘉義市','新竹縣','苗栗縣','彰化縣','南投縣','雲林縣','嘉義縣','屏東縣','宜蘭縣','花蓮縣','台東縣','澎湖縣','金門縣','連江縣'
+            ],
 
+            selected: '',
+            memmodifydata:{},
+            memId: '',
+            memdata:'',
+            member:'',
+            mem_id:'',
+            mem_name:'',
+            mem_email:'',
+            mem_nick_name:'',
+            mem_city:'',
+            mem_addr:'',
+            mem_phone:'',
+            mem_pic:'',
+            mem_deta:[],
+        }
+    },
+    methods:{
+        getMemData(){
+            //抓到sessionStorage的會員資料
+            this.member = JSON.parse(sessionStorage.getItem('member'));
+            //抓取會員id，要去後端撈會員資料需要
+            this.mem_id = this.member.mem_id;
+            //確認有抓到東西
+            console.log(this.member)
+            console.log(this.mem_id)
+        },
+        fetchMemData(){
+            console.log(this.mem_id)
+            fetch(process.env.VUE_APP_PHP_PATH + `membermodifytest.php?memId=${this.mem_id}`)                
+            .then((response) => {
+                this.fetchError = (response.status !== 200)
+            //json(): 返回 Promise，resolves 是 JSON 物件
+                return response.json()
+            }).then(responseText => {
+                console.log(responseText)
+                //傳送資料
+                const useData = responseText
+                //篩選會員id之後撈回來的第一筆資料
+                this.memmodifydata = useData[0]
+                //這邊的mem_xxx資料是綁在v-model上
+                this.mem_name = responseText.mem_name;
+                this.mem_email = responseText.mem_email;
+                this.mem_nick_name = responseText.mem_nick_name;
+                this.mem_city = responseText.mem_city;
+                this.mem_addr = responseText.mem_addr;
+                this.mem_phone = responseText.mem_phone;
+            }).catch((err) => {
+                this.memmodifydata = true
+            });
+        },
+        update(e){
+            if (
+                //指定css選擇器的節點
+                e.target.closest('button') &&
+                e.target.closest('button').id === 'submit'
+                ) {
+                //取消預設submit事件
+                    e.preventDefault()
+                //設定判斷式
+                const emailFormat = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/ ;
+                if(this.mem_name == '' || this.mem_nick_name == '' || this.mem_city == ''|| this.mem_addr == '' || this.mem_phone == ''){
+                    alert("有欄位空白");
+                    return;
+                }
+                else if(this.mem_email.search(emailFormat)!=0){
+                    alert("信箱格式錯誤");
+                    return;
+                }
+                else if(this.mem_pic == ''){
+                    alert("請選擇大頭貼");
+                    return;
+                }
+                else{
+                    //沒有錯誤則將更新後的會員傳送到資料庫
+                    var xhr = new XMLHttpRequest();
+            
+                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'updatemember.php', true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    //回傳過去的資料
+                    let mem_deta = `mem_id=${this.mem_id}&mem_name=${this.mem_name}&mem_email=${this.mem_email}&mem_nick_name=${this.mem_nick_name}&mem_city=${this.mem_city}&mem_addr=${this.mem_addr}&mem_phone=${this.mem_phone}&mem_pic=${this.mem_pic}`;
+                    
+                    xhr.send(mem_deta);
+                    //重新撈回資料庫資料，再寫進sessionStorage
+                    xhr.onload = ()=>{
+                        console.log(xhr.responseText);
+                        if(xhr.status == 200){
+                            this.session = JSON.parse(xhr.responseText);
+                            console.log(this.session)
+                            sessionStorage.setItem("member", JSON.stringify(this.session));
+                        }
+                    }
+                    alert("修改成功");
+                }   
+            }
+
+        }
     }
+}
 </script>
 
 <style  lang="scss" scoped>
