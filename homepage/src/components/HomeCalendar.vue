@@ -1,9 +1,22 @@
 <template>
   <a-calendar v-model:value="value">
     <template #headerRender="{ value }">
+      <div class="whatPick">
+        <span>{{ whatChoose.areaChoose[whichArea - 1] }}</span
+        ><span>{{ whatChoose.peopleChoose[howMany - 1] }}</span
+        ><span>{{ whatChoose.typeChoose[whichType - 1] }}</span>
+      </div>
       <div class="calendar_header">
-        <div>您選擇的月份為 {{ new Date(value).getMonth() + 1 }} 月</div>
-        <button type="button" @click="updateMonth">++++++</button>
+        <button type="button" @click="preMonth">
+          <img src="../assets/images/booking/booking_arrow_prev.png" alt="" />
+        </button>
+        <div class="now_days">
+          {{ new Date(value).getFullYear() }} 年
+          {{ new Date(value).getMonth() + 1 }}月
+        </div>
+        <button type="button" @click="nextMonth">
+          <img src="../assets/images/booking/booking_arrow_next.png" alt="" />
+        </button>
       </div>
     </template>
     <template #dateCellRender="{ current }">
@@ -11,9 +24,12 @@
         <!-- <li v-for="item in getListData(current)" :key="item.content">
           <a-badge :status="item.type" :text="item.content" />
         </li> -->
-        {{
-          getListData2(current)
-        }}
+        <div class="date_content">可預訂</div>
+        <div class="date_result_left">
+          <span>{{ 5 - getListData2(current) }}</span
+          >間
+        </div>
+
         <!-- <li v-for="(item, idx) in getListData2(current)" :key="idx">
           {{ item }}
         </li> -->
@@ -30,19 +46,16 @@ export default defineComponent({
     return {
       value: dayjs(),
       originData: [
-        {
-          checkIn: '2022-10-11',
-          checkOut: '2022-10-13',
-        },
-        {
-          checkIn: '2022-10-12',
-          checkOut: '2022-10-16',
-        },
-        {
-          checkIn: '2022-10-20',
-          checkOut: '2022-10-21',
-        },
+        // {
+        //   checkIn: '2022-10-11',
+        //   checkOut: '2022-10-13',
+        // },
       ],
+      whatChoose: {
+        areaChoose: ['叢林歷險', '冰雪奇緣', '荒野峽谷'],
+        peopleChoose: ['', '二人營帳', '', '四人營帳', '', '六人營帳'],
+        typeChoose: ['經濟營帳', '豪華營帳', '主題營帳'],
+      },
     };
   },
   computed: {
@@ -75,6 +88,29 @@ export default defineComponent({
     },
   },
   methods: {
+    getBookedInfo() {
+      fetch(
+        `http://127.0.0.1/cgd102G1campfire/back-end/bookedSearch.php?whatYear=${this.value.year()}&whatMonth=${
+          this.value.month() + 1
+        }&areaNoGet=${this.whichArea}&howManyPeopleGet=${
+          this.howMany
+        }&whichTentType=${this.whichType}`
+      )
+        .then((response) => {
+          if (response) {
+            this.fetchError = response.status !== 200;
+            //json(): 返回 Promise，resolves 是 JSON 物件
+            return response.json();
+          }
+        })
+        .then((responseText) => {
+          console.log(responseText);
+          this.originData = responseText;
+        })
+        .catch((err) => {
+          this.originData = [];
+        });
+    },
     getListData2(date) {
       const sameDate = this.sortData.find((v) => {
         const itemDate = new Date(v.date);
@@ -86,11 +122,33 @@ export default defineComponent({
       });
       return sameDate?.times ?? 0;
     },
-    updateMonth() {
-      console.log(this.value);
-      let value = this.value ?? dayjs();
-      this.value = dayjs().month(value.month() + 1);
+
+    async nextMonth() {
+      let value = this.value;
+      this.value = value.month(value.month() + 1);
+      await this.getBookedInfo();
     },
+    async preMonth() {
+      let value = this.value;
+      if (value.year() == dayjs().year()) {
+        if (value.month() > dayjs().month()) {
+          this.value = value.month(value.month() - 1);
+          await this.getBookedInfo();
+          return;
+        } else {
+          return;
+        }
+      } else if (value.year() > dayjs().year()) {
+        this.value = value.month(value.month() - 1);
+        await this.getBookedInfo();
+        return;
+      } else {
+        return;
+      }
+    },
+  },
+  created() {
+    this.getBookedInfo();
   },
   watch: {
     calendarTrigger(e) {
@@ -99,11 +157,21 @@ export default defineComponent({
   },
 });
 </script>
-<style scoped>
+<style lang="scss" scoped>
 .events {
   list-style: none;
   margin: 0;
   padding: 0;
+  .date_content {
+    color: #8dccb9;
+  }
+  .date_result_left {
+    span {
+      font-size: 20px;
+      color: #bc6c61;
+      padding: 5px;
+    }
+  }
 }
 .events .ant-badge-status {
   overflow: hidden;
@@ -112,16 +180,39 @@ export default defineComponent({
   text-overflow: ellipsis;
   font-size: 12px;
 }
-.notes-month {
-  text-align: center;
-  font-size: 28px;
-}
-.notes-month section {
-  font-size: 28px;
-}
 
 .calendar_header {
   text-align: center;
   padding: 20px 0;
+}
+.whatPick {
+  margin: auto;
+  text-align: center;
+  padding: 20px 0 0 0;
+  span {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 5px;
+    color: #168d80;
+  }
+}
+@media screen and (max-width: 767px) {
+  .whatPick {
+    span {
+      font-size: 16px;
+      font-weight: 400;
+    }
+  }
+  .events {
+    .date_content {
+      font-size: 12px;
+      color: #8dccb9;
+    }
+    .date_result_left {
+      span {
+        font-size: 16px;
+      }
+    }
+  }
 }
 </style>
