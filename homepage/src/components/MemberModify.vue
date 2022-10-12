@@ -74,8 +74,8 @@
                 </li>
                 <li>
                     <label for="bear" class="select_img">
-                        <input type="radio" id="bear" name="namepic" class="input_none" v-model="mem_pic">
-                        <img src="@/assets/images/report/report_avatar_2.png" value="2">
+                        <input type="radio" id="bear" name="namepic" class="input_none" v-model="mem_pic" value="2">
+                        <img src="@/assets/images/report/report_avatar_2.png" >
                     </label>
                 </li>
                 <li>
@@ -109,6 +109,7 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 export default {
     name: "MemberModify",
     created(){
@@ -139,6 +140,7 @@ export default {
             mem_phone:'',
             mem_pic:'',
             mem_deta:[],
+            router:useRouter()
         }
     },
     methods:{
@@ -198,7 +200,7 @@ export default {
                     return;
                 }
                 else{
-                    //沒有錯誤則將更新後的會員傳送到資料庫
+                //沒有錯誤則將更新後的會員傳送到資料庫
                     var xhr = new XMLHttpRequest();
             
                     xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'updatemember.php', true);
@@ -213,13 +215,13 @@ export default {
                         if(xhr.status == 200){
                             this.session = JSON.parse(xhr.responseText);
                             console.log(this.session)
-                            sessionStorage.setItem("member", JSON.stringify(this.session));
+                            sessionStorage.setItem("member", JSON.stringify(this.session)); 
+                            alert("修改成功");
+                            this.router.go(0)
                         }
-                    }
-                    alert("修改成功");
+                    }  
                 }   
             }
-
         }
     }
 }
