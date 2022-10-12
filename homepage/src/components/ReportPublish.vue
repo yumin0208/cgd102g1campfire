@@ -69,6 +69,7 @@
 
 <script>
 // import LoginLightBox from '../components/LoginLightBox.vue';
+import { useRouter } from "vue-router";
 
 export default {
     props: ['disPublish'],
@@ -96,7 +97,7 @@ export default {
             mem_nick_name: '',
             mem_pic: '0',
             discuss_show: false, 
-            // isRouterAlive: true,
+            router:useRouter(),
         };
     },
     methods:{
@@ -129,12 +130,14 @@ export default {
             formData.append('background_type', this.background_type);
             xhr.send(formData);
             // this.FetchAPIDiscuss();
-            location.reload();
+            // location.reload();
             // this.$emit('update-result', true);
             alert("發佈成功");
             this.discuss_title = '';
             this.discuss_content = '';
             this.background_type = '1';
+            let thus = this;
+            thus.router.go(0)
         },
         //確認有無登入，用click事件，判斷提示
         checkId() {

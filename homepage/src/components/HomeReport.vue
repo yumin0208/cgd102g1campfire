@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="report_more">
-                <router-link to ="/Activity" class="btn_page_link">了解更多</router-link>
+                <router-link to ="/Report" class="btn_page_link">更多報告</router-link>
             </div>
         </div>
     </section>

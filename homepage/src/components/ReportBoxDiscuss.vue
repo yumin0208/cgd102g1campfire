@@ -11,8 +11,7 @@
                                     type="text" 
                                     maxlength="150" 
                                     placeholder="請輸入內文(150字以內)"
-                            >
-                            </textarea>
+                            ></textarea>
                             <button 
                                 class="btn_confirm" 
                                 type="button"
@@ -116,7 +115,7 @@ export default {
     margin-bottom: 20px;
     border: 1px solid $color-main-green;
     resize: none;
-    color: #aaa;
+    color: rgb(45, 45, 45);
 }
 //叉叉
 .btn_closure{

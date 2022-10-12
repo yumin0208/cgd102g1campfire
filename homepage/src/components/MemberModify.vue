@@ -217,7 +217,8 @@ export default {
                             console.log(this.session)
                             sessionStorage.setItem("member", JSON.stringify(this.session)); 
                             alert("修改成功");
-                            this.router.go(0)
+                            let thus = this
+                            thus.router.go(0)
                         }
                     }  
                 }   

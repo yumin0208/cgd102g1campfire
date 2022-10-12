@@ -22,7 +22,7 @@
 
             <!-- 會員個人留言欄 -->
             <div class="message_member_container">
-                <form class="message_personal" action="">
+                <form class="message_personal">
                     <textarea 
                             class="personal_write" 
                             type="text" maxlength="300" 
@@ -47,7 +47,7 @@
                         <div class="member_pic">
                             <img :src="require(`@/assets/images/report/report_avatar_${item.mem_pic}.png`)" alt="avatar">
                         </div>
-                        <h4 class="member_name">{{item.mem_name}}</h4>
+                        <h4 class="member_name">{{item.mem_nick_name}}</h4>
                     </div>
                     <!-- 發佈時間 檢舉 -->
                     <div class="col_other_message">
@@ -70,6 +70,7 @@
 <script>
 import ReportDiscuss from '../components/ReportDiscuss.vue';
 import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
+import { useRouter } from "vue-router";
 
 export default {
     name: "ReportMessage",
@@ -82,6 +83,7 @@ export default {
             discussId: 0,
             // commentCount: [ [{報告內容}] , [{留言1},{留言2}] ],
             commentCount: [],
+            router:useRouter(),
         }
     },
     computed: {
@@ -143,9 +145,12 @@ export default {
             formData.append('discuss_no', this.discussId);
             formData.append('comment_content', this.comment_content);
             xhr.send(formData);
+            console.log(formData);
             this.FetchAPIComment();
             alert("留言成功");
             this.comment_content = '';
+            let thus = this;
+            // thus.router.go(0)
         },
     },
     created() {
