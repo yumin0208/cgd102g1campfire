@@ -1,7 +1,7 @@
 <template>
 <div class="breadcrum">
     <div class="breadcrum_left">
-        <p class="router_name">{{chtName}}</p>
+        <p class="router_chtname">{{chtName}}</p>
     </div>
     <div class="breadcrum_right">
         <div class="breadcrumb_text">
