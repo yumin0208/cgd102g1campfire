@@ -1,9 +1,7 @@
 <template>
 <Menu></Menu>
 <Header></Header>
-
 <section class="page_section">
-  
   <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
     <button>新增</button>
@@ -70,7 +68,7 @@ data() {
 },
 methods: {
   FetchAPIComment() {
-    fetch(`http://127.0.0.1/g1/back-end/bookedOrdersBack.php`)
+    fetch(`http://127.0.0.1/PHP_Lab_CGD102_G1/back-end/backstation_bookedOrders.php`)
       .then((response) => {
         if (response) {
           this.fetchError = response.status !== 200;
@@ -87,7 +85,7 @@ methods: {
 },
 created() {
   this.FetchAPIComment();
-},
+  },
 };
 </script>
 
