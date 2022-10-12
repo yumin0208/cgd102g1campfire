@@ -55,7 +55,7 @@
                             <p class="other_write">{{item.comment_content}}</p>
                             <div class="message_time_inform">
                                 <p class="message_time">{{formatDate(item.comment_date)}}</p>
-                                <ReportLightBox/>
+                                <ReportBoxDiscuss/>
                             </div>
                         </div>
                     </div>
@@ -69,17 +69,18 @@
 
 <script>
 import ReportDiscuss from '../components/ReportDiscuss.vue';
-import ReportLightBox from '../components/ReportLightBox.vue';
+import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
 
 export default {
     name: "ReportMessage",
     components: {
         ReportDiscuss,
-        ReportLightBox,
+        ReportBoxDiscuss,
     },
     data() {
         return {
             discussId: 0,
+            // commentCount: [ [{報告內容}] , [{留言1},{留言2}] ],
             commentCount: [],
         }
     },
@@ -116,7 +117,7 @@ export default {
             this.discussId = this.$route.query && this.$route.query.discuss_no ? this.$route.query.discuss_no : null
             //使用fetch 需加判斷式，抓不到php資料 網頁也可以出現
             if(!this.discussId) return
-            fetch(`http://localhost/phpLab_CGD102/firefly_camping_php/Comment.php?discuss_no=${this.discussId}`
+            fetch(process.env.VUE_APP_PHP_PATH + `discussComment.php?discuss_no=${this.discussId}`
             ).then((response) => {
                 if(response){
                     this.fetchError = (response.status !== 200)
@@ -132,7 +133,7 @@ export default {
         //對報告進行留言
         DiscussComment(){
             let xhr = new XMLHttpRequest();
-            xhr.open("POST","http://localhost/phpLab_CGD102/firefly_camping_php/DiscussComment.php",true);
+            xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussMessage.php',true);
 
             // let comment_data = `mem_no=${this.member.mem_no}&
             //                     discuss_no=${this.discussId}&
