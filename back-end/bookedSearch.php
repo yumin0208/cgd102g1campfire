@@ -15,8 +15,13 @@
     // $discuss_no = $_REQUEST['discuss_no'];
     
     $sql1 = "select 
+<<<<<<< HEAD
                 date_format(o.checkin_date, '%Y-%m-%d') checkIn,
                 date_format(o.checkout_date, '%Y-%m-%d') checkOut
+=======
+                date_format(o.checkin_date, '%Y-%m-%d') $checkInDate,
+                date_format(o.checkout_date, '%Y-%m-%d') $checkOutDate
+>>>>>>> e2fe6f35a01439aec65219f1bdb34eb805af1c09
             from orders o join tent_style t on o.tent_style_no = t.tent_style_no
             where 
             date_format(o.checkin_date, '%Y-%m') = $whatMonth

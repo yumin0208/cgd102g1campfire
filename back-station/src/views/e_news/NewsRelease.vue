@@ -1,0 +1,112 @@
+<template>
+
+<section class="page_section">
+  <div class="breadcrum">
+    <div class="breadcrum_left">
+      <p class="router_name">{{ chtName }}</p>
+    </div>
+    <div class="breadcrum_right">
+      <div class="breadcrumb_text">
+        <p class="breadcrumb_text_title">{{ title }}</p>
+        <p>{{ chtName }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="serch_bar">
+    <input type="text" placeholder="搜尋">
+    <button>新增</button>
+    <button>修改</button>
+    <button>刪除</button>
+  </div>  
+  <table>
+    <tr class="table_title">
+      <th v-for="title in titles" :class="{title_list: titleList==i}" :key="title">{{title.thName}}</th>
+    </tr>
+    <tr v-for="item in newsList" :class="{item_content: itemContent==i}" :key="item">
+      <td :class="{list_content: listContent==i}">{{item.news_no}}</td>
+      <td :class="{list_content: listContent==i}">{{item.news_title}}</td>
+      <td :class="{list_content: listContent==i}">{{item.news_content}}</td>
+      <td :class="{list_content: listContent==i}">{{item.news_pic}}</td>
+      <td :class="{list_content: listContent==i}">{{item.news_post_time}}</td>
+      <td :class="{list_content: listContent==i}">{{item.news_status}}</td>
+    </tr>
+  </table>
+</section>
+</template>
+
+<script>
+// @ is an alias to /src
+
+
+export default {
+  components: {
+
+  },
+  data() {
+    return {
+      chtName: '消息發佈管理',
+      title:'最新消息',
+      titles:[
+        {
+            thName:'最新消息編號',
+        },
+        {
+            thName:'最新消息標題',
+        },
+        {
+            thName:'最新消息內文',
+        },
+        {
+            thName:'最新消息圖片',
+        },
+        {
+            thName:'發布時間',
+        },
+        {
+            thName:'最新消息狀態',
+        }
+      ],
+      newsList:[],
+      status:'',
+      
+    }
+  },
+  // methods:{
+  //   transNewsStatus(){
+  //     console.log('new',this.newsList)
+  //     if(this.newsList.new_status==1){
+  //       this.status = "顯示"
+  //     }else{
+  //       this.status = "隱藏"
+  //     }
+  //   }
+  // }
+  // ,
+  created(){
+    fetch(process.env.VUE_APP_PHP_PATH + 'backstation_news.php')
+    .then((res)=>{
+    // this.fetchError = (response.status !== 200)
+    return res.json()
+    })
+    .then((newsContent)=>{
+    console.log(newsContent)
+    this.newsList=newsContent
+    console.log(this.newsList)
+    // if(this.newsList.new_status==1){
+    //   this.status = "顯示"
+    // }else{
+    //   this.status = "隱藏"
+    // }
+    })
+  },
+  // mounted(){
+  //   this.transNewsStatus();
+  // }
+}
+</script>
+
+<style lang="scss" scoped>
+
+@import'@/assets/scss/style.scss';
+
+</style>

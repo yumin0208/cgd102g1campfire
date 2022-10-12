@@ -105,6 +105,6 @@ export default {
 
 <style lang="scss" scoped>
 
-@import'@/assets/Scss/Page/form.scss';
+@import'@/assets/scss/components/form.scss';
     
 </style>

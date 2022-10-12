@@ -184,6 +184,6 @@ export default {
 
 <style lang="scss" scoped>
 
-    @import'@/assets/Scss/Page/details.scss';
+    @import'@/assets/scss/components/details.scss';
     
 </style>
