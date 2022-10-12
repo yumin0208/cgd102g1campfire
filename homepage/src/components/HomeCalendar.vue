@@ -46,10 +46,26 @@ export default defineComponent({
     return {
       value: dayjs(),
       originData: [
-        // {
-        //   checkIn: '2022-10-11',
-        //   checkOut: '2022-10-13',
-        // },
+        {
+          checkIn: '2022-10-11',
+          checkOut: '2022-10-13',
+        },
+        {
+          checkIn: '2022-10-10',
+          checkOut: '2022-10-16',
+        },
+        {
+          checkIn: '2022-10-05',
+          checkOut: '2022-10-13',
+        },
+        {
+          checkIn: '2022-10-14',
+          checkOut: '2022-10-22',
+        },
+        {
+          checkIn: '2022-10-11',
+          checkOut: '2022-10-13',
+        },
       ],
       whatChoose: {
         areaChoose: ['叢林歷險', '冰雪奇緣', '荒野峽谷'],
@@ -90,9 +106,9 @@ export default defineComponent({
   methods: {
     getBookedInfo() {
       fetch(
-        `http://127.0.0.1/cgd102G1campfire/back-end/bookedSearch.php?whatYear=${this.value.year()}&whatMonth=${
+        `http://127.0.0.1/cgd102G1campfire/back-end/bookedSearch.php?whatMonth='${this.value.year()}-${
           this.value.month() + 1
-        }&areaNoGet=${this.whichArea}&howManyPeopleGet=${
+        }'&areaNoGet=${this.whichArea}&howManyPeopleGet=${
           this.howMany
         }&whichTentType=${this.whichType}`
       )
