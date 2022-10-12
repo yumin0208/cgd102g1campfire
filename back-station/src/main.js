@@ -3,11 +3,18 @@ import App from './App.vue'
 // import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import Main from './components/Main.vue'
-import "@/assets/Scss/Style.scss"
+import Menu from './components/Menu.vue'
+import Header from './components/Header.vue'
+import Breadcrum from './components/Breadcrum.vue'
+import Footer from './components/Footer.vue'
+
+import '@/assets/scss/style.scss'
 
 const app =  createApp(App)
 app.use(store)
 app.use(router)
-app.component('Main',Main)
+app.component('Menu',Menu)
+app.component('Header',Header)
+app.component('Breadcrum',Breadcrum)
+app.component('Footer',Footer)
 app.mount('#app')

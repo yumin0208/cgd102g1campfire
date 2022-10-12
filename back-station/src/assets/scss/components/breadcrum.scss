@@ -1,0 +1,30 @@
+.breadcrum{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #454545;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 2px 0 rgb(32, 33, 36, 10%);
+}
+.router_name{
+    font-weight: 600;
+}
+.breadcrumb_text{
+    display: flex;
+}
+.breadcrumb_text_title:after{
+    content: '';
+    margin: 0 14px;
+    padding: 3px;
+    display: inline-block;
+    position: relative;
+    left:  -2px;
+    border: solid #454545;
+    border-width: 0 2px 2px 0;
+    transform: rotate(-45deg);
+}
+.breadcrumb_text_chtname{
+    color: #454545;
+    background-color:transparent;
+}

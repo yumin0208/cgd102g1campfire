@@ -1,23 +1,18 @@
 <template>
 
-<Main></Main>
-<!-- <Details></Details> -->
-<!-- <Form></Form> -->
+<Breadcrum></Breadcrum>
 
 </template>
 
 <script>
+import Breadcrum from '@/components/Breadcrum.vue';
 // @ is an alias to /src
-import Main from '@/components/Main.vue';
-import Details from '@/components/Details.vue';
-import Form from '@/components/Form.vue';
+
 
 export default {
   name: 'HomeView',
   components: {
-    Main,
-    Details,
-    Form
+    Breadcrum
 }
 }
 </script>

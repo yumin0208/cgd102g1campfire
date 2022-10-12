@@ -1,17 +1,12 @@
 //main
-@import'Main/reset.scss';
-@import'Main/main.scss';
+@import'main/reset.scss';
+@import'main/main.scss';
 
 //component
-@import 'Components/Menu.scss';
-@import 'Components/Header.scss';
-@import 'Components/Footer.scss';
-
-//page
-
-@import 'page/table.scss';
-@import 'page/details.scss';
-
-body{
-    background-color: #F5F2E9;
-}
+@import 'components/menu.scss';
+@import 'components/header.scss';
+@import 'components/footer.scss';
+@import 'components/table.scss';
+@import 'components/breadcrum.scss';
+// @import 'components/details.scss';
+// @import 'components/form.scss';
