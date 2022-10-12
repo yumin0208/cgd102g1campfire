@@ -108,7 +108,7 @@ export default {
     const snow_4 = document.querySelector('.s_4');
 
     gsap.to(snow_1, {
-      y: -60,
+      y: 0,
       ease: 'Power3.easeIn',
       scrollTrigger: {
         trigger: '.btn_more',
@@ -120,7 +120,7 @@ export default {
     });
 
     gsap.to(snow_2, {
-      y: 40,
+      y: 100,
       ease: 'Power3.easeIn',
       scrollTrigger: {
         trigger: '.btn_more',
@@ -129,7 +129,7 @@ export default {
       },
     });
     gsap.to(snow_3, {
-      y: 130,
+      y: 160,
       ease: 'Power3.easeIn',
       scrollTrigger: {
         trigger: '.btn_more',
@@ -138,7 +138,7 @@ export default {
       },
     });
     gsap.to(snow_4, {
-      y: 220,
+      y: 200,
       ease: 'Power3.easeIn',
       scrollTrigger: {
         trigger: '.btn_more',
@@ -156,7 +156,7 @@ export default {
   position: relative;
   background: linear-gradient(to bottom, #abcbe9, $color-main-yellow);
   padding-top: 150px;
-  padding-bottom: 350px;
+  padding-bottom: 280px;
   @include lg() {
     padding-bottom: 200px;
   }
@@ -176,8 +176,9 @@ export default {
   bottom: -45%;
   object-position: 50% 50%;
   overflow: hidden;
-  @include sm() {
-    display: none;
+  @include md(){
+      bottom: -10%;
+      display: none;
   }
 }
 .home_snow_parallex .snow_bg_img {

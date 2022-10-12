@@ -4,7 +4,14 @@
             <div class="title_main">
                 <h2>發佈報告</h2>
             </div>
-            <button class="btn_confirm discuss_show" type="button" @click="checkId" v-if="discuss_show == false">我要發布報告</button>
+            <button 
+                class="btn_confirm discuss_show" 
+                type="button" 
+                @click="checkId" 
+                v-if="discuss_show == false"
+            >我要發布報告
+            </button>
+            <ReportLoginBox @close="loginBox" v-if="login"/>
             <div class="row_report_write" v-if="discuss_show == true">
                 <!-- 明信片-->
                 <div class="col_postcard">
@@ -21,7 +28,6 @@
                                 </div>
                                 <div class="postcard_name_time">
                                     <h4 class="postcard_member_name">{{member.mem_nick_name}}</h4>
-                                    <!-- <p class="postcard_release_time">{{discuss_post_time}}</p> -->
                                 </div>
                             </div>
                         </div>
@@ -68,14 +74,14 @@
 </template>
 
 <script>
-// import LoginLightBox from '../components/LoginLightBox.vue';
+import ReportLoginBox from '../components/ReportLoginBox.vue';
 import { useRouter } from "vue-router";
 
 export default {
     props: ['disPublish'],
     // inject: ['reload'],
     components:{
-        // LoginLightBox,
+        ReportLoginBox,
     },
     name: 'ReportPublish',
     provide(){
@@ -97,7 +103,8 @@ export default {
             mem_nick_name: '',
             mem_pic: '0',
             discuss_show: false, 
-            router:useRouter(),
+            router: useRouter(),
+            login: false, //請先登入
         };
     },
     methods:{
@@ -106,6 +113,10 @@ export default {
             this.member = JSON.parse(sessionStorage.getItem('member'));
             this.memId = this.member.mem_id;
             // console.log(this.member)  
+        },
+        // 請先登入
+        loginBox (response) {
+            this.login = response;
         },
         // reload(){
         //     this.isRouterAlive = false;
@@ -143,7 +154,8 @@ export default {
         checkId() {
             let checkLogin = sessionStorage.getItem('member');
             if(checkLogin == null){
-                alert("請先登入");
+                // alert("請先登入");
+                this.login = true
             }else{
                 this.discuss_show = true;
             }

@@ -21,7 +21,6 @@
                         <p class="report_txt">{{item.discuss_content}}</p>
                     </div>
                     <div class="report_btn">
-                        <ReportBoxDiscuss/>
                         <router-link 
                             class="message_icon" 
                             :to="{
@@ -45,13 +44,10 @@
 </template>
 
 <script>
-import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
 
 export default {
     name: "ReportCard",
-    components: {
-        ReportBoxDiscuss
-    },
+    components: {},
     data(){
         return {
             current: 1,
@@ -108,7 +104,7 @@ export default {
 @import '../assets/scss/style.scss';
 
 .wrap_home_report{
-    padding-top: 50px;
+    padding-top: 100px;
     padding-bottom: 150px;
     background: $color-aid-blue2;
     position: relative;

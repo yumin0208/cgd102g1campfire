@@ -27,9 +27,9 @@ export default {
     data() {
         return {
             discussReport: [],
+            memNo: null,
             // reload: false,
             // discussReport: [{報告1},{報告2}],
-            memNo: null,
         }
     },
     methods:{
@@ -59,19 +59,16 @@ export default {
                 // this.discussCard = true
             })
         },
-        //emt傳資料
-        // updateResultReload(){
-        //     this.reload = this.FetchAPIDiscuss;
-        // },
-        // goReload() {
-        //     if(this.reload == true){
-        //         this.FetchAPIDiscuss();
-        //         this.reload = false;
-        //     }
-        // },
     },
     created() {
         this.FetchAPIDiscuss();
+        //是否有登入狀態
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            return
+        }else{
+            this.discuss_show = true;
+        }
         this.getMemData();
     },
     mounted(){
