@@ -1,7 +1,19 @@
 
+<<<<<<< HEAD
 -- drop database tibamefe_cgd102g1;
 --  CREATE DATABASE tibamefe_cgd102g1;
 --  use tibamefe_cgd102g1;
+=======
+<<<<<<< HEAD
+-- drop database tibamefe_cgd102g1;
+-- CREATE DATABASE tibamefe_cgd102g1;
+-- use tibamefe_cgd102g1;
+=======
+  drop database tibamefe_cgd102g1;
+  CREATE DATABASE tibamefe_cgd102g1;
+ use tibamefe_cgd102g1;
+>>>>>>> 6b47f5d87cf580f8f8e59ad4db23bc5b45daa2b3
+>>>>>>> 0e0a313962576e0b9f8df33161a296b6e5507f0f
 
 
 -- CREATE TABLE 後面加TABLE名稱 (欄位名稱_欄位類型_欄位特性) _代表空白
@@ -31,6 +43,8 @@ VALUES(1,'tktk','abcd1234','蔡誠如','踢虧','tktk@gmail.com','桃園市','�
 
 create table employee(
 employee_no int PRIMARY KEY AUTO_INCREMENT,
+employee_id varchar(20) unique,
+employee_psw varchar(20),
 employee_name varchar(100) not null,
 employee_auth tinyint not null,
 employee_sex varchar(15) not null,
@@ -41,9 +55,9 @@ employee_status tinyint not null
 
 insert into employee
 values
-(1,"蔡踢虧",1,"男","tktk@gmail.com","0987987987",1),
-(2,"陳柏霖",2,"男","boling@gmail.com","0934313520",1),
-(3,"陳媽魯",3,"女","maruchen@gmail.com","0987987987",1);
+(1,"tktk","asdf1234","蔡踢虧",1,"男","tktk@gmail.com","0987987987",1),
+(2,"bolin","asdf1234","陳柏霖",2,"男","boling@gmail.com","0934313520",1),
+(3,"maru","asdf1234","陳媽魯",3,"女","maruchen@gmail.com","0987987987",1);
 
 
 create table discuss(
