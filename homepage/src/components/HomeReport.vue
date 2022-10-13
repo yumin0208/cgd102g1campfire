@@ -13,7 +13,7 @@
                         </div>
                         <div class="user_data">
                             <h4 class="user_name">{{item.mem_nick_name}}</h4>
-                            <p class="release_time">{{item.discuss_post_time}}</p>
+                            <p class="release_time">{{formatDate(item.discuss_post_time)}}</p>
                         </div>
                     </div>
                     <div class="report_content">

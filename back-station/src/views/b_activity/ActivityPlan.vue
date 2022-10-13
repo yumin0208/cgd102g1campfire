@@ -24,7 +24,7 @@
             <tr class="table_title">
                 <th v-for="item in titles" :key="item">{{item}}</th>
             </tr>
-            <tr class="item_content" v-for="item in activity" :key="item">
+            <tr class="item_content" v-for="item in activityPlan" :key="item.activity_no">
                 <td>{{item.activity_no}}</td>
                 <td>{{item.area_no}}</td>
                 <td>{{item.activity_name}}</td>
@@ -75,28 +75,29 @@ export default {
             '活動注意事項',
             '詳細資訊',
         ],
-        activity: [],
+        activityPlan: [],
         };
     },
     methods: {
-        FetchAPIComment() {
-        fetch(``)
-            .then((response) => {
-            if (response) {
-                this.fetchError = response.status !== 200;
-                return response.json();
-            }
+        // 抓取活動資訊
+        FetchAPIPlan(){
+            fetch(process.env.VUE_APP_PHP_PATH + 'activityPlan.php').then((response) => {
+                if(response){
+                    this.fetchError = (response.status !== 200)
+                    //json(): 返回 Promise，resolves 是 JSON 物件
+                    return response.json()
+                }
+            }).then(responseText => {
+                this.activityPlan = responseText;
+                console.log(this.activityPlan);
+            }).catch((err) => {
+                this.activityPlan = []
+                // this.discussCard = true
             })
-            .then((responseText) => {
-            this.activity = responseText;
-            })
-            .catch((err) => {
-            this.activity = [];
-            });
         },
     },
     created() {
-        this.FetchAPIComment();
+        this.FetchAPIPlan();
     },
 };
 </script>
