@@ -19,21 +19,24 @@
     <button>修改</button>
     <button>刪除</button>
   </div>
-  <table>
-    <tr class="table_title">
-      <th v-for="item in titles" :key="item">{{item}}</th>
-    </tr>
-    <tr class="item_content" v-for="item in tent" :key="item">
-      <td>{{item.tent_no}}</td>
-      <td>{{item.tent_style_no}}</td>
-      <td>{{item.area_no}}</td>
-      <td>{{item.tent_status}}</td>
-      <td>{{item.mem_no}}</td>
-      <td>{{item.tent_date}}</td>
-      <td>{{item.tent_year}}</td>
-      <td><button>更多</button></td>
-    </tr>
-  </table>
+  <div class="table_roll">
+    <table>
+      <tr class="table_title">
+        <th v-for="item in titles" :key="item">{{item}}</th>
+      </tr>
+      <tr class="item_content" v-for="item in tent" :key="item">
+        <td>{{item.tent_no}}</td>
+        <td>{{item.tent_style_no}}</td>
+        <td>{{item.area_no}}</td>
+        <td>{{item.tent_status}}</td>
+        <td>{{item.mem_no}}</td>
+        <td>{{item.tent_date}}</td>
+        <td>{{item.tent_year}}</td>
+        <td><button>更多</button></td>
+      </tr>
+    </table>
+  </div>
+  
 </section>
 <Footer></Footer>
 </template>

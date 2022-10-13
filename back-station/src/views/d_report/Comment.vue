@@ -19,20 +19,23 @@
 		<button>修改</button>
 		<button>刪除</button>
 	</div>
-	<table>
-		<tr class="table_title">
-		<th v-for="item in titles" :key="item">{{item}}</th>
-		</tr>
-		<tr v-for="item in commentCount" :key="item.comment_no">
-		<td>{{item.comment_no}}</td>
-		<td>{{item.discuss_no}}</td>
-		<td>{{item.comment_content}}</td>
-		<td>{{item.mem_no}}</td>
-		<td>{{item.comment_date}}</td>
-		<td>{{item.comment_status}}</td>
-		<!-- <td><button>更多</button></td> -->
-		</tr>
-	</table>
+	<div class="table_roll">
+		<table>
+			<tr class="table_title">
+			<th v-for="item in titles" :key="item">{{item}}</th>
+			</tr>
+			<tr v-for="item in commentCount" :key="item.comment_no">
+			<td>{{item.comment_no}}</td>
+			<td>{{item.discuss_no}}</td>
+			<td>{{item.comment_content}}</td>
+			<td>{{item.mem_no}}</td>
+			<td>{{item.comment_date}}</td>
+			<td>{{item.comment_status}}</td>
+			<!-- <td><button>更多</button></td> -->
+			</tr>
+		</table>
+	</div>
+	
 	</section>
 	<Footer></Footer>
 </template>
