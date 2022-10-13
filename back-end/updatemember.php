@@ -23,7 +23,7 @@
 
             $memRow = $member->fetch(PDO::FETCH_ASSOC);
             
-            //登入成功,將登入者的資料寫入session
+            //更新成功,將登入者的資料寫入session
             $_SESSION["mem_no"]=$memRow["mem_no"];
             $_SESSION["mem_id"]=$memRow["mem_id"];
             $_SESSION["mem_name"]=$memRow["mem_name"];
@@ -35,7 +35,7 @@
             $_SESSION["mem_status"]=$memRow["mem_status"];
             $_SESSION["mem_email"]=$memRow["mem_email"];
             $_SESSION["register_date"]=$memRow["register_date"];
-            //送出登入者的資料
+            //送出更新後的資料
             $result = ["mem_no"=>$_SESSION["mem_no"],
                         "mem_id"=>$_SESSION["mem_id"],
                         "mem_name"=>$_SESSION["mem_name"],
@@ -47,7 +47,7 @@
                         "register_date"=>$_SESSION["register_date"],
                         "mem_status"=>$_SESSION["mem_status"],
                         "mem_pic"=>$_SESSION["mem_pic"]];
-            // echo 1;
+           
             echo json_encode($result);
 
 

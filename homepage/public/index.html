@@ -72,12 +72,12 @@
             text-transform: uppercase;
         }
 
-        span:nth-child(1) {
+        .text {
             color: transparent;
             -webkit-text-stroke: 2px var(--text-color);
         }
 
-        span:nth-child(2) {
+        .txt {
             color: var(--text-color);
             animation: wave 2s ease-in-out infinite;
         }
@@ -107,10 +107,10 @@
     <div id="app">
         <div class="load-4">
             <div class="ring-1"></div>
-        </div>
+        </div> 
         <div class="wave">
-            <span>loading...</span>
-            <span>loading...</span>
+            <span class="text">loading...</span>
+            <span class="txt">loading...</span>
         </div>
 
     </div>
