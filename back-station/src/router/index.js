@@ -1,12 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue';
+import HomeView from '../views/HomeView.vue'
 
-export const routes = [
+const routes = [
   {
     path: '/',
-    name: 'HomeView',
-    chtName: '首頁',
-    component: () => import('../views/HomeView.vue'),
+    name: 'home',
+    component: HomeView
   },
   {
     path: '/Reservation',
@@ -121,21 +120,6 @@ export const routes = [
     name: 'Employee',
     chtName: '員工資訊管理',
     component: () => import('../views/h_employee/Employee.vue'),
-  },
-  {
-    path: "/login",
-    name: "login",
-    component: () => import("../views/Login.vue"),
-    meta: {
-      title: "Login",
-      beforeResolve(routeTo, routeFrom, next) {
-        if (store.getters["auth/loggedIn"]) { // If 登入狀態
-          next({ name: "default" }); // 重新導向
-        } else {
-          next(); // 繼續登入狀態
-        }
-      },
-    },
   },
 ]
 
