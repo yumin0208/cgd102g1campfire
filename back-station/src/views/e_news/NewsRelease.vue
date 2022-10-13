@@ -69,7 +69,7 @@ data() {
 },
 methods: {
   FetchAPIComment() {
-    fetch(``)
+    fetch(process.env.VUE_APP_PHP_PATH + 'backstation_news.php')
       .then((response) => {
         if (response) {
           this.fetchError = response.status !== 200;
