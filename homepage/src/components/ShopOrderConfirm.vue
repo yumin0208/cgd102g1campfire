@@ -3,19 +3,20 @@
     <div class="bg_shop_confirm">
         <div class="wrap_shop_confirm">
             <div class="shop_conf_price">
-                <h4>應付金額：＄</h4>
+                <h4>應付金額：＄ {{itemTotal}}</h4>
                 <hr>
             </div>
             <div class="shop_conf_credit">
                 <h4>信用卡資訊</h4>
-                <p>信用卡卡號：</p>
+                <p>信用卡卡號：{{confirmation.text}}</p>
                 <hr>
             </div>
             <div class="shop_conf_order_info">
                 <h4>收件人資訊</h4>
-                <p>收件人名字：</p>
-                <p>收件人電話：</p>
-                <p>收件人地址：</p>
+                <p>收件人名字：{{member.mem_name}}</p>
+                <p>收件人電話：{{member.mem_phone}}</p>
+                <p>收件人縣市：{{member.mem_city}}</p>
+                <p>收件人地址：{{member.mem_addr}}</p>
             </div>
             <div class="confirm_btn_box">
                 <button class="btn_confirm" type="button" @click="orderCompleted">確認無誤</button>
@@ -29,8 +30,6 @@
             <div class="order_confirm_content">
                 <h4>訂單已成立囉～</h4>
                 <hr>
-                <p>訂單編號：</p>
-                <p>訂單成立時間：</p>
                 <p>訂單狀態：已付款</p>
             </div>
             <div class="confirm_btn_box">
@@ -41,24 +40,22 @@
 </template>
 <script>
 export default {
-    props: ['confirmation'],
+    props: ['confirmation','member','itemTotal'],
     data () {
         return {
-            confirmBox: false,
             orderCompletedBox: false,
         }
     },
     methods: {
-        // 
         cancel () {
         this.$emit('cancelBox',this.confirmBox)
     },
         close () {
-        this.orderCompletedBox = !this.orderCompletedBox
+        this.$router.push("/Shopping")
     },
         orderCompleted () {
         this.orderCompletedBox = true
-    }
+    },
     }
 }
 </script>
