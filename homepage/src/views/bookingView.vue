@@ -231,7 +231,7 @@
               <div class="middle_content">
                 <p class="where">{{ bookingBlock[wherePick - 1] }}</p>
               </div>
-              <button @click="step = 1" class="btn_booking_min">修改</button>
+              <button @click="goTo(1)" class="btn_booking_min">修改</button>
             </div>
             <div class="bk_confirm_card_container">
               <div :class="`bookConfirmImg_${wherePick}`"></div>
@@ -240,7 +240,7 @@
                 <p class="how_many">{{ howMany }}人 <br />營帳</p>
                 <p class="which_type">{{ bookingCampType[campType - 1] }}</p>
               </div>
-              <button @click="step = 2" class="btn_booking_min">修改</button>
+              <button @click="goTo(2)" class="btn_booking_min">修改</button>
             </div>
             <div class="bk_confirm_card_container">
               <div :class="`bookConfirmImg_${wherePick}`"></div>
@@ -249,7 +249,7 @@
                 <p class="bigMonth">{{ getStartMonth }}月</p>
                 <p class="bigDate">{{ getStartDate }}</p>
               </div>
-              <button @click="step = 3" class="btn_booking_min">修改</button>
+              <button @click="goTo(3)" class="btn_booking_min">修改</button>
             </div>
             <div class="bk_confirm_card_container">
               <div :class="`bookConfirmImg_${wherePick}`"></div>
@@ -273,7 +273,7 @@
                   {{ bookingWhich[wherePick - 1].whichMealShow[whichMeal - 1] }}
                 </p>
               </div>
-              <button @click="step = 4" class="btn_booking_min">修改</button>
+              <button @click="goTo(4)" class="btn_booking_min">修改</button>
             </div>
           </div>
           <div class="bk_confirm_payment_container">
@@ -391,13 +391,16 @@ export default {
   },
   methods: {
     //讓滾輪維持在上
-    scrollToTop(){
-        window.scrollTo(0,0)
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
     //抓取登入中的會員資料
     getMemData() {
       let member = JSON.parse(sessionStorage.getItem('member'));
       this.memNo = member.mem_no;
+    },
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
     whereNext() {
       if (this.wherePick == null) {
@@ -405,6 +408,7 @@ export default {
         return;
       } else {
         this.step = 2;
+        this.scrollToTop();
       }
     },
     whichNext() {
@@ -416,6 +420,7 @@ export default {
         return;
       } else {
         this.step = 3;
+        this.scrollToTop();
       }
     },
     updateTypeResult(e) {
@@ -432,6 +437,7 @@ export default {
         return;
       } else {
         this.step = 4;
+        this.scrollToTop();
       }
     },
     updateWhenResult(e) {
@@ -462,6 +468,7 @@ export default {
         return;
       } else {
         this.step = 5;
+        this.scrollToTop();
       }
       // 並計算預定金額
 
@@ -525,6 +532,11 @@ export default {
       this.whichMeal = e;
       console.log(e);
     },
+    goTo(e) {
+      this.step = e;
+      this.scrollToTop();
+    },
+
     // 送出訂單
     bookingOrder() {
       let xhr = new XMLHttpRequest();
@@ -547,7 +559,7 @@ export default {
       formData.append('checkOut', this.getEnd);
       xhr.send(formData);
       xhr.onload = () => {
-        if(xhr.status == 200){
+        if (xhr.status == 200) {
           if (xhr.response == 1) {
             alert('已收到您的訂單');
             let thus = this;
