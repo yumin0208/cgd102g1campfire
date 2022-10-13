@@ -7,9 +7,9 @@
         </div>
         <div class="news_v_container">
             <div class="news_v_box" 
-                v-for="(news,index) in newsList"
-                :class="{news_v_reverse: index % 2 === 0}"
-                :key="news">
+                v-for="news in filterData"
+                :class="{news_v_reverse: news % 2 === 0}"
+                :key="news.news_no">
                 <div class="news_v_pic">
                     <img :src="require(`@/assets/images/news/${news.news_pic}`)" alt="最新消息照片">
                 </div>
@@ -20,8 +20,8 @@
                 </div>
             </div>
             <div class="news_v_box md sm" 
-                v-for="(news,index) in newsList"
-                :key="news">
+                v-for="news in filterData"
+                :key="news.news_no">
                 <div class="news_v_pic">
                     <img :src="require(`@/assets/images/news/${news.news_pic}`)" alt="最新消息照片">
                 </div>
@@ -31,6 +31,19 @@
                     <p class="news_v_post_time">{{news.news_post_time}}</p>
                 </div>
             </div>
+        </div>
+        <div class="btnContainer">
+            <button @click="prevPage" type="button"> ＜ </button>
+            <button 
+                v-for="page in paginateTotal" 
+                :key="page"
+                :class="{'activeBtnStyle': (current === page)}"
+                @click="selectPage " 
+                type="button"
+            >
+                {{page}}
+            </button>
+            <button @click="nextPage" type="button"> ＞ </button>
         </div>
     </div>
 </section>
@@ -42,7 +55,41 @@ export default{
     data(){
     return{
       newsList:[],
+      paginate: 4,
+      current: 1,
     }
+    },
+    methods:{
+        scrollToTop(){
+            window.scrollTo(0,0)
+        },
+        prevPage(){
+            if(this.current === 1) return
+            this.current -= 1 ;
+            this.scrollToTop() ;
+        },
+        //當前頁面是最後一頁，不能再往後
+        nextPage(){
+            if(this.current >= this.paginateTotal) return
+            this.current += 1
+            this.scrollToTop() ;
+        },
+        selectPage(e){
+            console.log(e)
+            console.log(this.current)
+            this.current = e;
+            this.scrollToTop() ;
+        },
+    },
+    computed: {
+        paginateTotal() {
+            //卡片長度 除以 一頁可顯示的數量，會有小數點所以要用Math無條件進位
+            return Math.ceil(this.newsList.length / this.paginate)
+        },
+        filterData() {
+            //一頁有幾筆數目，透過slice做計算
+            return this.newsList.slice((this.current - 1) * this.paginate , this.current * this.paginate);
+        }
     },
     created(){
         fetch(process.env.VUE_APP_PHP_PATH + 'news.php')
@@ -51,10 +98,12 @@ export default{
         return res.json()
         })
         .then((newsContent)=>{
-        console.log(newsContent)
         this.newsList=newsContent
-        console.log(this.newsList)
         })
+    },
+    mounted(){
+        //要用到mounted，不能用在created中，因為Dom元件還沒被掛載，讀不到window
+        this.scrollToTop()
     }
 } 
 </script>
