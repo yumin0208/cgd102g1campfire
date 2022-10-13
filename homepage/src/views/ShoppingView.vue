@@ -10,13 +10,13 @@
         <div class="product_list_group">
           <h3>所有商品</h3>
           <hr />
-          <ul class="product_list">
+          <!-- <ul class="product_list">
             <li class="product_list_item"><h4>T恤<span class="divide_line">|</span></h4></li>
             <li class="product_list_item"><h4>帽T<span class="divide_line">|</span></h4></li>
             <li class="product_list_item"><h4>漁夫帽<span class="divide_line">|</span></h4></li>
             <li class="product_list_item"><h4>杯子<span class="divide_line">|</span></h4></li>
             <li class="product_list_item"><h4>水瓶</h4></li>
-          </ul>
+          </ul> -->
         </div>
       </div>
 

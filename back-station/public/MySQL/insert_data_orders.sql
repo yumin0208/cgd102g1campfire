@@ -15,7 +15,6 @@ insert into orders(
     payment_methods,
     payment_status,
     orders_total,
-    orders_time,
     checkin_date,
     checkout_date
     )

@@ -6,16 +6,33 @@
 }
 .title_main h2{
     padding: 0 10px 0 15px;
+    @include md() {
+        font-size: 28px;
+        padding: 0 15px 0 20px;
+    }
 }
 .title_main::before{
+    position: relative;
     content: url(/src/assets/images/main/main_title_left.png);
     width: 50px;
     height: 30px;
-    background: center center;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include md() {
+        width: 50px;
+        height: 30px;
+        background-size: contain;
+    }
 }
 .title_main::after{
     content: url(/src/assets/images/main/main_title_right.png);
     width: 50px;
     height: 30px;
-    background: center center;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include md() {
+        width: 50px;
+        height: 30px;
+        background-size: contain;
+    }
 }

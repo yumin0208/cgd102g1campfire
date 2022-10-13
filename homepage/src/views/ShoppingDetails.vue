@@ -160,7 +160,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/style.scss";
-
     .wrap_details{
         width: 80%;
         display: flex;
