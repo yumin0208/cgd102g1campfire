@@ -38,7 +38,7 @@
                 v-for="page in paginateTotal" 
                 :key="page"
                 :class="{'activeBtnStyle': (current === page)}"
-                @click="selectPage " 
+                @click="current = page " 
                 type="button"
             >
                 {{page}}
@@ -74,10 +74,9 @@ export default{
             this.current += 1
             this.scrollToTop() ;
         },
-        selectPage(e){
-            console.log(e)
-            console.log(this.current)
-            this.current = e;
+        selectPage(){
+            
+            this.current = this.page;
             this.scrollToTop() ;
         },
     },

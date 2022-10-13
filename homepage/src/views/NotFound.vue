@@ -40,7 +40,7 @@
       </div>
 
       <a
-        href="https://tibamef2e.com/cgd102/g1/HomeView"
+        href="https://tibamef2e.com/cgd102/g1/"
         target="_blank"
         class="box__button"
         >Go back</a
@@ -56,15 +56,6 @@ $l-purple: #87B7AA;
 $t-purple: #F5F2E9;
 $pink: #bc6c60;
 $white: #fff;
-
-html,
-body {
-  background: $purple;
-  font-family: "Ubuntu";
-}
-* {
-  box-sizing: border-box;
-}
 
 .box_404 {
   width: 350px;
