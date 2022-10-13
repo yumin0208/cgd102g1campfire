@@ -41,7 +41,7 @@
                             <!-- 檢舉icon -->
                             <div 
                                 class="inform_icon" 
-                                @click="isShowGo"
+                                @click="isShowGo(item.discuss_no)"
                             >
                                 <img src="@/assets/images/report/report_icon_caution.png" alt="caution">
                             </div>
@@ -54,9 +54,7 @@
                                         'discuss_no': item.discuss_no
                                     }
                                 }"
-                                @click="checkId"
                             >
-                            <!-- v-if="message_show == false" -->
                                 <img src="@/assets/images/report/report_msg_1.png" alt="report">
                                 <p class="message_count">{{item.comment_count}}</p>
                             </router-link>
@@ -101,7 +99,7 @@
                                 <button 
                                     class="btn_confirm" 
                                     type="button"
-                                    @click="reportDiscuss(item.discuss_no)"
+                                    @click="reportDiscuss"
                                 >送出
                                 </button>
                             </form>
@@ -134,6 +132,7 @@ export default {
             isShow: false,
             member: [],
             login: false, //請先登入
+            currentDiscussNo:null,
             // 原始資料
             // discussCard: [],
         }
@@ -186,7 +185,7 @@ export default {
         selectPage(val){
             this.current = val
         },
-        // 請先登入
+        // 登入燈箱，請先登入，檢舉
         loginBox (response) {
             this.login = response;
         },
@@ -201,17 +200,16 @@ export default {
             //關閉燈箱
         },
         //報告檢舉送出
-        reportDiscuss(e){
+        reportDiscuss(){
             let xhr = new XMLHttpRequest();
             xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussReportDis.php',true);
             
             let formData = new FormData();
             // formData.append('comment_no', this.comment_no);
-            formData.append('discuss_no', e);
+            formData.append('discuss_no', this.currentDiscussNo);
             formData.append('memNo', this.memNo);
             formData.append('report_content', this.report_content);
             xhr.send(formData);
-            console.log(e);
             console.log(this.memNo);
             console.log(this.report_content);
             console.log(formData);
@@ -220,35 +218,36 @@ export default {
             this.toggleModal();
         },
         //確認有無登入，判斷檢舉
-        isShowGo(){
+        isShowGo(e){
             let checkLogin = sessionStorage.getItem('member');
             if(checkLogin == null){
                 // alert("請先登入");
                 this.login = true
             }else{
                 this.isShow = true;
+                this.currentDiscussNo = e;
             }
         },
         //確認有無登入，判斷跳轉留言頁面
-        checkId() {
-            let checkLogin = sessionStorage.getItem('member');
-            if(checkLogin == null){
-                // alert("請先登入");
-                this.login = true
-            }else{
-                // this.isShow = true;
-                this.modalStyle();
-            }
-        }
+        // checkId() {
+        //     let checkLogin = sessionStorage.getItem('member');
+        //     if(checkLogin == null){
+        //         // alert("請先登入");
+        //         this.login = true
+        //     }else{
+        //         // this.isShow = true;
+        //         this.modalStyle();
+        //     }
+        // }
     },
     created() {
         //是否有登入狀態
-        let checkLogin = sessionStorage.getItem('member');
-        if(checkLogin == null){
-            return
-        }else{
-            this.message_show = true;
-        }
+        // let checkLogin = sessionStorage.getItem('member');
+        // if(checkLogin == null){
+        //     return
+        // }else{
+        //     this.message_show = true;
+        // }
         //拿到會員資料
         // this.getMemData()
     },
