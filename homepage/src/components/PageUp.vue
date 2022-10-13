@@ -41,17 +41,17 @@ export default {
           document.documentElement.scrollTop || document.body.scrollTop;
 
         // 讓滑動效果產生
-        let speed = Math.floor(-osTop / 8);
+        let speed = Math.floor(-osTop / 100);
         document.documentElement.scrollTop = document.body.scrollTop =
           osTop + speed;
 
         isTop = true;
 
         // 清除定時器
-        if (osTop < 800) {
+        if (osTop == 0) {
           clearInterval(timer);
         }
-      }, 30);
+      }, 3);
     }
   },
 };
@@ -101,7 +101,6 @@ export default {
     @include md() {
       width: 30px;
     }
-    
   }
   &:hover {
     background-color: #fff;
