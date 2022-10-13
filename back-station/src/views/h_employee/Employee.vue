@@ -23,7 +23,7 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in employee" :key="item">
+    <tr class="item_content" v-for="item in employee" :key="item">
         <td>{{item.employee_no}}</td>
         <td>{{item.employee_name}}</td>
         <td>{{item.employee_auth}}</td>
@@ -64,6 +64,7 @@ export default {
             '員工信箱',
             '員工電話',
             '員工狀態',
+            '詳細資訊',
         ],
         employee: [],
         };

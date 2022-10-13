@@ -23,7 +23,7 @@
         <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
         </tr>
-        <tr v-for="item in discuss" :key="item">
+        <tr class="item_content" v-for="item in discuss" :key="item">
         <td>{{item.discuss_no}}</td>
         <td>{{item.mem_no}}</td>
         <td>{{item.discuss_title}}</td>
@@ -66,6 +66,7 @@ return {
     '報告狀態',
     '留言數量',
     '背景樣式',
+    '詳細資訊',
     ],
     discuss: [],
 };

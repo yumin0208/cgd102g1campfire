@@ -23,7 +23,7 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in reserve" :key="item">
+    <tr class="item_content" v-for="item in reserve" :key="item">
         <td>{{item.reserve_no}}</td>
         <td>{{item.tent_style_no}}</td>
         <td>{{item.reserve_date}}</td>
@@ -62,6 +62,7 @@ export default {
             '已預訂帳數',
             '原有帳數',
             '預約狀態編號',
+            '詳細資訊',
         ],
         reserve: [],
         };

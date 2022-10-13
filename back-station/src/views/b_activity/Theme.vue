@@ -23,7 +23,7 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in area" :key="item">
+    <tr class="item_content" v-for="item in area" :key="item">
         <td>{{item.area_no}}</td>
         <td>{{item.area_name}}</td>
         <td>{{item.area_subtitle}}</td>
@@ -58,6 +58,7 @@ export default {
             '地區名稱',
             '地區副標題',
             '地區介紹',
+            '詳細資訊',
         ],
         area: [],
         };
