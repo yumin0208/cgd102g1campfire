@@ -426,13 +426,13 @@ import { useRouter } from "vue-router";
             doLogin(){
                 var xhr = new XMLHttpRequest();
                 xhr.onload = ()=>{
-                    console.log(xhr.responseText);
+                    // console.log(xhr.responseText);
                     if(xhr.status == 200){
                         
                         if(xhr.responseText != 0){
                             alert("登入成功！");
                             this.session = JSON.parse(xhr.responseText);
-                            console.log(this.session)
+                            // console.log(this.session)
                             sessionStorage.setItem("member", JSON.stringify(this.session));
                             this.loginStatus = sessionStorage.getItem("member")
                             let thus = this
@@ -501,7 +501,7 @@ import { useRouter } from "vue-router";
 
                     var xhr = new XMLHttpRequest();
                     xhr.onload = ()=>{
-                        console.log(xhr.responseText);
+                        // console.log(xhr.responseText);
                         if(xhr.status == 200){
                             let thus = this
                             if(xhr.responseText == 1){
@@ -541,11 +541,11 @@ import { useRouter } from "vue-router";
         watch:{
             id:{
                 handler(newVal){
-                    console.log(newVal)
+                    // console.log(newVal)
                     if(newVal != 0){
                         return this.register_id_block = 1;
                     };
-                    console.log(this.register_id_block)
+                    // console.log(this.register_id_block)
                     immediate: true;                    
                 }
         

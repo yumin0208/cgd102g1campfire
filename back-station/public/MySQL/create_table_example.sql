@@ -1,19 +1,16 @@
 
-<<<<<<< HEAD
 -- drop database tibamefe_cgd102g1;
---  CREATE DATABASE tibamefe_cgd102g1;
---  use tibamefe_cgd102g1;
-=======
 <<<<<<< HEAD
--- drop database tibamefe_cgd102g1;
 -- CREATE DATABASE tibamefe_cgd102g1;
+<<<<<<< HEAD
 -- use tibamefe_cgd102g1;
 =======
-  drop database tibamefe_cgd102g1;
-  CREATE DATABASE tibamefe_cgd102g1;
- use tibamefe_cgd102g1;
->>>>>>> 6b47f5d87cf580f8f8e59ad4db23bc5b45daa2b3
->>>>>>> 0e0a313962576e0b9f8df33161a296b6e5507f0f
+=======
+--  CREATE DATABASE tibamefe_cgd102g1;
+>>>>>>> 474a4023e615983e58404339d9933d1fc6d44409
+--  use tibamefe_cgd102g1;
+
+>>>>>>> bd0be4ca5f461ff522ec92b111c6f72cb9286eb4
 
 
 -- CREATE TABLE 後面加TABLE名稱 (欄位名稱_欄位類型_欄位特性) _代表空白
@@ -422,7 +419,8 @@ constraint fk_orders_area_no foreign key (area_no) references area (area_no)
 insert into orders
 values
 (1,1,1,1,1,1,1,1,1,"2022-10-4 00:00:00","12345",1,20000,"2022-10-3 00:00:00","2022-10-25","2022-10-26"),
-(2,131,2,27,6,3,3,3,1,"2022-10-4 00:00:00","54321",1,40000,"2022-10-3 00:00:00","2022-11-3","2022-11-4");
+(2,131,2,27,6,3,3,3,1,"2022-10-4 00:00:00","54321",1,40000,"2022-10-3 00:00:00","2022-11-3","2022-11-4"),
+(3,1,1,1,1,1,1,1,1,"2022-10-5 00:00:00","12345",2,20000,"2022-10-4 00:00:00","2022-10-28","2022-10-30");
 
 
 create table reserve(

@@ -1,10 +1,14 @@
-//main
+// main
 @import'main/reset.scss';
 @import'main/main.scss';
 
-//component
+// component
 @import 'components/Menu.scss';
 @import 'components/Header.scss';
 @import 'components/Footer.scss';
 @import 'components/Table.scss';
 @import 'components/Breadcrum.scss';
+
+// page
+
+@import 'page/news.scss'
