@@ -8,23 +8,23 @@
             </div>
         </header>
         <div class="breadcrumb">
-            <span>
-                <router-link to ="/NewsRelease">最新消息</router-link> > 詳細內容
-            </span>
+            
+            <router-link to ="/NewsRelease">最新消息</router-link> <span> > 詳細內容</span>
+            
         </div>
         <form>
-            <div>
+            <div class="row">
                 <label for="news_title">文章標題：</label>
                 <input id="news_title" type="text">
             </div>
-            <div>
+            <div class="row">
                 <label for="news_content">文章內容：</label>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea class="news_content" name="news_content" maxlength="300"></textarea>
             </div>
             <div class="news_pic">
 
             </div>
-            <div>
+            <div class="row">
                 <label for="news_status">消息狀態：</label>
                 <select name="news_status" id="news_status">
                     <option value="1">顯示</option>

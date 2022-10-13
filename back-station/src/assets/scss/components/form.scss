@@ -3,26 +3,50 @@
     margin-left: 230px;
 }
 .project_header{
-    padding: 20px 20px;
+    padding: 20px 120px;
     display: flex;
     justify-content: space-between;
     .router_name{
-        font-size: 20px;
+        font-size: 28px;
         font-weight: 600;
 
     }
 }
-form{
+form  {
     margin: 20px;
-}
-
-form div{
-    padding: 10px;
-}
-form input, select, textarea {
-    width: 300px;
-    height: 20px;
-    margin-left: 30px;
+    padding-top: 30px;
+    padding:20px 120px;
+    font-size: 20px;
+    div{
+        padding: 10px;
+    }
+    input{
+        width: 50%;
+        height: 20px;
+        margin-left: 30px;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        padding: 10px 10px;
+        margin-bottom: 20px;    
+    }
+    select{
+        height: 20px;
+        margin-left: 30px;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        padding: 10px 10px;
+        margin-bottom: 20px;
+    }
+    textarea{
+        width: 50%;
+        height: 300px;
+        margin-left: 30px;
+        letter-spacing: 1px;
+        border-radius: 5px;
+        padding: 10px 10px;
+        margin-bottom: 20px;   
+        resize: none;
+    }
 }
 #tent_info{
     height: 100px;
@@ -42,6 +66,13 @@ button{
     background-color: #FFFFFF;
 }
 button:hover{
-    border: none;
-    background-color: #eeeeee;
+    cursor: pointer;
+}
+.breadcrumb{
+    display: flex;
+    padding: 20px 120px;
+    font-size: 16px;
+    a{
+        color: #000;
+    }
 }
