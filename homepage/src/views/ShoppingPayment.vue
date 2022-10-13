@@ -114,7 +114,7 @@
             <router-link to="/Shopping"
               ><button class="btn_return">返回購物</button></router-link
             >
-            <button class="btn_purchase" @click="setSessionStorage">確認結帳</button>
+            <button class="btn_purchase" @click="checkOut">確認結帳</button>
           </div>
         </div>
       </div>
@@ -156,7 +156,7 @@
       </div>
     </div>
   </section>
-  <ShopOrderConfirm v-if="confirmBox" @cancelBox="closeBox" :confirmation="creditInfo[0]"></ShopOrderConfirm>
+  <ShopOrderConfirm v-if="confirmBox" @cancelBox="closeBox" :confirmation="ConfirmBoxInfo" :member='member' :itemTotal='itemTotal'></ShopOrderConfirm>
   <MainFooter></MainFooter>
 </template>
 <script>
@@ -168,11 +168,13 @@ export default {
   },
   data() {
     return {
-      orderList: [],
-      creditInfo: [],
+      member:[],
+      orderList: [],//下訂單的產品
       itemTotal: 0,
-      confirmBox: false,
-      ConfirmBoxInfo: {},
+      confirmBox: false, //確認付款後的確認pop box
+      ConfirmBoxInfo: {
+        text:null,
+      },
     };
   },
   methods: {
@@ -206,8 +208,12 @@ export default {
       this.confirmBox = closeBox
     },
     checkOut() {
-      this.confirmBox = true
-
+      // this.setSessionStorage()
+      if(this.ConfirmBoxInfo.text == null){
+        alert('欸~~請先填入付款資訊唷 ^__^');
+      }else{
+        this.confirmBox = true
+      }
     },
     getOrderList() {
       const tempOrderList = localStorage.getItem("cart");
@@ -240,161 +246,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../assets/scss/style.scss";
-.section_payment {
-  background-color: $color-main-yellow;
-}
-.payment_container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  margin-right: 10%;
-  margin-left: 10%;
-  padding: 150px 0;
-  @include tb() {
-    padding: 50px 0;
-    height: 100%;
-    display: block;
-  }
-  input,
-  select {
-    border: 1px solid $color-aid-green2;
-    width: 100%;
-    background-color: #fff;
-    padding: 0.5rem 0.5rem;
-    border-radius: 10px;
-    margin: 0.5rem 0;
-  }
-}
-.payment_item_image {
-  width: 120px;
-  margin: 0 20px;
-  img {
-    width: 120px;
-    height: 120px;
-  }
-}
-.payment_rows_2 {
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
-  padding: 0 1.5rem;
-  // height: 100vh;
-  @include tb() {
-    height: 100%;
-    padding: 0;
-  }
-}
+@import "../assets/scss/shoppingPayment.scss";
 
-.rwd_payment_col_1 {
-  display: none;
-  @include tb() {
-    display: block;
-    height: 100%;
-    background-color: #f9f9f9;
-    box-shadow: 4px 5px 10px 0px rgb(59 57 57 / 10%);
-    padding: 0 1rem;
-    border-radius: 5px;
-  }
-  .cart_payment_container {
-    height: 100%;
-  }
-  .rwd_amount {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0;
-    .rwd_amount_title {
-      font-size: 20px;
-    }
-  }
-}
-.payment_col_1 {
-  display: grid;
-  // height: 100vh;
-  grid-template-columns: 1fr;
-  padding: 0 2rem;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 4px 5px 10px 0px rgb(59 57 57 / 10%);
-  @include tb() {
-    display: none;
-  }
-  .wrap_cart {
-    width: 100%;
-    .amount {
-      border-bottom: 1px solid gray;
-      display: flex;
-      height: 15vh;
-      justify-content: space-between;
-      align-items: center;
-      padding: 40px 0;
-    }
-  }
-}
-.drop_down_img {
-  width: 40px;
-  display: none;
-  @include tb() {
-    display: block;
-  }
-}
-
-.user_input_box .credit_box {
-  display: flex;
-}
-
-.credit_check_no {
-  padding-left: 1rem;
-}
-
-.wrap_delivery {
-  height: 50vh;
-}
-
-.delivery_info {
-  display: flex;
-  @include tb() {
-    display: block;
-  }
-}
-
-.wrap_payment {
-  // height: 30vh;
-  @include tb() {
-    margin: 50px 0;
-    height: 100%;
-  }
-}
-.user_input_box {
-  padding: 1rem;
-  width: 280px;
-  @include tb() {
-    width: 100%;
-    display: block;
-  }
-}
-.table_tr_grid {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-  p {
-    padding: 0 5px;
-  }
-}
-.btn_link_group {
-  display: flex;
-  justify-content: center;
-  padding: 40px 0;
-  @include tb() {
-    padding-top: 40px;
-  }
-  // @include md(){
-  //   padding-top: 40px;
-  // }
-  .btn_purchase {
-    margin-left: 1rem;
-  }
-}
-.para {
-  padding: 1rem;
-}
 </style>

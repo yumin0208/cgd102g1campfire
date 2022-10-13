@@ -8,6 +8,7 @@
             d.discuss_no, d.discuss_title, d.discuss_content, d.discuss_post_time, discuss_post_time, d.discuss_status, d.background_type, count(c.discuss_no)comment_count ,d.discuss_status
             from member m join discuss d on m.mem_no = d.mem_no
                     left join comment c on d.discuss_no = c.discuss_no
+            where d.discuss_status = 1
             group by d.discuss_no";
 
     $discuss = $pdo->query($sql);
