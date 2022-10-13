@@ -23,7 +23,7 @@
 		<tr class="table_title">
 		<th v-for="item in titles" :key="item">{{item}}</th>
 		</tr>
-		<tr v-for="item in commentCount" :key="item.comment_no">
+		<tr class="item_content" v-for="item in commentCount" :key="item.comment_no">
 		<td>{{item.comment_no}}</td>
 		<td>{{item.discuss_no}}</td>
 		<td>{{item.comment_content}}</td>
@@ -69,7 +69,7 @@ export default {
 	methods: {
 		// 抓取留言資訊
 		FetchAPIComment(){
-			fetch(process.env.VUE_APP_PHP_PATH + `discussComment.php`
+			fetch(process.env.VUE_APP_PHP_PATH + `discussComBack.php`
 			).then((response) => {
 				if(response){
 					this.fetchError = (response.status !== 200)

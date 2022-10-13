@@ -23,7 +23,7 @@
         <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
         </tr>
-        <tr v-for="item in discussReport" :key="item.discuss_no">
+        <tr class="item_content" v-for="item in discussReport" :key="item.discuss_no">
         <td>{{item.discuss_no}}</td>
         <td>{{item.mem_no}}</td>
         <td>{{item.discuss_title}}</td>
