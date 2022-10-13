@@ -4,7 +4,9 @@
 
     require_once("./connect_cgd102g1.php");
 
-    $sql = "select * from news";
+    $sql = "select * 
+            from news
+            order by news_no desc;";
 
     $news = $pdo->query($sql);
 

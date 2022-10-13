@@ -4,7 +4,7 @@
 
     require_once("./connect_cgd102g1.php");
 
-    $sql = "select * from news order by news_no desc limit 3";
+    $sql = "select * from news order by news_no desc limit 5";
 
     $news = $pdo->query($sql);
 

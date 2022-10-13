@@ -41,6 +41,8 @@
                 <img :src="require(`@/assets/images/report/report_postcard_${discuss.background_type}.jpg`)" alt="postcard">
             </div>
         </div>
+        <!-- 判斷登入 -->
+        <ReportLoginBox @close="loginBox(response)" v-if="login"/>
         <!-- 檢舉燈箱 -->
         <div class="report_lightbox">
             <div 
@@ -62,7 +64,7 @@
                             <button 
                                 class="btn_confirm" 
                                 type="button"
-                                @click="reportDiscuss(discuss_no)"
+                                @click="reportDiscuss"
                             >
                             送出
                             </button>
@@ -78,22 +80,26 @@
 </template>
 
 <script>
+import ReportLoginBox from '../components/ReportLoginBox.vue';
 
 export default {
     props: ['discuss'],
     name: "ReportDiscuss",
-    components: {},
+    components: {
+        ReportLoginBox,
+    },
     data() {
         return {
-            isShow: false,
             memNo: null,
-            // discuss_no: '',
             commentCount: [],
+            isShow: false, // 檢舉燈箱
+            login: false, //登入燈箱
+            // discuss_no: '',
             // discussCard:[]
         }
     },
     computed: {
-        //燈箱
+        //燈箱，檢舉
         modalStyle() {
             return {
                 'display': this.isShow ? '' : 'none'
@@ -113,23 +119,27 @@ export default {
             const myDate = new Date(date); 
             return `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}` 
         },
+        // 登入燈箱，請先登入，檢舉
+        loginBox (response) {
+            this.login = response;
+        },
         //檢舉燈箱
         toggleModal() { 
             this.isShow = !this.isShow;
             //關閉燈箱
         },
         //報告檢舉送出
-        reportDiscuss(e){
+        reportDiscuss(){
             let xhr = new XMLHttpRequest();
             xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussReportDis.php',true);
             
             let formData = new FormData();
             // formData.append('comment_no', this.comment_no);
-            formData.append('discuss_no', e);
+            formData.append('discuss_no', this.discuss.discuss_no);
             formData.append('memNo', this.memNo);
             formData.append('report_content', this.report_content);
             xhr.send(formData);
-            console.log(e);
+            console.log(this.discuss.discuss_no);
             console.log(this.memNo);
             console.log(this.report_content);
             console.log(formData);
@@ -149,14 +159,6 @@ export default {
         },
     },
     created() {
-        //是否有登入狀態
-        let checkLogin = sessionStorage.getItem('member');
-        if(checkLogin == null){
-            return
-        }else{
-            this.message_show = true;
-        }
-        //拿到會員資料
         this.getMemData()
     },
 }
