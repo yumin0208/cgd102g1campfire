@@ -47,7 +47,6 @@ export default {
     return {
       orderListDetail: [],
       orderCompletedBox: false,
-      getOrderListNo: null,
     };
   },
   methods: {
@@ -57,20 +56,13 @@ export default {
     close() {
       this.$router.push('/Shopping');
     },
-    async orderCompleted() {
-      // 送出訂單（有成功送出並加進DB），
-      // 回傳訂單編號輸出給Vue data裡面
+    orderCompleted() {
       this.orderSend();
-
-      // 利用訂單編號將商品明細以物件陣列方式傳入後端，寫進去DB（還沒成功）
-      // 目前原因是localstorage回撈出來的資料無法排列成陣列物件
-      // 撈回來的形式為字串，所以在for迴圈裡會將資料以字符形式回傳
-      await this.orderListSend();
     },
     getOrderList() {
       this.orderListDetail = localStorage.getItem('cart');
       if (!this.orderListDetail || this.orderListDetail === 'undefined') return;
-      this.orderList = JSON.parse(this.orderListDetail);
+      this.orderListDetail = JSON.parse(this.orderListDetail);
     },
     orderSend() {
       let xhr = new XMLHttpRequest();
@@ -88,7 +80,7 @@ export default {
       xhr.send(formData);
       xhr.onload = () => {
         if (xhr.status == 200) {
-          this.getOrderListNo = xhr.response;
+          this.orderListSend(xhr.response);
         }
       };
       xhr.onerror = (err) => {
@@ -96,8 +88,7 @@ export default {
       };
     },
 
-    // 這個待處理
-    orderListSend() {
+    orderListSend(getOrderListNo) {
       for (let i = 0; i < this.orderListDetail.length; i++) {
         let xhr = new XMLHttpRequest();
         xhr.open(
@@ -107,7 +98,7 @@ export default {
         );
 
         let formData = new FormData();
-        formData.append('product_order_no', this.getOrderListNo);
+        formData.append('product_order_no', getOrderListNo);
         formData.append('product_no', this.orderListDetail[i].product_no);
         formData.append(
           'product_order_list_qty',
@@ -120,14 +111,13 @@ export default {
         xhr.send(formData);
         xhr.onload = () => {
           if (xhr.status == 200) {
-            console.log(this.getOrderListNo);
+            this.orderCompletedBox = true;
           }
         };
         xhr.onerror = (err) => {
           console.log(err);
         };
       }
-      this.orderCompletedBox = true;
     },
   },
   created() {

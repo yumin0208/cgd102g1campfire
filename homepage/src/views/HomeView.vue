@@ -79,8 +79,13 @@ export default {
       this.howMany = howMany;
       this.whichType = whichType;
     },
+    scrollToTop(){
+      window.scrollTo(0,0)
+    },
   },
-  created() {},
+  mounted(){
+    this.scrollToTop()
+  }
 };
 </script>
 
