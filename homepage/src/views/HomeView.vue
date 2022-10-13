@@ -82,13 +82,13 @@ export default {
       this.howMany = howMany;
       this.whichType = whichType;
     },
-    scrollToTop(){
-      window.scrollTo(0,0)
+    scrollToTop() {
+      window.scrollTo(0, 0);
     },
   },
-  mounted(){
-    this.scrollToTop()
-  }
+  mounted() {
+    this.scrollToTop();
+  },
 };
 </script>
 
