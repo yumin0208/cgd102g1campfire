@@ -10,13 +10,13 @@
                 <li>付款狀態</li>
                 <li>&emsp;</li>
             </ul>
-        <div class="tabcontent_product_info_tab" v-for="item in orders" :key="item.id">
-            <input type="radio" name="orders" class="product_input" :id="`${item.id}`">
-            <label class="info_tab" :for="`${item.id}`" >
+        <div class="tabcontent_product_info_tab" v-for="item, index in memproductorders" :key="item">
+            <input type="radio" name="orders" class="product_input" :id="`${item.product_order_no}`">
+            <label class="info_tab" :for="`${item.product_order_no}`" >
                 <ul class="product_order_info">
-                    <li>{{item.no}}</li>
-                    <li>{{item.date}}</li>
-                    <li>{{item.payment}}</li>
+                    <li>{{item.product_order_no}}</li>
+                    <li>{{item.product_order_time}}</li>
+                    <li>已付款</li>
                 </ul>
             </label>
             <div class="info_tab_content">
@@ -27,22 +27,20 @@
                         <li>數量</li>
                         <li>金額</li>
                     </ul>
-                    <ul>
-                        <li>{{item.name[0]}}</li>
-                        <li>{{item.qty[0]}}</li>
-                        <li>{{item.price[0]}}</li>
+                    <ul v-for="detailItem in memProductOrderDetail[index]" :key="detailItem">
+                        <li>{{detailItem.product_name}}</li>
+                        <li>{{detailItem.product_order_list_qty}}</li>
+                        <li>{{detailItem.product_order_list_price}}</li>
                     </ul>
-                    <ul>
-                        <li>{{item.name[1]}}</li>
-                        <li>{{item.qty[1]}}</li>
-                        <li>{{item.price[1]}}</li>
-                    </ul> 
                     <ul class="info_tab_contents_sum">
                         <li>&emsp;</li>
                         <li>總金額</li>
-                        <li>$<span>{{item.sum}}</span>元</li>
+                        <li>$<span>
+                            {{item.product_order_total}}
+                            </span>元
+                        </li>
                     </ul> 
-                    <p class="delivery_location">配送地點: <span>{{item.place}}</span></p>
+                    <p class="delivery_location">配送地點: <span>{{item.product_order_pickup_place}}</span></p>
                 </div>
                 
              </div>
@@ -54,46 +52,106 @@
 <script>
     export default {
         name: "MemberCampsiteOrder",
+        created(){
+            this.getMemData()
+            this.fetchProductOrders()
+        },
+        // beforeMount(){
+        //     this.fetchProductOrderDetail()
+        // },
         data(){
             return {
-                orders: [
-                    {
-                      id:'product1',
-                      no: '3462889269',
-                      date: '2022-10-07 19:23',
-                      sum:'13400',
-                      payment:'未付款',
-                      name:['營火叢多喝水瓶','營火叢不怕風吹帽'],
-                      qty:['1','4'],
-                      price:['2680','2680'],
-                      place:'桃園市中壢區復興路46號9樓'
-                    },
-                    {
-                      id:'product2',
-                      no: '3462889459',
-                      date: '2022-09-07 08:23',
-                      sum:'10720',
-                      payment:'已付款',
-                      name:['營火叢金勾杯','營火叢T-SHIRT'],
-                      qty:['2','2'],
-                      price:['2680','2680'],
-                      place:'桃園市中壢區復興路46號9樓'
+                // orders: [
+                //     {
+                //       id:'product1',
+                //       no: '3462889269',
+                //       date: '2022-10-07 19:23',
+                //       sum:'13400',
+                //       payment:'未付款',
+                //       name:['營火叢多喝水瓶','營火叢不怕風吹帽'],
+                //       qty:['1','4'],
+                //       price:['2680','2680'],
+                //       place:'桃園市中壢區復興路46號9樓'
+                //     },
+                //     {
+                //       id:'product2',
+                //       no: '3462889459',
+                //       date: '2022-09-07 08:23',
+                //       sum:'10720',
+                //       payment:'已付款',
+                //       name:['營火叢金勾杯','營火叢T-SHIRT'],
+                //       qty:['2','2'],
+                //       price:['2680','2680'],
+                //       place:'桃園市中壢區復興路46號9樓'
                       
-                    },
-                    {
-                      id:'product3',
-                      no: '3462889249',
-                      date: '2022-05-07 04:23',
-                      sum:'5360',
-                      payment:'已付款',
-                      name:['營火叢漁夫帽','營火叢帽T'],
-                      qty:['1','1'],
-                      price:['2680','2680'],
-                      place:'桃園市中壢區復興路46號9樓'
+                //     },
+                //     {
+                //       id:'product3',
+                //       no: '3462889249',
+                //       date: '2022-05-07 04:23',
+                //       sum:'5360',
+                //       payment:'已付款',
+                //       name:['營火叢漁夫帽','營火叢帽T'],
+                //       qty:['1','1'],
+                //       price:['2680','2680'],
+                //       place:'桃園市中壢區復興路46號9樓'
                       
-                    }              
-                ], 
+                //     }              
+                // ], 
+                member:'',
+                mem_no:'',
+                memproductorders:[],
+                memProductOrderDetail:[],
             }
+        },methods:{
+            getMemData(){
+                //抓到sessionStorage的會員資料
+                this.member = JSON.parse(sessionStorage.getItem('member'));
+                //抓取會員編號，要去後端撈會員資料需要
+                this.mem_no = this.member.mem_no;
+                //確認有抓到東西
+                console.log(this.member)
+                console.log(this.mem_no)
+            },
+            fetchProductOrders(){
+                console.log(this.mem_no)
+                fetch(process.env.VUE_APP_PHP_PATH + `getProductOrders.php?mem_no=${this.mem_no}`)                
+                .then((response) => {
+                    this.fetchError = (response.status !== 200)
+                //json(): 返回 Promise，resolves 是 JSON 物件
+                    return response.json()
+                }).then(responseText => {
+                    console.log(responseText)
+                    //傳送資料
+                    const useData = responseText
+                    //篩選會員編號之後撈回來的訂單資料
+                    this.memproductorders = useData
+                    console.log(this.memproductorders)
+                    //先執行上面的程式，抓到product_no，才能執行下面程式
+                    this.fetchProductOrderDetail();
+                }).catch((err) => {
+                    this.memproductorders = true
+                });
+            },
+            fetchProductOrderDetail(){
+                //第一支程式已經抓到有幾筆訂單後，要用for迴圈去跑每筆訂單裡的訂單項目
+                for(let i = 0; i < this.memproductorders.length; i++){
+                    fetch(process.env.VUE_APP_PHP_PATH + `getMemOrderstest.php?product_order_no=${this.memproductorders[i].product_order_no}`)                
+                    .then((response) => {
+                        this.fetchError = (response.status !== 200)
+                        //json(): 返回 Promise，resolves 是 JSON 物件
+                        return response.json()
+                    }).then(responseText => {
+                        console.log(responseText)
+                        //傳送資料
+                        const useData = responseText
+                        //篩選會員編號之後撈回來的訂單資料
+                        this.memProductOrderDetail.push(useData);
+                    }).catch((err) => {
+                        this.memProductOrderDetail = true
+                    });
+                }
+            },
         }
     }
 </script>
