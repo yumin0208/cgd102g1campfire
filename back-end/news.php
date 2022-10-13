@@ -6,6 +6,7 @@
 
     $sql = "select * 
             from news
+            where news_status =1
             order by news_no desc;";
 
     $news = $pdo->query($sql);

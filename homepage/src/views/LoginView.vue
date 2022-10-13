@@ -426,10 +426,13 @@ import { useRouter } from "vue-router";
             doLogin(){
                 var xhr = new XMLHttpRequest();
                 xhr.onload = ()=>{
-                    // console.log(xhr.responseText);
+                    console.log(xhr.responseText);
                     if(xhr.status == 200){
-                        
-                        if(xhr.responseText != 0){
+                        if(xhr.responseText == 2){
+                            alert("帳號停權中！")
+                        }else if(xhr.responseText == 0){
+                            alert("帳號或密碼錯誤");
+                        }else{
                             alert("登入成功！");
                             this.session = JSON.parse(xhr.responseText);
                             // console.log(this.session)
@@ -440,8 +443,6 @@ import { useRouter } from "vue-router";
                                 // location.replace("/Member");
                                 thus.router.push({path:'/Member'});
                             }
-                        }else if(xhr.responseText == 0){
-                            alert("帳號或密碼錯誤");
                         }
                     }
                 }
@@ -455,13 +456,6 @@ import { useRouter } from "vue-router";
             },
             getMemberInfo(){
                 let xhr = new XMLHttpRequest();
-                // xhr.onload = function(){
-                //     member = JSON.parse(xhr.responseText);
-                //     if(member.mem_id){
-                //         $id("memName").innerText = member.memName;
-                //         $id("spanLogin").innerText = "登出";          
-                //     }
-                // }
                 xhr.open("get",process.env.VUE_APP_PHP_PATH + 'getMemberInfo.php',true);
                 xhr.send(null);
             },

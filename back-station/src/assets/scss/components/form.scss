@@ -21,7 +21,7 @@ form  {
         padding: 10px;
     }
     input{
-        width: 50%;
+        width: 60%;
         height: 20px;
         margin-left: 30px;
         letter-spacing: 1px;
@@ -30,15 +30,15 @@ form  {
         margin-bottom: 20px;    
     }
     select{
-        height: 20px;
+        width: 13%;
+        height: 30px;
         margin-left: 30px;
         letter-spacing: 1px;
         border-radius: 5px;
-        padding: 10px 10px;
         margin-bottom: 20px;
     }
     textarea{
-        width: 50%;
+        width: 60%;
         height: 300px;
         margin-left: 30px;
         letter-spacing: 1px;
@@ -67,6 +67,7 @@ button{
 }
 button:hover{
     cursor: pointer;
+    color: #FFFFFF;
 }
 .breadcrumb{
     display: flex;
