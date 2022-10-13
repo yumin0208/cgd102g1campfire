@@ -126,7 +126,7 @@ export default {
                             myname:'預訂訂單管理',
                         },
                         {
-                            path: '/MemberInfo',
+                            path: '/MemberList',
                             myname:'會員資訊管理',
                         },
                     ],

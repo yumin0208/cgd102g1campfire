@@ -116,9 +116,15 @@ const routes = [
     component: () => import('../views/g_member/Booking.vue'),
   },
   {
+    path: '/MemberList',
+    name: 'MemberList',
+    chtName: '會員資訊管理',
+    component: () => import('../views/g_member/MemberList.vue'),
+  },
+  {
     path: '/MemberInfo',
     name: 'MemberInfo',
-    chtName: '會員資訊管理',
+    chtName: '會員詳細資訊',
     component: () => import('../views/g_member/MemberInfo.vue'),
   },
   {

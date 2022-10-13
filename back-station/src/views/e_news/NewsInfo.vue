@@ -77,18 +77,14 @@ export default {
             //抓取文章編號，要去後端撈資料
             this.news_no = this.news.news_no;
             //確認有抓到東西
-            console.log(this.news)
-            console.log(this.news_no)
         },
         fetchNewsData(){
-            console.log(this.news_no)
             fetch(process.env.VUE_APP_PHP_PATH + `backstaion_news_modify.php?news_no=${this.news_no}`)                
             .then((response) => {
                 this.fetchError = (response.status !== 200)
             //json(): 返回 Promise，resolves 是 JSON 物件
                 return response.json()
             }).then(responseText => {
-                console.log(responseText)
                 //傳送資料
                 const useData = responseText
                 //篩選文章編號之後撈回來的第一筆資料
@@ -125,10 +121,8 @@ export default {
                     xhr.send(news_data);
                     //重新撈回資料庫資料，再寫進sessionStorage
                     xhr.onload = ()=>{
-                        console.log(xhr.responseText);
                         if(xhr.status == 200){
                             this.session = JSON.parse(xhr.responseText);
-                            console.log(this.session)
                             sessionStorage.setItem("news", JSON.stringify(this.session)); 
                             alert("修改成功");
                             let thus = this
