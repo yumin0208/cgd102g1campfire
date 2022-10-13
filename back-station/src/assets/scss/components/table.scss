@@ -3,6 +3,7 @@
     top: 70px;
     position: absolute;
     right: 0;
+    
 }
 .serch_bar{
     margin: 40px 0px;
@@ -32,15 +33,25 @@
     border: none;
     background-color: #0E685E;
 }
+.table_roll{
+    width: 100%;
+    overflow-x: scroll;
+}
 table{
-    width: 98%;
+    min-width: 1000px;
     margin: 0 auto;
     border-collapse: collapse;
+    overflow-x: scroll;
 }
 th, td{
-    text-align: center;
+    text-align: justify;
     padding: 14px 12px;
     font-size: 14px;
+    max-width: 200px;
+    min-width: 200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 th{
     color: #FFFFFF;
@@ -55,9 +66,3 @@ th{
 .item_content:hover{
     background-color: #FFFFFF;
 }
-// .list_content{
-//     max-width: 200px;
-//     white-space: nowrap;
-//     text-overflow: ellipsis;
-//     overflow: hidden;
-// }

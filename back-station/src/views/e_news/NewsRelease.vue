@@ -19,7 +19,8 @@
     <button>修改</button>
     <button>刪除</button>
   </div>
-  <table>
+  <div class="table_roll">
+    <table>
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
@@ -30,9 +31,9 @@
       <td>{{item.news_pic}}</td>
       <td>{{item.news_post_time}}</td>
       <td>{{item.news_status}}</td>
-      <td><button>更多</button></td>
     </tr>
   </table>
+  </div>
 </section>
 <Footer></Footer>
 </template>
@@ -68,7 +69,7 @@ data() {
 },
 methods: {
   FetchAPIComment() {
-    fetch(``)
+    fetch(process.env.VUE_APP_PHP_PATH + 'backstation_news.php')
       .then((response) => {
         if (response) {
           this.fetchError = response.status !== 200;
