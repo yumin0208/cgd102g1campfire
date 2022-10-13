@@ -1,31 +1,30 @@
 <template>
     <div class="mem_content_group">
-        <div class="tabcontent_booking_search">
-            <input type="text" class="input_box input_spacing"><input type="button" value="搜尋" class="btn_purchase">
-        </div>
+        <!-- <div class="tabcontent_booking_search">
+            <input type="text" class="input_box input_spacing"><input type="button" value="搜尋" class="btn_purchase" @click="filterItems">
+        </div> -->
         <div class="tabcontent_booking_info">
             <ul class="booking_order_title">
                 <li>預定編號</li>
                 <li>日期</li>
-                <li>預定狀態</li>
+                <li>&emsp;</li>
                 <li>&emsp;</li>
             </ul>
-        <div class="tabcontent_booking_info_tab" v-for="item in orders" :key="item.id">
-            <input type="radio" name="orders" class="booing_input" :id="`${item.id}`">
-            <label class="info_tab" :for="`${item.id}`" >
+        <div class="tabcontent_booking_info_tab" v-for="item in memcamporders" :key="item.orders_no">
+            <input type="radio" name="orders" class="booing_input" :id="`${item.orders_no}`">
+            <label class="info_tab" :for="`${item.orders_no}`" > 
                 <ul class="booking_order_info">
-                    <li>{{item.no}}</li>
-                    <li><span>{{item.checkinDate}}</span>至{{item.checkoutDate}}<span></span></li>
-                    <li>{{item.state}}</li>
+                    <li>{{item.orders_no}}</li>
+                    <li><span>{{item.checkin_date}}</span>至{{item.checkout_date}}<span></span></li>
+                    <li class="status_none">{{item.payment_status}}</li>
                 </ul>
             </label>
             <div class="info_tab_content">
                 <h4>營地預定訂單明細</h4>
                 <div class="info_tab_contents">
                     <ul class="info_tab_contents_title">
-                        <li>下訂日期</li>
+                        <li>下訂日期/時間</li>
                         <li>預定地區</li>
-                        <li>個別營帳編號</li>
                         <li>預訂帳篷類型</li>
                         <li>預訂餐點類型</li>
                         <li>預定裝備類型</li>
@@ -33,25 +32,25 @@
                         <li>訂單總金額</li>
                     </ul>
                     <ul>
-                        <li>{{item.orderdate}}</li>
-                        <li>{{item.area}}</li>
-                        <li>{{item.tentNo}}</li>
-                        <li>{{item.tentStyle}}</li>
-                        <li>{{item.food}}</li>
-                        <li>{{item.equip}}</li>
-                        <li>{{item.activity}}</li>
+                        <li>{{item.orders_time}}</li>
+                        <li>{{item.area_name}}</li>
+                        <li>{{item.tent_style_name}}</li>
+                        <li>{{item.food_name}}</li>
+                        <li>{{item.equip_name}}</li>
+                        <li>{{item.activity_name}}</li>
                         <li>&emsp;</li>
                     </ul>
                     <ul class="price">
-                        <li><span>{{item.tentprice}}</span>元</li>
-                        <li><span>{{item.foodprice}}</span>元</li>
-                        <li><span>{{item.equipprice}}</span>元</li>
-                        <li><span>{{item.activityprice}}</span>元</li>
-                        <li>$<span>{{item.sum}}</span>元</li>
+                        <li><span>{{item.tent_style_price}}</span>元</li>
+                        <li><span>{{item.food_price}}</span>元</li>
+                        <li><span>{{item.equip_price}}</span>元</li>
+                        <li><span>{{item.activity_price}}</span>元</li>
+                        <li>$<span>{{item.orders_total}}</span>元</li>
                     </ul>
                 </div>
-                <div class="cancel_order">
-                    <button type="botton" class="btn_submit btn_cancel">取消訂單</button>
+                <div class="cancel_order" v-if="item.payment_status!=3&&item.payment_status!=2">
+                    <button type="botton" class="btn_submit btn_cancel"
+                            @click="cancelOrder(item.orders_no)">取消訂單</button>
                 </div>
              </div>
         </div>
@@ -60,72 +59,70 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
     export default {
         name: "MemberCampsiteOrder",
+        created(){
+            this.getMemData()
+            this.fetchCampOrders()
+        },
         data(){
             return {
-                orders: [
-                    {
-                      id:'booking1',
-                      no: '3462889269',
-                      checkinDate: '2022-10-07',
-                      checkoutDate:'2022-10-10',
-                      sum:'24000',
-                      state:'未付款',
-                      orderdate: '2022-09-28',
-                      area: '冰雪奇緣',
-                      tentNo:'501',
-                      tentStyle:'豪華6人帳篷',
-                      food:'奢華海陸套餐',
-                      equip:'卡拉ok',
-                      activity:'冰上釣魚',
-                      tentprice:'5600',
-                      foodprice:'3000',
-                      equipprice:'3000',
-                      activityprice:'5000'
-
-                    },
-                    {
-                      id:'booking2',
-                      no: '3462889270',
-                      checkinDate: '2022-05-07',
-                      checkoutDate:'2022-05-13',
-                      sum:'14000',
-                      state:'已付款',
-                      orderdate: '2022-05-01',
-                      area: '冰雪奇緣',
-                      tentNo:'402',
-                      tentStyle:'豪華6人帳篷',
-                      food:'未填寫',
-                      equip:'卡拉ok',
-                      activity:'冰上釣魚',
-                      tentprice:'5600',
-                      foodprice:'0',
-                      equipprice:'3000',
-                      activityprice:'5000'
-                    },
-                    {
-                      id:'booking3',
-                      no: '3462889245',
-                      checkinDate: '2022-01-03',
-                      checkoutDate:'2022-01-06',
-                      sum:'14500',
-                      state:'已完成',
-                      orderdate: '2022-01-01',
-                      area: '荒野峽谷',
-                      tentNo:'402',
-                      tentStyle:'豪華6人帳篷',
-                      food:'未填寫',
-                      equip:'未填寫',
-                      activity:'熱氣球',
-                      tentprice:'5600',
-                      foodprice:'0',
-                      equipprice:'0',
-                      activityprice:'5000'
-                    }              
-                ], 
+                isShow:null,
+                member:'' ,
+                mem_no:'',
+                memcamporders:[],
+                payment_status:'',
+                router:useRouter(),
+                keyword:'',
             }
-        }
+        },methods:{
+            getMemData(){
+                //抓到sessionStorage的會員資料
+                this.member = JSON.parse(sessionStorage.getItem('member'));
+                //抓取會員編號，要去後端撈會員資料需要
+                this.mem_no = this.member.mem_no;
+                //確認有抓到東西
+                console.log(this.member)
+                console.log(this.mem_no)
+            },
+            fetchCampOrders(){
+                console.log(this.mem_no)
+                fetch(process.env.VUE_APP_PHP_PATH + `getMemOrders.php?mem_no=${this.mem_no}`)                
+                .then((response) => {
+                    this.fetchError = (response.status !== 200)
+                //json(): 返回 Promise，resolves 是 JSON 物件
+                    return response.json()
+                }).then(responseText => {
+                    console.log(responseText)
+                    //傳送資料
+                    const useData = responseText
+                    //篩選會員編號之後撈回來的訂單資料
+                    this.memcamporders = useData
+                    console.log(this.memcamporders)
+                }).catch((err) => {
+                    this.memcamporders = true
+                });
+            },
+            cancelOrder(e){
+                //取消訂單，送訂單編號到資料庫，刪除資料
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST",process.env.VUE_APP_PHP_PATH + `deleteCampOrder.php?orders_no=${e}`, true);
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                xhr.send();
+                
+                //重新更新畫面
+                xhr.onload = ()=>{
+                    console.log(xhr.responseText);
+                    if(xhr.status == 200){
+                        alert("修改訂單成功");
+                        let thus = this
+                        thus.router.go(0)
+                    }
+                }  
+            },
+        },    
     }
 </script>
 
@@ -229,6 +226,9 @@
         }
         li:nth-child(4){
             width: 10%;
+        }
+        .status_none{
+            color: transparent;
         }
     }
     .info_tab_content {
