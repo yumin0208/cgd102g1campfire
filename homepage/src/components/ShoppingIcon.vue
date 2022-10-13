@@ -8,7 +8,7 @@
     position: fixed;
     width: 80px;
     right:0;
-    bottom: 50px;
+    bottom: 70px;
     margin: 2rem;
     transform-style: preserve-3d;
     animation: spin 4s 5s infinite;
@@ -16,8 +16,8 @@
         transform: scale(1.3);
         transition: all .8s linear;
     }
-    @include sm(){
-        width: 60px;
+    @include md(){
+        width: 50px;
         margin: 1rem;
     }
 

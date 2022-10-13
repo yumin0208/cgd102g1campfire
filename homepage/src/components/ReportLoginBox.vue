@@ -21,6 +21,18 @@
 
 <script>
 export default {
+    name: "ReportLoginBox",
+    // data: () => ({
+    //     isShow: false
+    // }),
+    // computed: {
+    //     modalStyle() {
+    //         return {
+    //             'display': this.isShow ? '' : 'none'
+    //             //燈箱不隱藏 : 隱藏
+    //         };
+    //     }
+    // },
     methods: {
         toggleModal () {
             // this.$emit() -> 
@@ -36,9 +48,6 @@ export default {
 <style lang="scss" scoped>
 @import '../assets/scss/style.scss';
 
-// .login_lightbox{
-//     position: relative;
-// }
 //檢舉灰背景
 .modal_mask {
     position: fixed;

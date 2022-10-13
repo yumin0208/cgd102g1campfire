@@ -199,7 +199,10 @@
               </p>
             </div>
             <div class="bk_more_selector_container">
-              <SelectWhichActivity @update-result="updateWhichResult1" />
+              <SelectWhichActivity
+                @update-result="updateWhichResult1"
+                :wherePick="wherePick"
+              />
               <SelectWhichEquipment @update-result="updateWhichResult2" />
               <SelectWhichMeal @update-result="updateWhichResult3" />
             </div>
@@ -280,7 +283,7 @@
             <p class="bk_payment_total_title">訂單總金額</p>
             <div class="bk_payment_show">
               <p>＄{{ paymentTotal }}</p>
-              <button class="btn_confirm">結帳</button>
+              <button class="btn_confirm" @click="bookingOrder">送出</button>
             </div>
           </div>
         </div>
@@ -302,6 +305,7 @@ import SelectWhichMeal from '@/components/SelectWhichMeal.vue';
 import BookingCarouselSmallOneVue from '@/components/BookingCarouselSmallOne.vue';
 import BookingCarouselSmallTwoVue from '@/components/BookingCarouselSmallTwo.vue';
 import BookingCarouselBigVue from '@/components/BookingCarouselBig.vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Booking',
@@ -319,6 +323,8 @@ export default {
   },
   data() {
     return {
+      router: useRouter(),
+      memNo: null,
       bookingBlock: ['叢林歷險', '冰雪奇緣', '荒野峽谷'],
       bookingCampType: ['經濟營帳', '豪華營帳', '特色營帳'],
       bookingWhich: [
@@ -371,27 +377,27 @@ export default {
           ],
         },
       ],
-      bookingList: {
-        where: null,
-        howMany: null,
-        campType: null,
-        getStartDate: dayjs().format('DD'),
-        getStartMonth: dayjs().format('MM'),
-        whichActivity: null,
-        whichEquipment: null,
-        whichMeal: null,
-        paymentTotal: null,
-      },
+      howMany: null,
+      campType: null,
+      getStartDate: null,
+      getStartMonth: null,
+      whichActivity: null,
+      whichEquipment: null,
+      whichMeal: null,
+      paymentTotal: null,
       step: 1,
       wherePick: null,
       getStart: null,
       getEnd: null,
-      // getDate:,
       howManyDays: null,
     };
   },
   methods: {
-    // 選完區域後下一步功能
+    //抓取登入中的會員資料
+    getMemData() {
+      let member = JSON.parse(sessionStorage.getItem('member'));
+      this.memNo = member.mem_no;
+    },
     whereNext() {
       if (this.wherePick == null) {
         alert('請選擇要去的地區');
@@ -400,7 +406,6 @@ export default {
         this.step = 2;
       }
     },
-    // 選完人數房型後下一步功能
     whichNext() {
       if (this.howMany == null) {
         alert('請挑選人數');
@@ -519,55 +524,49 @@ export default {
       this.whichMeal = e;
       console.log(e);
     },
-    // totalPay() {
-    //   let sum = 0;
-    //   let basic = 6000;
-    //   let howMany = this.howMany;
-    //   let campType = this.campType;
-    //   let days = this.howManyDays;
-    //   let whichActivity = this.whichActivity;
-    //   let whichEquipment = this.whichEquipment;
-    //   let whichMeal = this.whichMeal;
+    // 送出訂單
+    bookingOrder() {
+      let xhr = new XMLHttpRequest();
+      xhr.open(
+        'POST',
+        process.env.VUE_APP_PHP_PATH + 'bookingOrders.php',
+        true
+      );
 
-    //   switch (howMany) {
-    //     case '2':
-    //       sum = basic;
-    //       break;
-    //     case '4':
-    //       sum = basic + 2000;
-    //       break;
-    //     case '6':
-    //       sum = basic + 4000;
-    //       break;
-    //   }
-
-    //   switch (campType) {
-    //     case 'a':
-    //       sum = sum * 1;
-    //       break;
-    //     case 'b':
-    //       sum = sum * 1.6;
-    //       break;
-    //     case 'c':
-    //       sum = sum * 1.4;
-    //       break;
-    //   }
-
-    //   sum = sum * days;
-
-    //   if (whichActivity != null) {
-    //     sum += 2000;
-    //   }
-    //   if (whichEquipment != null) {
-    //     sum += 2000;
-    //   }
-    //   if (whichMeal == '1' || whichMeal == '2') {
-    //     sum = sum + 1000 * days;
-    //   } else if (whichMeal == '3') {
-    //     sum = sum + 300 * days;
-    //   }
-    //   this.paymentTotal = sum;
-    // },
+      let formData = new FormData();
+      formData.append('memNo', this.memNo);
+      formData.append('whatArea', this.wherePick);
+      formData.append('howManyPeopleGet', this.howMany);
+      formData.append('whichTentType', this.campType);
+      formData.append('activityNo', this.whichActivity);
+      formData.append('foodNo', this.whichMeal);
+      formData.append('equipNo', this.whichEquipment);
+      formData.append('orderTotal', this.paymentTotal);
+      formData.append('checkIn', this.getStart);
+      formData.append('checkOut', this.getEnd);
+      xhr.send(formData);
+      xhr.onload = () => {
+        const data = JSON.parse(xhr.response);
+        if (data == 1) {
+          alert('已收到您的訂單');
+          let thus = this;
+          thus.router.push({ path: '/' });
+        }
+      };
+      xhr.onerror = (err) => {
+        console.log(err);
+      };
+    },
+  },
+  created() {
+    let checkLogin = sessionStorage.getItem('member');
+    if (checkLogin == null) {
+      alert('請先登入後再進行預定');
+      let thus = this;
+      thus.router.push({ path: '/Login' });
+    } else {
+      this.getMemData();
+    }
   },
 };
 </script>

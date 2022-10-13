@@ -21,7 +21,7 @@
 
     $sql2 = " select c.discuss_no, c.comment_no, c.comment_content, 
                     comment_date,
-                    m.mem_no, m.mem_name, m.mem_pic
+                    m.mem_no, m.mem_nick_name, m.mem_pic
             from comment c join member m on c.mem_no = m.mem_no
             where discuss_no=$discuss_no";
 

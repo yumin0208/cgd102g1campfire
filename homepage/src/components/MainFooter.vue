@@ -6,14 +6,12 @@
                     <div class="footer_info_navigation">
                         <router-link to="/booking">營區預訂</router-link>｜
                         <router-link to="/Activity">營區導覽</router-link>｜
-                        <router-link to="/">營區服務</router-link>｜
-                        <router-link to="/report">營火報告</router-link>
+                        <router-link to="/">營區服務</router-link>
                     </div>    
                     <div class="footer_info_navigation">
+                        <router-link to="/report">營火報告</router-link>｜
                         <router-link to="/">最新消息</router-link>｜
-                        <router-link to="/Shopping">營火商城</router-link>｜
-                        <router-link to="/">登入註冊</router-link>｜
-                        <router-link to="/Member">會員中心</router-link>
+                        <router-link to="/Shopping">營火商城</router-link>
                     </div>
                     <hr>
                     <div class="footer_info_social_media">

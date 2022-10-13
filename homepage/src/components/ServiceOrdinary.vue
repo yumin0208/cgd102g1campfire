@@ -36,6 +36,7 @@ export default {
             timer: null, // auto play
             timerDelay: 3000, // 自動輪播間隔秒數
             toggleTimer: true, // pause auto play
+            paginations: 6,
             
             ordinaryPic: [
                 {

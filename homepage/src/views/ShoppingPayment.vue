@@ -92,7 +92,7 @@
               </label>
               <label
                 >信用卡號
-                <input type="text" placeholder="1111-1234-1234" required />
+                <input type="text" placeholder="1111-1234-1234" v-model="ConfirmBoxInfo.text" required />
               </label>
               <div class="credit_box">
                 <div class="credit_info">
@@ -114,7 +114,7 @@
             <router-link to="/Shopping"
               ><button class="btn_return">返回購物</button></router-link
             >
-            <button class="btn_purchase" @click="checkOut">確認結帳</button>
+            <button class="btn_purchase" @click="setSessionStorage">確認結帳</button>
           </div>
         </div>
       </div>
@@ -172,6 +172,7 @@ export default {
       creditInfo: [],
       itemTotal: 0,
       confirmBox: false,
+      ConfirmBoxInfo: {},
     };
   },
   methods: {
@@ -179,14 +180,21 @@ export default {
       window.scrollTo(0,0)
     },
     //確認有無登入，用click事件，判斷提示
-    checkId() {
-        let checkLogin = sessionStorage.getItem('member');
-        if(checkLogin == null){
-            alert("請先登入");
-        }else{
-            this.discuss_show = true;
-        }
-    },
+    // checkId() {
+    //     let checkLogin = sessionStorage.getItem('member');
+    //     if(checkLogin == null){
+    //         alert("請先登入");
+    //     }else{
+    //         this.discuss_show = true;
+    //     }
+    // },
+    
+    // 將資料存進sessionStroage 
+    setSessionStorage() {
+			// 上面引用 v-model 雙向綁定,不需要另外丟參數, 可直接用this 呼叫
+			sessionStorage.setItem('confirmInfo', JSON.stringify(this.ConfirmBoxInfo));
+		},
+
     //拿到會員資料
     getMemData(){
         this.member = JSON.parse(sessionStorage.getItem('member'));
@@ -199,6 +207,7 @@ export default {
     },
     checkOut() {
       this.confirmBox = true
+
     },
     getOrderList() {
       const tempOrderList = localStorage.getItem("cart");

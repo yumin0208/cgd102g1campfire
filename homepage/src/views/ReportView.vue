@@ -10,7 +10,7 @@
     <!-- <ReportPublish /> -->
     <!-- 報告討論 -->
     <!-- @change="goReload" -->
-    <ReportCard v-if="discussReport.length>0" :disCard="discussReport"/>
+    <ReportCard v-if="discussReport.length>0" :disCard="discussReport" :memNo="memNo"/>
     <!-- <ReportCard /> -->
     <MainFooter/>
 </template>
@@ -27,6 +27,7 @@ export default {
     data() {
         return {
             discussReport: [],
+            memNo: null,
             // reload: false,
             // discussReport: [{報告1},{報告2}],
         }
@@ -35,29 +36,12 @@ export default {
         scrollToTop(){
             window.scrollTo(0,0)
         },
-        //寫入新報告
-        // DiscussSend(){
-        //     let xhr = new XMLHttpRequest();
-        //     xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussSend.php',true);
-        //     // xhr.send(null);
-
-        //     // let discuss_data = `mem_no=${this.member.mem_no}&
-        //     //                     discuss_title=${this.discuss_title}&
-        //     //                     discuss_content=${this.discuss_content}&
-        //     //                     background_type=${this.background_type}`;
-        //     let formData = new FormData();
-        //     formData.append('mem_no', this.member.mem_no);
-        //     formData.append('discuss_title', this.discuss_title);
-        //     formData.append('discuss_content', this.discuss_content);
-        //     formData.append('background_type', this.background_type);
-        //     xhr.send(formData);
-        //     console.log(object);
-        //     this.FetchAPIDiscuss();
-        //     alert("發佈成功");
-        //     this.discuss_title = '';
-        //     this.discuss_content = '';
-        //     this.background_type = '1';
-        // },
+        //拿到會員資料
+        getMemData(){
+            let member = JSON.parse(sessionStorage.getItem('member'));
+            this.memNo = member.mem_no;
+            // console.log(this.member)  
+        },
         // 抓取報告資訊
         FetchAPIDiscuss(){
             fetch(process.env.VUE_APP_PHP_PATH + 'discussCard.php'
@@ -75,19 +59,17 @@ export default {
                 // this.discussCard = true
             })
         },
-        // updateResultReload(){
-        //     this.reload = this.FetchAPIDiscuss;
-        // },
-        // goReload() {
-        //     if(this.reload == true){
-        //         this.FetchAPIDiscuss();
-        //         this.reload = false;
-        //     }
-        // },
     },
-
     created() {
         this.FetchAPIDiscuss();
+        //是否有登入狀態
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            return
+        }else{
+            this.discuss_show = true;
+        }
+        this.getMemData();
     },
     mounted(){
         this.scrollToTop()
