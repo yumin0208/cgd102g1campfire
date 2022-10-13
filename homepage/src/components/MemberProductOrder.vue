@@ -1,8 +1,8 @@
 <template>
     <div class="mem_content_group">
-        <div class="tabcontent_product_search">
+        <!-- <div class="tabcontent_product_search">
             <input type="text" class="input_box input_spacing"><input type="button" value="搜尋" class="btn_purchase">
-        </div>
+        </div> -->
         <div class="tabcontent_product_info">
             <ul class="product_order_title">
                 <li>訂單編號</li>

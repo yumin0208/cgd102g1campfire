@@ -9,7 +9,7 @@
                 type="button" 
                 @click="checkId" 
                 v-if="discuss_show == false"
-            >我要發布報告
+            >我要發佈報告
             </button>
             <ReportLoginBox @close="loginBox" v-if="login"/>
             <div class="row_report_write" v-if="discuss_show == true">

@@ -2,24 +2,20 @@
     header('Access-Control-Allow-Origin:*');//跨網域，需要這段才不會被攔截
     header("Content-Type:application/json;charset=utf-8");
 
-    require_once("./connect_cgd102g1.php");
+    function bookingOrders($product_order_no, $product_no, $product_order_list_qty, $product_order_list_price)
+    {
+        try{
+        require_once("./connect_cgd102g1.php");
 
-    $sql = "select * from `product_order_list`";
+        $sql = "insert into product_order_list(product_order_no, product_no, product_order_list_qty, product_order_list_price)
+        values
+        ($product_order_no,  $product_no, $product_order_list_qty, $product_order_list_price);";
 
-    $product = $pdo->query($sql);
-
-    $products = $product->fetchAll();
-    
-
-?>
-
-<?php
-
-    $product_data = [];
-
-    foreach($products as $i => $content){
-        $product_data[]=$content;
+        $pdo->query($sql);
+        }	
+        catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
-    echo json_encode($product_data);
-
+    bookingOrders($_REQUEST['product_order_no'], $_REQUEST['product_no'], $_REQUEST['product_order_list_qty'], $_REQUEST['product_order_list_price']);
 ?>

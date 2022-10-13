@@ -20,10 +20,9 @@
             </div>
             <div>
               <p class="hover_show">
-                大自然是我們的好朋友，快來一起體驗以前農村生活的小玩意吧!
-                大自然是我們的好朋友，快來一起體驗以前農村生活的小玩意吧！
+                叢林擁有大面積原生植物，還有許多動物的蹤跡，讓您不用飛到熱帶國家也可以享受到同樣的景致，千萬不要錯過叢林歷險地區。
               </p>
-              <p>探索 叢林歷險 體驗不一樣的露營模式</p>
+              <p>探索叢林歷險 體驗不一樣的露營</p>
             </div>
           </div>
           <div
@@ -38,10 +37,9 @@
             </div>
             <div>
               <p class="hover_show">
-                大自然是我們的好朋友，快來一起體驗以前農村生活的小玩意吧!
-                大自然是我們的好朋友，快來一起體驗以前農村生活的小玩意吧！
+                冰雪奇緣地區為一年四季為雪季，無需到冬天也可以滑雪，並欣賞雪山美景，也可來場雪地健行，享受近距離仔細觀察大自然的樂趣。
               </p>
-              <p>探索 冰雪奇緣 體驗不一樣的露營模式</p>
+              <p>探索冰雪奇緣 體驗不一樣的露營</p>
             </div>
           </div>
           <div
@@ -56,10 +54,9 @@
             </div>
             <div>
               <p class="hover_show">
-                大自然是我們的好朋友，快來一起體驗以前農村生活的小玩意吧!
-                大自然是我們的好朋友，快來一起體驗以前農村生活的小玩意吧！
+                荒野峽谷地區是由河流向下切蝕形成河谷，但由於河谷兩旁的谷壁易不斷擴大而形成V形橫剖面，讓您可以一邊享受壯麗景觀。
               </p>
-              <p>探索 荒野峽谷 體驗不一樣的露營模式</p>
+              <p>探索荒野峽谷 體驗不一樣的露營</p>
             </div>
           </div>
         </div>
@@ -393,6 +390,10 @@ export default {
     };
   },
   methods: {
+    //讓滾輪維持在上
+    scrollToTop(){
+        window.scrollTo(0,0)
+    },
     //抓取登入中的會員資料
     getMemData() {
       let member = JSON.parse(sessionStorage.getItem('member'));
@@ -546,11 +547,12 @@ export default {
       formData.append('checkOut', this.getEnd);
       xhr.send(formData);
       xhr.onload = () => {
-        const data = JSON.parse(xhr.response);
-        if (data == 1) {
-          alert('已收到您的訂單');
-          let thus = this;
-          thus.router.push({ path: '/' });
+        if(xhr.status == 200){
+          if (xhr.response == 1) {
+            alert('已收到您的訂單');
+            let thus = this;
+            thus.router.push({ path: '/' });
+          }
         }
       };
       xhr.onerror = (err) => {
@@ -567,6 +569,9 @@ export default {
     } else {
       this.getMemData();
     }
+  },
+  mounted() {
+    this.scrollToTop();
   },
 };
 </script>
