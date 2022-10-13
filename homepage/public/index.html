@@ -25,17 +25,20 @@
             box-sizing: border-box;
             font-family: 'Raleway', sans-serif;
         }
-
-        /* .ring-1 {
+        @media (max-width:1024px){
+            .wave{
+                display: none;
+            }
+            .ring-1 {
             width: 10px;
             height: 10px;
             margin: 0 auto;
             padding: 10px;
             border: 7px dashed var(--ring-bg-color);
             border-radius: 100%;
-        } */
+        }
 
-        /* .load-4 .ring-1 {
+        .load-4 .ring-1 {
             position: absolute;
             left: 0;
             right: 0;
@@ -43,9 +46,9 @@
             bottom: 0;
             margin: auto;
             animation: loadingD 1.5s 0.3s cubic-bezier(0.17, 0.37, 0.43, 0.67) infinite;
-        } */
+        }
 
-        /* @keyframes loadingD {
+        @keyframes loadingD {
             0% {
                 transform: rotate(0deg);
             }
@@ -57,7 +60,9 @@
             100% {
                 transform: rotate(360deg);
             }
-        } */
+        }
+        }
+        
         .wave {
             position: relative;
         }
