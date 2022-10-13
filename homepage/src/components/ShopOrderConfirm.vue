@@ -58,6 +58,7 @@ export default {
     },
     orderCompleted() {
       this.orderSend();
+      localStorage.clear()
     },
     getOrderList() {
       this.orderListDetail = localStorage.getItem('cart');
