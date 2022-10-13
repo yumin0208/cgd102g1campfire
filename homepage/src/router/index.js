@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -80,6 +81,9 @@ const routes = [
     chtName: '營區服務',
     component: () => import('../views/ServiceView.vue'),
   },
+  {
+    path: '/:pathMatch(.*)*', name: '404', component: NotFound
+  }
 ];
 
 const router = createRouter({
