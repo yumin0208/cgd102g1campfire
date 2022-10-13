@@ -106,7 +106,8 @@ export default defineComponent({
   methods: {
     getBookedInfo() {
       fetch(
-        `http://127.0.0.1/cgd102G1campfire/back-end/bookedSearch.php?whatMonth='${this.value.year()}-${
+        process.env
+          .VUE_APP_PHP_PATH`bookedSearch.php?whatMonth='${this.value.year()}-${
           this.value.month() + 1
         }'&areaNoGet=${this.whichArea}&howManyPeopleGet=${
           this.howMany

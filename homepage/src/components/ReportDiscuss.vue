@@ -159,6 +159,13 @@ export default {
         },
     },
     created() {
+        //是否有登入狀態
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            return
+        }else{
+            this.discuss_show = true;
+        }
         this.getMemData()
     },
 }

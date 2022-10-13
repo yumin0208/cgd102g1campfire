@@ -73,12 +73,12 @@ const routes = [
     chtName: '消息發布管理',
     component: () => import('../views/e_news/NewsRelease.vue'),
   },
-  // {
-  //   path: '/NewsInfo',
-  //   name: 'NewsInfo',
-  //   chtName: '最新消息詳細資料',
-  //   component: () => import('../views/News/NewsInfo.vue'),
-  // },
+  {
+    path: '/NewsInfo',
+    name: 'NewsInfo',
+    chtName: '最新消息詳細資料',
+    component: () => import('../views/e_news/NewsInfo.vue'),
+  },
   {
     path: '/ProductsInfo',
     name: 'ProductsInfo',
