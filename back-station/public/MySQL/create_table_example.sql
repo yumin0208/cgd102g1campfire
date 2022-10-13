@@ -1,6 +1,10 @@
 
 -- drop database tibamefe_cgd102g1;
+<<<<<<< HEAD
 -- CREATE DATABASE tibamefe_cgd102g1;
+=======
+--  CREATE DATABASE tibamefe_cgd102g1;
+>>>>>>> 474a4023e615983e58404339d9933d1fc6d44409
 --  use tibamefe_cgd102g1;
 
 
