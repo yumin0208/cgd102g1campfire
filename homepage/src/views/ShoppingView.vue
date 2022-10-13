@@ -145,10 +145,9 @@ export default {
         this.userAllData = true
       })
     },
-    mounted(){
-    this.scrollToTop()
+  },mounted(){
+      this.scrollToTop()
     }
-  }
 };
 </script>
 <style lang="scss">
