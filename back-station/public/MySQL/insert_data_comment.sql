@@ -40,5 +40,8 @@ select c.comment_no, c.comment_content, c.comment_date, c.comment_status, d.disc
 from comment c join member m on c.mem_no = m.mem_no
 				left join comment c on d.discuss_no = c.discuss_no
 where c.comment_status = 1;
+
+select comment_no, discuss_no, comment_content, mem_no,
+from comment;
  
  
