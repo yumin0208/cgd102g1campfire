@@ -52,9 +52,9 @@ export default {
     },
     data() {
         return {
-        chtName: '營區預訂管理',
+        chtName: '預約狀態管理',
         title: '營區預訂',
-        path:'/Booking',
+        path: '/Reservation',
         titles: [
             '預約編號',
             '營帳類型編號',

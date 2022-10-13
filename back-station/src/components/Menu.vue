@@ -32,8 +32,8 @@ export default {
                     title:'營區預訂',
                     routes:[
                         {
-                            path: '/Booking',
-                            myname:'營區預訂管理',
+                            path: '/Reservation',
+                            myname:'預約狀態管理',
                         },
                         {
                             path: '/IndividualTent',
@@ -122,8 +122,8 @@ export default {
                     title: '會員中心',
                     routes:[
                         {
-                            path: '/MemberPO',
-                            myname:'會員訂單管理',
+                            path: '/Booking',
+                            myname:'預訂訂單管理',
                         },
                         {
                             path: '/MemberInfo',
