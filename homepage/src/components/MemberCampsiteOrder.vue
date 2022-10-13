@@ -1,8 +1,8 @@
 <template>
     <div class="mem_content_group">
-        <div class="tabcontent_booking_search">
-            <input type="text" class="input_box input_spacing"><input type="button" value="搜尋" class="btn_purchase">
-        </div>
+        <!-- <div class="tabcontent_booking_search">
+            <input type="text" class="input_box input_spacing"><input type="button" value="搜尋" class="btn_purchase" @click="filterItems">
+        </div> -->
         <div class="tabcontent_booking_info">
             <ul class="booking_order_title">
                 <li>預定編號</li>
@@ -16,7 +16,7 @@
                 <ul class="booking_order_info">
                     <li>{{item.orders_no}}</li>
                     <li><span>{{item.checkin_date}}</span>至{{item.checkout_date}}<span></span></li>
-                    <li>{{item.payment_status}}</li>
+                    <li class="status_none">{{item.payment_status}}</li>
                 </ul>
             </label>
             <div class="info_tab_content">
@@ -25,7 +25,6 @@
                     <ul class="info_tab_contents_title">
                         <li>下訂日期/時間</li>
                         <li>預定地區</li>
-                        <li>個別營帳編號</li>
                         <li>預訂帳篷類型</li>
                         <li>預訂餐點類型</li>
                         <li>預定裝備類型</li>
@@ -35,7 +34,6 @@
                     <ul>
                         <li>{{item.orders_time}}</li>
                         <li>{{item.area_name}}</li>
-                        <li>{{item.tent_no}}</li>
                         <li>{{item.tent_style_name}}</li>
                         <li>{{item.food_name}}</li>
                         <li>{{item.equip_name}}</li>
@@ -50,8 +48,9 @@
                         <li>$<span>{{item.orders_total}}</span>元</li>
                     </ul>
                 </div>
-                <div class="cancel_order" v-if="isShow==!isShow" :style="modalStyle">
-                    <button type="botton" class="btn_submit btn_cancel">取消訂單</button>
+                <div class="cancel_order" v-if="item.payment_status!=3&&item.payment_status!=2">
+                    <button type="botton" class="btn_submit btn_cancel"
+                            @click="cancelOrder(item.orders_no)">取消訂單</button>
                 </div>
              </div>
         </div>
@@ -60,6 +59,7 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
     export default {
         name: "MemberCampsiteOrder",
         created(){
@@ -68,11 +68,13 @@
         },
         data(){
             return {
-                isShow:false,
+                isShow:null,
                 member:'' ,
                 mem_no:'',
                 memcamporders:[],
-                payment_status:''
+                payment_status:'',
+                router:useRouter(),
+                keyword:'',
             }
         },methods:{
             getMemData(){
@@ -95,20 +97,32 @@
                     console.log(responseText)
                     //傳送資料
                     const useData = responseText
-                    //篩選會員編號之後撈回來的第一筆資料
+                    //篩選會員編號之後撈回來的訂單資料
                     this.memcamporders = useData
                     console.log(this.memcamporders)
                 }).catch((err) => {
                     this.memcamporders = true
                 });
             },
-        },
-        computed:{
-            // isShow(){
-            //     if(this.item.payment_status==1)
-            // }
-        },
-        
+            cancelOrder(e){
+                //取消訂單，送訂單編號到資料庫，刪除資料
+                var xhr = new XMLHttpRequest();
+
+                xhr.open("POST",process.env.VUE_APP_PHP_PATH + `deleteCampOrder.php?orders_no=${e}`, true);
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                xhr.send();
+                
+                //重新更新畫面
+                xhr.onload = ()=>{
+                    console.log(xhr.responseText);
+                    if(xhr.status == 200){
+                        alert("修改訂單成功");
+                        let thus = this
+                        thus.router.go(0)
+                    }
+                }  
+            },
+        },    
     }
 </script>
 
@@ -212,6 +226,9 @@
         }
         li:nth-child(4){
             width: 10%;
+        }
+        .status_none{
+            color: transparent;
         }
     }
     .info_tab_content {
