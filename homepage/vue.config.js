@@ -1,6 +1,6 @@
 const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
   transpileDependencies: true,
-  publicPath: '/cgd102/g1',
+  publicPath: '/cgd102/g1/homepage',
   productionSourceMap: false
 });
