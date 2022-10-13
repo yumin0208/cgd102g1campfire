@@ -46,7 +46,6 @@
                                 <img src="@/assets/images/report/report_icon_caution.png" alt="caution">
                             </div>
                             <!-- 連結使用抓取報告的id，discuss_no，使用query傳遞資料，?no=1-->
-                            <!-- <router-link class="message_icon" :to="`/reportMessage?discuss_no=${item.discuss_no}`"> -->
                             <router-link 
                                 class="message_icon" 
                                 :to="{
@@ -103,8 +102,7 @@
                                     class="btn_confirm" 
                                     type="button"
                                     @click="reportDiscuss(item.discuss_no)"
-                                >
-                                送出
+                                >送出
                                 </button>
                             </form>
                             <span class="btn_closure">
@@ -232,15 +230,16 @@ export default {
             }
         },
         //確認有無登入，判斷跳轉留言頁面
-        // checkId() {
-        //     let checkLogin = sessionStorage.getItem('member');
-        //     if(checkLogin == null){
-        //         // alert("請先登入");
-        //         this.login = true
-        //     }else{
-        //         this.message_show = true;
-        //     }
-        // }
+        checkId() {
+            let checkLogin = sessionStorage.getItem('member');
+            if(checkLogin == null){
+                // alert("請先登入");
+                this.login = true
+            }else{
+                // this.isShow = true;
+                this.modalStyle();
+            }
+        }
     },
     created() {
         //是否有登入狀態

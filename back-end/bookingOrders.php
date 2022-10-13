@@ -22,11 +22,11 @@
             orders_total, orders_time, checkin_date, checkout_date
             ) VALUES (
                 $memNo, $getTentStyle, $activityNo, $foodNo, $equipNo, 
-                $whatArea, 1, 1, $orderTotal, now(), $checkIn, $checkOut
+                $whatArea, 1, 0, $orderTotal, now(), '$checkIn', '$checkOut'
             );";
          $pdo->exec($sqlOrder);
         
-        echo "1";
+        echo 1;
         }	
         catch(PDOException $e){
             echo $e->getMessage();
