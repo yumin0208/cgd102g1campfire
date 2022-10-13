@@ -57,6 +57,8 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '../assets/scss/style.scss';
+
 @keyframes start {
   from {
     opacity: 0;
@@ -92,10 +94,14 @@ export default {
   padding: 15px 10px;
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.5);
-  z-index: 10;
+  z-index: 1000;
   cursor: pointer;
   img {
     width: 50px;
+    @include md() {
+      width: 30px;
+    }
+    
   }
   &:hover {
     background-color: #fff;
