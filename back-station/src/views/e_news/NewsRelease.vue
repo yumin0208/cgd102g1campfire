@@ -24,7 +24,7 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr class="item_content"  v-for="item in news" :key="item">
+    <tr class="item_content"  v-for="item in news" :key="item" @click="goInfo(item)">
       <td>{{item.news_no}}</td>
       <td>{{item.news_title}}</td>
       <td>{{item.news_content}}</td>
@@ -43,6 +43,7 @@
 import Menu from "@/components/Menu.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import { useRouter } from "vue-router";
 
 export default {
 name: 'HomeView',
@@ -58,13 +59,14 @@ data() {
     path:'/NewsRelease',
     titles: [
       '最新消息編號',
-      '最新消息主標題',
+      '最新消息標題',
       '最新消息內文',
       '最新消息圖片',
       '發布時間',
       '最新消息狀態'
     ],
     news: [],
+    router:useRouter()
   };
 },
 methods: {
@@ -83,6 +85,12 @@ methods: {
         this.news = [];
       });
   },
+  goInfo(e){
+    console.log(e)
+    sessionStorage.setItem("news", JSON.stringify(e) );
+    let thus = this;
+    thus.router.push({path:'/NewsInfo'});
+  }
 },
 created() {
   this.FetchAPIComment();
