@@ -23,7 +23,7 @@
         <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
         </tr>
-        <tr class="item_content" v-for="item in discuss" :key="item">
+        <tr v-for="item in discussReport" :key="item.discuss_no">
         <td>{{item.discuss_no}}</td>
         <td>{{item.mem_no}}</td>
         <td>{{item.discuss_title}}</td>
@@ -46,54 +46,50 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-name: 'HomeView',
-components: {
-Menu,
-Header,
-Footer,
-},
-data() {
-return {
-    chtName: '營火報告管理',
-    title: '營火報告',
-    path:'/Report',
-    titles: [
-    '報告編號',
-    '會員編號',
-    '報告標題',
-    '報告內容',
-    '報告發布時間',
-    '報告狀態',
-    '留言數量',
-    '背景樣式',
-    '詳細資訊',
-    ],
-    discuss: [],
-};
-},
-methods: {
-// 抓取報告資訊
-FetchAPIDiscuss(){
-    fetch(process.env.VUE_APP_PHP_PATH + 'discussCard.php'
-    ).then((response) => {
-        if(response){
-            this.fetchError = (response.status !== 200)
-            //json(): 返回 Promise，resolves 是 JSON 物件
-            return response.json()
-        }
-    }).then(responseText => {
-        this.discussReport = responseText;
-        console.log(this.discussReport);
-    }).catch((err) => {
-        this.discussReport = []
-        // this.discussCard = true
-    })
-},
-},
-created() {
-this.FetchAPIComment();
-},
-};
+    name: 'HomeView',
+    components: {
+        Menu,
+        Header,
+        Footer,
+    },
+    data() {
+        return {
+            chtName: '營火報告管理',
+            title: '營火報告',
+            path:'/Report',
+            titles: [
+                '報告編號',
+                '會員編號',
+                '報告標題',
+                '報告內容',
+                '發布時間',
+                '報告狀態',
+                '留言數量',
+                '背景樣式',
+            ],
+            discussReport: [],
+        };
+    },
+    methods: {
+        // 抓取報告資訊
+        FetchAPIDiscuss(){
+            fetch(process.env.VUE_APP_PHP_PATH + 'discussCard.php').then((response) => {
+                if(response){
+                    this.fetchError = (response.status !== 200)
+                    return response.json()
+                }
+            }).then(responseText => {
+                this.discussReport = responseText;
+                console.log(this.discussReport);
+            }).catch((err) => {
+                this.discussReport = []
+            })
+        },
+    },
+    created() {
+        this.FetchAPIDiscuss();
+    },
+}
 </script>
 
 <style lang="scss" scoped>
