@@ -1,13 +1,15 @@
 
 -- drop database tibamefe_cgd102g1;
-<<<<<<< HEAD
 -- CREATE DATABASE tibamefe_cgd102g1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 -- use tibamefe_cgd102g1;
 =======
 =======
 --  CREATE DATABASE tibamefe_cgd102g1;
 >>>>>>> 474a4023e615983e58404339d9933d1fc6d44409
+=======
+>>>>>>> yishan
 --  use tibamefe_cgd102g1;
 
 >>>>>>> bd0be4ca5f461ff522ec92b111c6f72cb9286eb4
