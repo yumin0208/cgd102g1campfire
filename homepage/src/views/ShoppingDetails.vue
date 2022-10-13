@@ -65,7 +65,7 @@ export default {
             realProduct: {}, //當時的商品
             orderList: [], //存入購物車
             addingBox: false, //加入購物車前燈箱隱藏 ->false 
-            login: false //請先登入
+            login: false, //請先登入
         };
     },
     methods: {
@@ -76,7 +76,7 @@ export default {
             this.login = response
         },
         reduce_order(product_qty) {
-        if (product_qty !== 1) {
+        if (product_qty !== 0) {
             this.realProduct.product_qty -= 1;
         }
         },

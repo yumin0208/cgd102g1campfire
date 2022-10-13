@@ -22,7 +22,7 @@
 
             <!-- 會員個人留言欄 -->
             <div class="message_member_container">
-                <form class="message_personal" action="">
+                <form class="message_personal">
                     <textarea 
                             class="personal_write" 
                             type="text" maxlength="300" 
@@ -34,8 +34,7 @@
                             class="btn_confirm" 
                             @click="DiscussComment" 
                             type="button"
-                    >
-                    留言
+                    >留言
                     </button>
                 </form>
             </div>
@@ -47,16 +46,55 @@
                         <div class="member_pic">
                             <img :src="require(`@/assets/images/report/report_avatar_${item.mem_pic}.png`)" alt="avatar">
                         </div>
-                        <h4 class="member_name">{{item.mem_name}}</h4>
+                        <h4 class="member_name">{{item.mem_nick_name}}</h4>
                     </div>
                     <!-- 發佈時間 檢舉 -->
                     <div class="col_other_message">
                         <div class="other_message_content">
                             <p class="other_write">{{item.comment_content}}</p>
                             <div class="message_time_inform">
+                                <!-- 檢舉icon -->
+                                <div 
+                                    class="inform_icon" 
+                                    @click="isShowGo"
+                                >
+                                    <img src="@/assets/images/report/report_icon_caution.png" alt="caution">
+                                </div>
                                 <p class="message_time">{{formatDate(item.comment_date)}}</p>
-                                <ReportBoxDiscuss/>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 檢舉燈箱 -->
+            <div class="report_lightbox">
+                <div 
+                    to="body" 
+                    class="modal_mask" 
+                    :style="modalStyle" 
+                >
+                    <div class="modal_container" @click.self="toggleModal">
+                        <div class="modal_body">
+                            <p>檢舉原因</p>
+                            <form>
+                                <textarea 
+                                        class="inform_txt" 
+                                        type="text" 
+                                        maxlength="150"
+                                        v-model="report_content"
+                                        placeholder="請輸入內文(150字以內)"
+                                ></textarea>
+                                <button 
+                                    class="btn_confirm" 
+                                    type="button"
+                                    @click="reportComment(item.comment_no)"
+                                >
+                                送出
+                                </button>
+                            </form>
+                            <span class="btn_closure">
+                                <img src="@/assets/images/main/main_icon_closure.png" alt="closure" @click.self="toggleModal">
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -69,19 +107,21 @@
 
 <script>
 import ReportDiscuss from '../components/ReportDiscuss.vue';
-import ReportBoxDiscuss from '../components/ReportBoxDiscuss.vue';
+import { useRouter } from "vue-router";
 
 export default {
     name: "ReportMessage",
     components: {
         ReportDiscuss,
-        ReportBoxDiscuss,
     },
     data() {
         return {
             discussId: 0,
-            // commentCount: [ [{報告內容}] , [{留言1},{留言2}] ],
             commentCount: [],
+            // commentCount: [ [{報告內容}] , [{留言1},{留言2}] ],
+            router:useRouter(),
+            isShow: false,
+            memNo: null,
         }
     },
     computed: {
@@ -90,6 +130,13 @@ export default {
                 return Date.parse(b.comment_date) - Date.parse(a.comment_date);
                 //將時間轉換成秒數
             });
+        },
+        //燈箱
+        modalStyle() {
+            return {
+                'display': this.isShow ? '' : 'none'
+                //燈箱不隱藏 : 隱藏
+            };
         }
     },
     //new FormData().append('變數名稱', 值)
@@ -100,8 +147,8 @@ export default {
         },
         //拿到會員資料
         getMemData(){
-            this.member = JSON.parse(sessionStorage.getItem('member'));
-            this.memId = this.member.mem_id;
+            let member = JSON.parse(sessionStorage.getItem('member'));
+            this.memNo = member.mem_no;
             // console.log(this.member)  
         },
         //把資料庫撈出來的時間，在做轉換喧染
@@ -130,6 +177,16 @@ export default {
                 this.commentCount = []
             })
         },
+        //確認有無登入，判斷檢舉
+        isShowGo(){
+            let checkLogin = sessionStorage.getItem('member');
+            if(checkLogin == null){
+                // alert("請先登入");
+                this.login = true
+            }else{
+                this.isShow = true;
+            }
+        },
         //對報告進行留言
         DiscussComment(){
             let xhr = new XMLHttpRequest();
@@ -143,20 +200,50 @@ export default {
             formData.append('discuss_no', this.discussId);
             formData.append('comment_content', this.comment_content);
             xhr.send(formData);
+            console.log(formData);
             this.FetchAPIComment();
             alert("留言成功");
             this.comment_content = '';
+            let thus = this;
+            // thus.router.go(0)
+        },
+        //檢舉燈箱
+        toggleModal() { 
+            this.isShow = !this.isShow;
+            //關閉燈箱
+        },
+        //留言檢舉送出
+        reportComment(e){
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussReportCom.php',true);
+            
+            let formData = new FormData();
+            formData.append('comment_no', e);
+            formData.append('memNo', this.memNo);
+            formData.append('report_content', this.report_content);
+            xhr.send(formData);
+            console.log(e);
+            console.log(this.memNo);
+            console.log(this.report_content);
+            console.log(formData);
+            alert("檢舉成功");
+            this.report_content = '';
+            this.toggleModal();
         },
     },
     created() {
-        this.getMemData();
         this.FetchAPIComment();
+        //是否有登入狀態
+        let checkLogin = sessionStorage.getItem('member');
+        if(checkLogin == null){
+            return
+        }else{
+            this.discuss_show = true;
+        }
+        this.getMemData();
     },
     mounted() {
         this.scrollToTop();
-        // console.log(this.$route.query.discuss_no);
-        // this.discussId = this.$route.query.discuss_no;
-        // 使用query，傳遞資料
     },
 }
 </script>
@@ -263,15 +350,91 @@ text-align: end;
     color: $color-basic-gray1;
     text-align: justify;
 }
+.inform_icon img{
+    width: 26px;
+    cursor: pointer;
+}
 .message_time_inform{
     display: flex;
     justify-content: flex-end;
 }
 .message_time{
-    padding-right: 20px;
+    padding-left: 20px;
     color: $color-basic-gray1;
 }
 .message_inform_icon{
     width: 28px;
+}
+
+//燈箱================
+//檢舉灰背景
+.modal_mask {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    transition: opacity .3s ease;
+}
+.modal_container {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+//檢舉區塊
+.modal_body {
+    position: relative;
+    top: 50%;  
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: auto;
+    width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: $color-main-yellow;
+    text-align: center;
+    h4 {
+        color: $color-basic-gray2;
+        padding-bottom: 20px;
+    }
+    p {
+        font-size: $title_h4;
+        font-weight: 700;
+        letter-spacing: 1px;
+        line-height: 24px;
+    }
+    @include md(){
+            width: 300px;
+        }
+}
+.inform_txt{
+    width: 100%;
+    height: 200px;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    padding: 10px 10px;
+    margin-bottom: 20px;
+    border: 1px solid $color-main-green;
+    resize: none;
+}
+//叉叉
+.btn_closure{
+    position: absolute;
+    cursor: pointer;
+    width: 40px;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+//檢舉icon
+.inform_icon{
+    display: inline-block;
+    width: 26px;
+    cursor: pointer;
 }
 </style>
