@@ -24,7 +24,7 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in news" :key="item">
+    <tr class="item_content"  v-for="item in news" :key="item">
       <td>{{item.news_no}}</td>
       <td>{{item.news_title}}</td>
       <td>{{item.news_content}}</td>
@@ -62,7 +62,7 @@ data() {
       '最新消息內文',
       '最新消息圖片',
       '發布時間',
-      '最新消息狀態',
+      '最新消息狀態'
     ],
     news: [],
   };

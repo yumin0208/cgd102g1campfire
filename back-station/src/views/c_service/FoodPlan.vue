@@ -23,7 +23,7 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in food" :key="item">
+    <tr class="item_content" v-for="item in food" :key="item">
         <td>{{item.food_no}}</td>
         <td>{{item.food_name}}</td>
         <td>{{item.food_price}}</td>
@@ -62,6 +62,7 @@ export default {
             '食材介紹',
             '食材圖片',
             '食材狀態',
+            '詳細資訊',
         ],
         food: [],
         };

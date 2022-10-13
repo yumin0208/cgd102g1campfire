@@ -23,7 +23,7 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in comment" :key="item">
+    <tr class="item_content" v-for="item in comment" :key="item">
       <td>{{item.comment_no}}</td>
       <td>{{item.discuss_no}}</td>
       <td>{{item.comment_content}}</td>
@@ -62,6 +62,7 @@ data() {
       '會員編號',
       '留言日期',
       '留言狀態',
+      '詳細資訊',
     ],
     comment: [],
   };
