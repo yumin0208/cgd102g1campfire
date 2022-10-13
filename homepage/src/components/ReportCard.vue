@@ -22,7 +22,7 @@
             <!-- 報告卡片 -->
             <div id="discussCard">
                 <div class="row_card_report">
-                    <div class="col_card_report" v-for="item in filterData" v-if="item.discuss_status !=0" :key="item.discuss_no">
+                    <div class="col_card_report" v-for="item in filterData" :key="item.discuss_no">
                         <div class="report_mem">
                             <div class="mem_pic">
                                 <!-- <img :src="require(`${item.memPic}`)" alt="avatar"> -->
