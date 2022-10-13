@@ -111,14 +111,13 @@ export default {
         xhr.send(formData);
         xhr.onload = () => {
           if (xhr.status == 200) {
-            console.log('1');
+            this.orderCompletedBox = true;
           }
         };
         xhr.onerror = (err) => {
           console.log(err);
         };
       }
-      this.orderCompletedBox = true;
     },
   },
   created() {
