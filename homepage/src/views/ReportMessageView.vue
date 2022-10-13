@@ -26,7 +26,7 @@
                     <textarea 
                             class="personal_write" 
                             type="text" maxlength="300" 
-                            v-model="comment_content" 
+                            v-model="commentCon" 
                             placeholder="請寫入留言(300字以內)"
                     >
                     </textarea>
@@ -56,7 +56,7 @@
                                 <!-- 檢舉icon -->
                                 <div 
                                     class="inform_icon" 
-                                    @click="isShowGo"
+                                    @click="isShowGo(item.comment_no)"
                                 >
                                     <img src="@/assets/images/report/report_icon_caution.png" alt="caution">
                                 </div>
@@ -66,6 +66,8 @@
                     </div>
                 </div>
             </div>
+            <!-- 判斷登入 -->
+            <ReportLoginBox @close="loginBox" v-if="login"/>
             <!-- 檢舉燈箱 -->
             <div class="report_lightbox">
                 <div 
@@ -87,7 +89,7 @@
                                 <button 
                                     class="btn_confirm" 
                                     type="button"
-                                    @click="reportComment(item.comment_no)"
+                                    @click="reportComment"
                                 >
                                 送出
                                 </button>
@@ -102,26 +104,30 @@
         </div>
     </section>
     <MainFooter/>
-    <!-- 接收報告頁面的discuss_no，在methods寫fetch function，把discuss_no post 到後端hpp，再把function塞進 beforeMounted， -->
 </template>
 
 <script>
 import ReportDiscuss from '../components/ReportDiscuss.vue';
+import ReportLoginBox from '../components/ReportLoginBox.vue';
 import { useRouter } from "vue-router";
 
 export default {
     name: "ReportMessage",
     components: {
         ReportDiscuss,
+        ReportLoginBox,
     },
     data() {
         return {
-            discussId: 0,
+            discussId: null,
             commentCount: [],
             // commentCount: [ [{報告內容}] , [{留言1},{留言2}] ],
             router:useRouter(),
-            isShow: false,
             memNo: null,
+            commentNoReport: null,
+            isShow: false, //檢舉燈箱
+            login: false, //登入燈箱
+            commentCon: null,
         }
     },
     computed: {
@@ -156,6 +162,10 @@ export default {
             const myDate = new Date(date); 
             return `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}` 
         },
+        // 登入燈箱，請先登入，檢舉
+        loginBox (response) {
+            this.login = response;
+        },
         //抓報告id，連結報告資料
         FetchAPIComment(){
             // let discuss_no = location.search.slice(1).split('=')[1];
@@ -178,34 +188,39 @@ export default {
             })
         },
         //確認有無登入，判斷檢舉
-        isShowGo(){
+        isShowGo(e){
             let checkLogin = sessionStorage.getItem('member');
             if(checkLogin == null){
                 // alert("請先登入");
-                this.login = true
+                this.login = true;
             }else{
                 this.isShow = true;
+                this.commentNoReport = e;
             }
         },
         //對報告進行留言
         DiscussComment(){
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussMessage.php',true);
-
-            // let comment_data = `mem_no=${this.member.mem_no}&
-            //                     discuss_no=${this.discussId}&
-            //                     comment_content=${this.comment_content}`;
-            let formData = new FormData();
-            formData.append('mem_no', this.member.mem_no);
-            formData.append('discuss_no', this.discussId);
-            formData.append('comment_content', this.comment_content);
-            xhr.send(formData);
-            console.log(formData);
-            this.FetchAPIComment();
-            alert("留言成功");
-            this.comment_content = '';
-            let thus = this;
-            // thus.router.go(0)
+            let checkLogin = sessionStorage.getItem('member');
+            if(checkLogin == null){
+                this.login = true;
+            }else{
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussMessage.php',true);
+                let formData = new FormData();
+                formData.append('memNo', this.memNo);
+                formData.append('discuss_no', this.discussId);
+                formData.append('comment_content', this.commentCon);
+                xhr.send(formData);
+                console.log(this.memNo);
+                console.log(this.discussId);
+                console.log(this.commentCon);
+                console.log(formData);
+                this.FetchAPIComment();
+                alert("留言成功");
+                this.commentCon = '';
+                let thus = this;
+                thus.router.go(0)
+            }
         },
         //檢舉燈箱
         toggleModal() { 
@@ -213,16 +228,17 @@ export default {
             //關閉燈箱
         },
         //留言檢舉送出
-        reportComment(e){
+        // 如果用v-for 寫迴圈，要去抓到特定ID就要有回傳參數，ex:e.. 去抓取
+        reportComment(){
             let xhr = new XMLHttpRequest();
             xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussReportCom.php',true);
             
             let formData = new FormData();
-            formData.append('comment_no', e);
+            formData.append('comment_no', this.commentNoReport);
             formData.append('memNo', this.memNo);
             formData.append('report_content', this.report_content);
             xhr.send(formData);
-            console.log(e);
+            
             console.log(this.memNo);
             console.log(this.report_content);
             console.log(formData);
