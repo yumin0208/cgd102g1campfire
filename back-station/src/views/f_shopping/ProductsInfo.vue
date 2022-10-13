@@ -25,7 +25,7 @@
         {{ item }}
       </th>
     </tr>
-    <tr v-for="item in products" :key="item">
+    <tr class="item_content" v-for="item in products" :key="item">
       <td>{{ item.product_no }}</td>
       <td>{{ item.product_type_no }}</td>
       <td>{{ item.product_name }}</td>
@@ -34,6 +34,7 @@
       <td>{{ item.payment_status }}</td>
       <td>{{ item.product_update }}</td>
       <td>{{ item.product_qty }}</td>
+      <td><button>更多</button></td>
     </tr>
   </table>
 </section>
@@ -70,13 +71,14 @@ data() {
       "商品狀態",
       "商品上架日期",
       "數量",
+      '詳細資訊',
     ],
     products: [],
   };
 },
 methods: {
   FetchAPIProduct() {
-    fetch(`http://localhost/Group%20project/firefly_camp_php/product.php`)
+    fetch(process.env.VUE_APP_PHP_PATH +'product.php')
       .then((response) => {
         if (response) {
           this.fetchError = response.status !== 200;

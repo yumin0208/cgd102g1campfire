@@ -77,7 +77,7 @@ data() {
 },
 methods: {
     FetchAPIComment() {
-    fetch(`http://127.0.0.1/PHP_Lab_CGD102_G1/back-end/backstation_bookedOrders.php`)
+    fetch(process.env.VUE_APP_PHP_PATH + 'backstation_bookedOrders.php')
         .then((response) => {
         if (response) {
             this.fetchError = response.status !== 200;

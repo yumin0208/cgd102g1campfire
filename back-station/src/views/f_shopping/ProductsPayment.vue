@@ -25,7 +25,7 @@
         {{ item }}
       </th>
     </tr>
-    <tr v-for="item in productOrder" :key="item">
+    <tr class="item_content" v-for="item in productOrder" :key="item">
       <td>{{ item.product_order_no }}</td>
       <td>{{ item.mem_no }}</td>
       <td>{{ item.product_order_status }}</td>
@@ -33,6 +33,7 @@
       <td>{{ item.product_order_pickup_time }}</td>
       <td>{{ item.product_order_pickup_place }}</td>
       <td>{{ item.product_order_total }}</td>
+      <td><button>更多</button></td>
     </tr>
   </table>
 </section>
@@ -69,13 +70,14 @@ data() {
         '取貨時間',
         '配送地點',
         '總額',
+        '詳細資訊',
     ],
     productOrder: [],
   };
 },
 methods: {
     FetchAPIProductOrder() {
-      fetch(`http://localhost/Group%20project/firefly_camp_php/product.php`)
+      fetch(process.env.VUE_APP_PHP_PATH + 'product.php')
         .then((response) => {
           if (response) {
             this.fetchError = response.status !== 200;
