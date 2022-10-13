@@ -40,7 +40,7 @@
       </div>
 
       <a
-        href="https://tibamef2e.com/cgd102/g1/HomeView"
+        href="https://tibamef2e.com/cgd102/g1/"
         target="_blank"
         class="box__button"
         >Go back</a
