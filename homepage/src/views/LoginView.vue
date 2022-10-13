@@ -494,23 +494,19 @@ import { useRouter } from "vue-router";
                     
 
                     var xhr = new XMLHttpRequest();
+                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'register.php', true);
                     xhr.onload = ()=>{
                         // console.log(xhr.responseText);
                         if(xhr.status == 200){
                             let thus = this
                             if(xhr.responseText == 1){
                                 alert("註冊成功,請重新登入");
-                                // location.replace("/Login");
-                                thus.router.push({path:"/Login"});
+                                thus.router.go(0);
                             }else if(xhr.responseText == 0){
                                 alert("此帳號已存在");
                             }
                         }
                     }
-                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'register.php', true);
-
-
-                    let mem_deta = `mem_id=${this.id}&mem_psw=${this.psw}&mem_name=${this.name}&mem_email=${this.email}&mem_nick_name=${this.nick_name}&mem_city=${this.city}&mem_addr=${this.addr}&mem_phone=${this.phone}`;
                     let formData = new FormData();
                     formData.append('mem_id', this.id);
                     formData.append('mem_psw', this.psw);
@@ -530,21 +526,7 @@ import { useRouter } from "vue-router";
         mounted(){
         //要用到mounted，不能用在created中，因為Dom元件還沒被掛載，讀不到window
         this.scrollToTop()
-
         },
-        watch:{
-            id:{
-                handler(newVal){
-                    // console.log(newVal)
-                    if(newVal != 0){
-                        return this.register_id_block = 1;
-                    };
-                    // console.log(this.register_id_block)
-                    immediate: true;                    
-                }
-        
-            }
-        }
     }
     
 </script>

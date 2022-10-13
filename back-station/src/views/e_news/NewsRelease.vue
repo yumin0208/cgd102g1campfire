@@ -14,10 +14,8 @@
     </div>
   </div>
   <div class="serch_bar">
-    <input type="text" placeholder="搜尋"/>
-    <button>新增</button>
-    <button>修改</button>
-    <button>刪除</button>
+    <!-- <input type="text" placeholder="搜尋"/> -->
+    <button><router-link to="/NewsAdd">新增</router-link></button>
   </div>
   <div class="table_roll">
     <table>
@@ -101,5 +99,7 @@ created() {
 <style lang="scss" scoped>
 
 @import'@/assets/scss/style.scss';
-
+button:hover{
+  cursor: pointer;
+}
 </style>

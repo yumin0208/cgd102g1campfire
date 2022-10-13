@@ -80,6 +80,12 @@ const routes = [
     component: () => import('../views/e_news/NewsInfo.vue'),
   },
   {
+    path: '/NewsAdd',
+    name: 'NewsAdd',
+    chtName: '新增最新消息文章',
+    component: () => import('../views/e_news/NewsAdd.vue'),
+  },
+  {
     path: '/ProductsInfo',
     name: 'ProductsInfo',
     chtName: '商品資訊管理',

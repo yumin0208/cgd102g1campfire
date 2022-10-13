@@ -6,12 +6,11 @@
             <div class="header_left">
                 <p class="router_name">最新消息</p>
             </div>
+            <div class="breadcrumb">
+                <span>最新消息  &nbsp> &nbsp</span><router-link to ="/NewsRelease">消息發布管理 </router-link><span>&nbsp&nbsp > &nbsp詳細內容</span>
+            </div>
         </header>
-        <div class="breadcrumb">
-            
-            <router-link to ="/NewsRelease">最新消息</router-link> <span> > 詳細內容</span>
-            
-        </div>
+        
         <form>
             <div class="row">
                 <label for="news_title">文章標題：</label>
@@ -20,7 +19,6 @@
             <div class="row">
                 <label for="news_content">文章內容：</label>
                 <textarea class="news_content" name="news_content" maxlength="300" v-model="news_content"></textarea>
-                <!-- <input type="text" class="news_content" name="news_content" maxlength="300" v-model="news_content"> -->
             </div>
             <div class="news_pic">
 
