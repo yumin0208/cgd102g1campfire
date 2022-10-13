@@ -8,10 +8,10 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/Booking',
-    name: 'CampBooking',
-    chtName: '營區預訂管理',
-    component: () => import('../views/a_booking/Booking.vue'),
+    path: '/Reservation',
+    name: 'Reservation',
+    chtName: '預約狀態管理',
+    component: () => import('../views/a_booking/Reservation.vue'),
   },
   {
     path: '/IndividualTent',
@@ -104,10 +104,10 @@ const routes = [
     component: () => import('../views/f_shopping/ProductsPayment.vue'),
   },
   {
-    path: '/MemberPO',
-    name: 'MemberPO',
-    chtName: '會員訂單管理',
-    component: () => import('../views/g_member/MemberPO.vue'),
+    path: '/Booking',
+    name: 'CampBooking',
+    chtName: '預訂訂單管理',
+    component: () => import('../views/g_member/Booking.vue'),
   },
   {
     path: '/MemberInfo',

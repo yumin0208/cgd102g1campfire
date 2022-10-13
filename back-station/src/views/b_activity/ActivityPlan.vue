@@ -23,7 +23,7 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in activity" :key="item">
+    <tr class="item_content" v-for="item in activity" :key="item">
         <td>{{item.activity_no}}</td>
         <td>{{item.area_no}}</td>
         <td>{{item.activity_name}}</td>
@@ -70,6 +70,7 @@ export default {
             '活動價格',
             '活動適合族群',
             '活動注意事項',
+            '詳細資訊',
         ],
         activity: [],
         };

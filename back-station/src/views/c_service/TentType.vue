@@ -23,7 +23,7 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in tent_style" :key="item">
+    <tr class="item_content" v-for="item in tent_style" :key="item">
       <td>{{item.tent_style_no}}</td>
       <td>{{item.tent_style_people}}</td>
       <td>{{item.area_no}}</td>
@@ -70,6 +70,7 @@ data() {
       '營帳價格',
       '營帳數量',
       '營帳狀態',
+      '詳細資訊',
     ],
     tent_style: [],
   };
