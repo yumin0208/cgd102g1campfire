@@ -57,15 +57,6 @@ $t-purple: #F5F2E9;
 $pink: #bc6c60;
 $white: #fff;
 
-html,
-body {
-  background: $purple;
-  font-family: "Ubuntu";
-}
-* {
-  box-sizing: border-box;
-}
-
 .box_404 {
   width: 350px;
   height: 100%;
