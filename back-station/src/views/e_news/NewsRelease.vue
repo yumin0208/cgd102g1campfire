@@ -19,7 +19,8 @@
     <button>修改</button>
     <button>刪除</button>
   </div>
-  <table>
+  <div class="table_roll">
+    <table>
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
@@ -30,9 +31,9 @@
       <td>{{item.news_pic}}</td>
       <td>{{item.news_post_time}}</td>
       <td>{{item.news_status}}</td>
-      <td><button>更多</button></td>
     </tr>
   </table>
+  </div>
 </section>
 <Footer></Footer>
 </template>
@@ -61,8 +62,7 @@ data() {
       '最新消息內文',
       '最新消息圖片',
       '發布時間',
-      '最新消息狀態',
-      '詳細資訊',
+      '最新消息狀態'
     ],
     news: [],
   };
