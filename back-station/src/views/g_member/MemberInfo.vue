@@ -19,7 +19,8 @@
     <button>修改</button>
     <button>刪除</button>
   </div>
-  <table>
+  <div class="table_roll">
+    <table>
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
@@ -39,6 +40,8 @@
       <td><button>更多</button></td>
     </tr>
   </table>
+  </div>
+  
 </section>
 <Footer></Footer>
 </template>

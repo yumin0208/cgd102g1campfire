@@ -19,24 +19,27 @@
         <button>修改</button>
         <button>刪除</button>
     </div>
-    <table>
-    <tr class="table_title">
-        <th v-for="item in titles" :key="item">{{item}}</th>
-    </tr>
-    <tr class="item_content" v-for="item in activity" :key="item">
-        <td>{{item.activity_no}}</td>
-        <td>{{item.area_no}}</td>
-        <td>{{item.activity_name}}</td>
-        <td>{{item.activity_subtitle}}</td>
-        <td>{{item.activity_synopsis}}</td>
-        <td>{{item.activity_info}}</td>
-        <td>{{item.activity_pic}}</td>
-        <td>{{item.activity_price}}</td>
-        <td>{{item.activity_suitable_guest}}</td>
-        <td>{{item.activity_note}}</td>
-        <td><button>更多</button></td>
-    </tr>
-    </table>
+    <div class="table_roll">
+        <table>
+            <tr class="table_title">
+                <th v-for="item in titles" :key="item">{{item}}</th>
+            </tr>
+            <tr class="item_content" v-for="item in activity" :key="item">
+                <td>{{item.activity_no}}</td>
+                <td>{{item.area_no}}</td>
+                <td>{{item.activity_name}}</td>
+                <td>{{item.activity_subtitle}}</td>
+                <td>{{item.activity_synopsis}}</td>
+                <td>{{item.activity_info}}</td>
+                <td>{{item.activity_pic}}</td>
+                <td>{{item.activity_price}}</td>
+                <td>{{item.activity_suitable_guest}}</td>
+                <td>{{item.activity_note}}</td>
+                <td><button>更多</button></td>
+            </tr>
+        </table>
+    </div>
+    
 </section>
 <Footer></Footer>
 </template>
