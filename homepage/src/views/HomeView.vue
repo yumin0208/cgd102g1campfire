@@ -23,6 +23,7 @@
   <HomeActivityIsland />
   <HomeReport />
   <HomeProducts />
+  <PageUp />
   <MainFooter />
 </template>
 
@@ -36,6 +37,7 @@ import HomeActivityIsland from '@/components/HomeActivityIsland.vue';
 import HomeReport from '@/components/HomeReport.vue';
 import HomeProducts from '@/components/HomeProducts.vue';
 import HomeCalender from '@/components/HomeCalendar.vue';
+import PageUp from '@/components/PageUp.vue';
 import dayjs from 'dayjs';
 
 // 之後要作轉場動畫的設定
@@ -53,6 +55,7 @@ export default {
     HomeActivityIsland,
     HomeReport,
     HomeProducts,
+    PageUp,
   },
   data() {
     return {
