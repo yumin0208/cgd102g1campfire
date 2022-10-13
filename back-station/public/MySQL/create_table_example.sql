@@ -1,13 +1,7 @@
 
-<<<<<<< HEAD
 -- drop database tibamefe_cgd102g1;
 -- CREATE DATABASE tibamefe_cgd102g1;
 -- use tibamefe_cgd102g1;
-=======
-  drop database tibamefe_cgd102g1;
-  CREATE DATABASE tibamefe_cgd102g1;
- use tibamefe_cgd102g1;
->>>>>>> 6b47f5d87cf580f8f8e59ad4db23bc5b45daa2b3
 
 
 -- CREATE TABLE 後面加TABLE名稱 (欄位名稱_欄位類型_欄位特性) _代表空白
@@ -416,7 +410,8 @@ constraint fk_orders_area_no foreign key (area_no) references area (area_no)
 insert into orders
 values
 (1,1,1,1,1,1,1,1,1,"2022-10-4 00:00:00","12345",1,20000,"2022-10-3 00:00:00","2022-10-25","2022-10-26"),
-(2,131,2,27,6,3,3,3,1,"2022-10-4 00:00:00","54321",1,40000,"2022-10-3 00:00:00","2022-11-3","2022-11-4");
+(2,131,2,27,6,3,3,3,1,"2022-10-4 00:00:00","54321",1,40000,"2022-10-3 00:00:00","2022-11-3","2022-11-4"),
+(3,1,1,1,1,1,1,1,1,"2022-10-5 00:00:00","12345",2,20000,"2022-10-4 00:00:00","2022-10-28","2022-10-30");
 
 
 create table reserve(
