@@ -4,7 +4,6 @@
 -- use tibamefe_cgd102g1;
 
 
-
 -- CREATE TABLE 後面加TABLE名稱 (欄位名稱_欄位類型_欄位特性) _代表空白
 CREATE TABLE member(
 mem_no int NOT NULL PRIMARY KEY AUTO_INCREMENT,
