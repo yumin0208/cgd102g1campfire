@@ -547,11 +547,12 @@ export default {
       formData.append('checkOut', this.getEnd);
       xhr.send(formData);
       xhr.onload = () => {
-        const data = JSON.parse(xhr.response);
-        if (data == 1) {
-          alert('已收到您的訂單');
-          let thus = this;
-          thus.router.push({ path: '/' });
+        if(xhr.status == 200){
+          if (xhr.response == 1) {
+            alert('已收到您的訂單');
+            let thus = this;
+            thus.router.push({ path: '/' });
+          }
         }
       };
       xhr.onerror = (err) => {
