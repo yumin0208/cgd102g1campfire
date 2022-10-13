@@ -228,29 +228,8 @@ export default {
                 this.currentDiscussNo = e;
             }
         },
-        //確認有無登入，判斷跳轉留言頁面
-        // checkId() {
-        //     let checkLogin = sessionStorage.getItem('member');
-        //     if(checkLogin == null){
-        //         // alert("請先登入");
-        //         this.login = true
-        //     }else{
-        //         // this.isShow = true;
-        //         this.modalStyle();
-        //     }
-        // }
     },
-    created() {
-        //是否有登入狀態
-        // let checkLogin = sessionStorage.getItem('member');
-        // if(checkLogin == null){
-        //     return
-        // }else{
-        //     this.message_show = true;
-        // }
-        //拿到會員資料
-        // this.getMemData()
-    },
+    // created() {},
     watch: {
         // 做監聽，不管在最新和最熱都要回第一頁
         activeBtn(){
