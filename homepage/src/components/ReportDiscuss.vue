@@ -80,15 +80,15 @@
 <script>
 
 export default {
-    props: ['discuss'],
+    props: ['discuss', 'discussId'],
     name: "ReportDiscuss",
     components: {},
     data() {
         return {
             isShow: false,
             memNo: null,
-            // discuss_no: '',
             commentCount: [],
+            // discuss_no: '',
             // discussCard:[]
         }
     },
