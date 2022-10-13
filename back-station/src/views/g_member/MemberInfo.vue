@@ -23,7 +23,7 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in member" :key="item">
+    <tr class="item_content" v-for="item in member" :key="item">
       <td>{{item.mem_no}}</td>
       <td>{{item.mem_id}}</td>
       <td>{{item.mem_psw}}</td>
@@ -74,13 +74,14 @@ data() {
       '大頭照',
       '會員狀態',
       '註冊日期',
+      '詳細資訊',
     ],
     member: [],
   };
 },
 methods: {
   FetchAPIComment() {
-    fetch(``)
+    fetch(process.env.VUE_APP_PHP_PATH + 'membermodify.php')
       .then((response) => {
         if (response) {
           this.fetchError = response.status !== 200;

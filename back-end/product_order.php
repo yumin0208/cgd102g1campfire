@@ -9,7 +9,7 @@
 
         $sql = "insert into product_order(mem_no, product_order_status, product_order_time, product_order_pickup_place, product_order_total)
         values
-        ($mem_no, 0, now(), concat($mem_city,$mem_addr), $order_payment);";
+        ($mem_no, 0, now(), concat('$mem_city','$mem_addr'), $order_payment);";
 
         $pdo->query($sql);
         
