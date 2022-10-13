@@ -23,7 +23,7 @@
     <tr class="table_title">
       <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in report" :key="item">
+    <tr class="item_content" v-for="item in report" :key="item">
       <td>{{item.report_no}}</td>
       <td>{{item.comment_no}}</td>
       <td>{{item.discuss_no}}</td>
@@ -64,6 +64,7 @@ data() {
       '檢舉內容',
       '檢舉時間',
       '處理結果',
+      '詳細資訊',
     ],
     report: [],
   };

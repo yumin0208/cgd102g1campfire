@@ -25,9 +25,10 @@
           {{ item }}
         </th>
       </tr>
-      <tr v-for="item in productsType" :key="item">
+      <tr class="item_content" v-for="item in productsType" :key="item">
         <td>{{ item.product_type_no }}</td>
         <td>{{ item.product_type_name }}</td>
+        <td><button>更多</button></td>
       </tr>
   </table>
 </section>
@@ -55,6 +56,7 @@ data() {
     titles:[
       '商品類別編號',
       '商品類別名稱',
+      '詳細資訊',
     ],
   }
 },

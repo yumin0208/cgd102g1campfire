@@ -23,7 +23,7 @@
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr v-for="item in equip" :key="item">
+    <tr class="item_content" v-for="item in equip" :key="item">
         <td>{{item.equip_no}}</td>
         <td>{{item.equip_name}}</td>
         <td>{{item.equip_price}}</td>
@@ -60,6 +60,7 @@ export default {
             '裝備價格',
             '裝備圖片',
             '裝備介紹',
+            '詳細資訊',
         ],
         equip: [],
         };
