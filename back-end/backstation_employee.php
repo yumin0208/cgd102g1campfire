@@ -5,9 +5,9 @@
     require_once("./connect_cgd102g1.php");
 
     $sql = 
-            "select employee_no, employee_id, employee_psw, employee_name, employee_auth, employee_sex, employee_email, employee_phone, employee_status
-            
-            from employee";
+        "select employee_no, employee_id, employee_psw, employee_name, employee_auth, employee_sex, employee_email, employee_phone, employee_status
+        
+        from employee";
 
     $emp = $pdo->query($sql);
 
@@ -18,7 +18,7 @@
 
 <?php
 
-    $mep_data = [];
+    $emp_data = [];
 
     foreach($emps as $i => $content){
         $emp_data[]=$content;
