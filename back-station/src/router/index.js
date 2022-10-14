@@ -80,6 +80,12 @@ const routes = [
     component: () => import('../views/e_news/NewsInfo.vue'),
   },
   {
+    path: '/NewsAdd',
+    name: 'NewsAdd',
+    chtName: '新增最新消息文章',
+    component: () => import('../views/e_news/NewsAdd.vue'),
+  },
+  {
     path: '/ProductsInfo',
     name: 'ProductsInfo',
     chtName: '商品資訊管理',
@@ -110,9 +116,15 @@ const routes = [
     component: () => import('../views/g_member/Booking.vue'),
   },
   {
+    path: '/MemberList',
+    name: 'MemberList',
+    chtName: '會員資訊管理',
+    component: () => import('../views/g_member/MemberList.vue'),
+  },
+  {
     path: '/MemberInfo',
     name: 'MemberInfo',
-    chtName: '會員資訊管理',
+    chtName: '會員詳細資訊',
     component: () => import('../views/g_member/MemberInfo.vue'),
   },
   {
