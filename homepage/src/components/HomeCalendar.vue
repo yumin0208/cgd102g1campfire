@@ -107,7 +107,7 @@ export default defineComponent({
     getBookedInfo() {
       fetch(
         process.env
-          .VUE_APP_PHP_PATH`bookedSearch.php?whatMonth='${this.value.year()}-${
+          .VUE_APP_PHP_PATH + `bookedSearch.php?whatMonth='${this.value.year()}-${
           this.value.month() + 1
         }'&areaNoGet=${this.whichArea}&howManyPeopleGet=${
           this.howMany
