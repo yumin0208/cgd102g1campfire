@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="serch_bar">
-        <input type="text" placeholder="搜尋"/>
-        <button>新增</button>
-        <button>修改</button>
+        <!-- <input type="text" placeholder="搜尋"/> -->
+        <!-- <button>新增</button> -->
+        <!-- <button>修改</button> -->
         <button>刪除</button>
     </div>
     <table>

@@ -24,7 +24,7 @@
             <tr class="table_title">
                 <th v-for="item in titles" :key="item">{{item}}</th>
             </tr>
-            <tr class="item_content" v-for="item in area" :key="item">
+            <tr class="item_content" v-for="item in activityArea" :key="item.area_no">
                 <td>{{item.area_no}}</td>
                 <td>{{item.area_name}}</td>
                 <td>{{item.area_subtitle}}</td>
@@ -53,38 +53,39 @@ export default {
     },
     data() {
         return {
-        chtName: '主題地區管理',
-        title: '營區導覽',
-        path:'/Theme',
-        titles: [
-            '地區編號',
-            '地區名稱',
-            '地區副標題',
-            '地區介紹',
-            '詳細資訊',
-        ],
-        area: [],
+            chtName: '主題地區管理',
+            title: '營區導覽',
+            path:'/Theme',
+            titles: [
+                '地區編號',
+                '地區名稱',
+                '地區副標題',
+                '地區介紹',
+                '詳細資訊',
+            ],
+            activityArea: [],
         };
     },
     methods: {
-        FetchAPIComment() {
-        fetch(``)
-            .then((response) => {
-            if (response) {
-                this.fetchError = response.status !== 200;
-                return response.json();
-            }
+        // 抓取地區資訊
+        FetchAPIArea(){
+            fetch(process.env.VUE_APP_PHP_PATH + 'activityTheme.php').then((response) => {
+                if(response){
+                    this.fetchError = (response.status !== 200)
+                    //json(): 返回 Promise，resolves 是 JSON 物件
+                    return response.json()
+                }
+            }).then(responseText => {
+                this.activityArea = responseText;
+                console.log(this.activityArea);
+            }).catch((err) => {
+                this.activityArea = []
+                // this.discussCard = true
             })
-            .then((responseText) => {
-            this.area = responseText;
-            })
-            .catch((err) => {
-            this.area = [];
-            });
         },
     },
     created() {
-        this.FetchAPIComment();
+        this.FetchAPIArea();
     },
 };
 </script>

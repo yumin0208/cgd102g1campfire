@@ -3,7 +3,7 @@
     margin-left: 230px;
 }
 .project_header{
-    padding: 20px 120px;
+    padding: 20px 0 0 120px;
     display: flex;
     justify-content: space-between;
     .router_name{
@@ -21,24 +21,26 @@ form  {
         padding: 10px;
     }
     input{
-        width: 50%;
-        height: 20px;
+        width: 60%;
+        height: 30px;
         margin-left: 30px;
         letter-spacing: 1px;
         border-radius: 5px;
         padding: 10px 10px;
-        margin-bottom: 20px;    
+        margin-bottom: 20px;  
+        font-size: 16px;  
     }
     select{
-        height: 20px;
+        width: 13%;
+        height: 30px;
         margin-left: 30px;
         letter-spacing: 1px;
         border-radius: 5px;
-        padding: 10px 10px;
         margin-bottom: 20px;
+        font-size: 16px;
     }
     textarea{
-        width: 50%;
+        width: 60%;
         height: 300px;
         margin-left: 30px;
         letter-spacing: 1px;
@@ -46,6 +48,7 @@ form  {
         padding: 10px 10px;
         margin-bottom: 20px;   
         resize: none;
+        font-size: 16px;
     }
 }
 #tent_info{
@@ -67,10 +70,10 @@ button{
 }
 button:hover{
     cursor: pointer;
+    color: #FFFFFF;
 }
 .breadcrumb{
     display: flex;
-    padding: 20px 120px;
     font-size: 16px;
     a{
         color: #000;

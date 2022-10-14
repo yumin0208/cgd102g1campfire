@@ -18,35 +18,39 @@ ob_start();//output buffer start
 
         if( $member->rowCount() == 0 ){//找不到
             echo "0";
-        }else{
+        }
+        else{
             $memRow = $member->fetch(PDO::FETCH_ASSOC);
-            
-            //登入成功,將登入者的資料寫入session
-            $_SESSION["mem_no"]=$memRow["mem_no"];
-            $_SESSION["mem_id"]=$memRow["mem_id"];
-            $_SESSION["mem_name"]=$memRow["mem_name"];
-            $_SESSION["mem_nick_name"]=$memRow["mem_nick_name"];
-            $_SESSION["mem_city"]=$memRow["mem_city"];
-            $_SESSION["mem_addr"]=$memRow["mem_addr"];
-            $_SESSION["mem_phone"]=$memRow["mem_phone"];
-            $_SESSION["mem_pic"]=$memRow["mem_pic"];
-            $_SESSION["mem_status"]=$memRow["mem_status"];
-            $_SESSION["mem_email"]=$memRow["mem_email"];
-            $_SESSION["register_date"]=$memRow["register_date"];
-            
-            $result = ["mem_no"=>$_SESSION["mem_no"],
-                        "mem_id"=>$_SESSION["mem_id"],
-                        "mem_name"=>$_SESSION["mem_name"],
-                        "mem_email"=>$_SESSION["mem_email"],
-                        "mem_nick_name"=>$_SESSION["mem_nick_name"],
-                        "mem_city"=>$_SESSION["mem_city"],
-                        "mem_addr"=>$_SESSION["mem_addr"],
-                        "mem_phone"=>$_SESSION["mem_phone"],
-                        "register_date"=>$_SESSION["register_date"],
-                        "mem_status"=>$_SESSION["mem_status"],
-                        "mem_pic"=>$_SESSION["mem_pic"]];
-            // echo 1;
-            echo json_encode($result);
+            if($memRow["mem_status"] == 0){
+                echo "2" ;
+            }else{
+                //登入成功,將登入者的資料寫入session
+                $_SESSION["mem_no"]=$memRow["mem_no"];
+                $_SESSION["mem_id"]=$memRow["mem_id"];
+                $_SESSION["mem_name"]=$memRow["mem_name"];
+                $_SESSION["mem_nick_name"]=$memRow["mem_nick_name"];
+                $_SESSION["mem_city"]=$memRow["mem_city"];
+                $_SESSION["mem_addr"]=$memRow["mem_addr"];
+                $_SESSION["mem_phone"]=$memRow["mem_phone"];
+                $_SESSION["mem_pic"]=$memRow["mem_pic"];
+                $_SESSION["mem_status"]=$memRow["mem_status"];
+                $_SESSION["mem_email"]=$memRow["mem_email"];
+                $_SESSION["register_date"]=$memRow["register_date"];
+                
+                $result = ["mem_no"=>$_SESSION["mem_no"],
+                            "mem_id"=>$_SESSION["mem_id"],
+                            "mem_name"=>$_SESSION["mem_name"],
+                            "mem_email"=>$_SESSION["mem_email"],
+                            "mem_nick_name"=>$_SESSION["mem_nick_name"],
+                            "mem_city"=>$_SESSION["mem_city"],
+                            "mem_addr"=>$_SESSION["mem_addr"],
+                            "mem_phone"=>$_SESSION["mem_phone"],
+                            "register_date"=>$_SESSION["register_date"],
+                            "mem_status"=>$_SESSION["mem_status"],
+                            "mem_pic"=>$_SESSION["mem_pic"]];
+                // echo 1;
+                echo json_encode($result);
+            }
         }
     } catch (PDOException $e) {
         echo $e->getMessage();

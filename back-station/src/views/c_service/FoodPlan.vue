@@ -72,7 +72,7 @@ export default {
     },
     methods: {
         FetchAPIComment() {
-        fetch(``)
+        fetch(process.env.VUE_APP_PHP_PATH + 'backstation_serviceFood.php')
             .then((response) => {
             if (response) {
                 this.fetchError = response.status !== 200;
