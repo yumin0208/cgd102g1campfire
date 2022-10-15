@@ -68,11 +68,6 @@ import { useRouter } from 'vue-router';
 export default {
 name: 'ReportInfo',
 path: '/ReportInfo',
-components: {
-	Menu,
-	Header,
-	Footer,
-},
 data() {
 	return {
 	// discussId: null,

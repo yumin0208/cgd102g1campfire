@@ -14,8 +14,6 @@
         </div>
     </div>
     <div class="serch_bar">
-        <!-- <input type="text" placeholder="搜尋"/> -->
-        <!-- <button>新增</button> -->
         <button 
                 class="btn_no" 
                 type="button"
