@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
   },
   {
     path: '/Login',
@@ -104,6 +104,12 @@ const routes = [
     component: () => import('../views/f_shopping/ProductsInfo.vue'),
   },
   {
+    path: '/ProductEdit',
+    name: 'ProductEdit',
+    chtName: '商品資訊修改',
+    component: () => import('../views/f_shopping/ProductEdit.vue'),
+  },
+  {
     path: '/ProductsPO',
     name: 'ProductsPO',
     chtName: '商品訂單管理',
@@ -145,11 +151,11 @@ const routes = [
     chtName: '員工資訊管理',
     component: () => import('../views/h_employee/Employee.vue'),
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

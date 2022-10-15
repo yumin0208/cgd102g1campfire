@@ -38,12 +38,12 @@ export default {
           routes: [
             {
               path: '/Reservation',
-              myname: '預約狀態管理',
+              myname: '營地預訂狀態管理',
             },
-            {
-              path: '/IndividualTent',
-              myname: '個別營帳管理',
-            },
+            // {
+            //   path: '/IndividualTent',
+            //   myname: '個別營帳管理',
+            // },
           ],
         },
         {
