@@ -115,7 +115,7 @@ export default {
             },
             {
               path: '/ProductsLogistic',
-              myname: '商品物流管理',
+              myname: '商品類別管理',
             },
             {
               path: '/ProductsPayment',
