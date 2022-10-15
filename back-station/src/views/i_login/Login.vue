@@ -53,7 +53,7 @@ import { useRouter } from "vue-router";
                             this.loginStatus = sessionStorage.getItem("emp_login")
                             let thus = this
                             if (this.loginStatus != '') {
-                                thus.router.push({path:'/'});
+                                thus.router.push({path:'/home'});
                             }
                         }
                     }
