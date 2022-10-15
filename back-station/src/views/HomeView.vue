@@ -2,6 +2,7 @@
 <Menu></Menu>
 <Header></Header>
 <Footer></Footer>
+
 </template>
   
 <script>

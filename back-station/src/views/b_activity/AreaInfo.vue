@@ -46,9 +46,6 @@ export default {
     },
     data(){
         return{
-            // area_name:'',
-            // area_subtitle:'',
-            // area_info:'',
             areadata:[],
             router:useRouter()
         }
@@ -69,10 +66,7 @@ export default {
             let thus = this;
             thus.router.push({path:'/Theme'})
         }
-
-    },
-        
-    
+    }, 
 }
 </script>
 

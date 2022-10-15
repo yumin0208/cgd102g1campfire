@@ -53,17 +53,9 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import { useRouter } from "vue-router";
 
 export default {
-    components: {
-        Menu,
-        Header,
-        Footer
-    },
     data(){
         return{
             activity_name:'',
@@ -133,13 +125,13 @@ export default {
                     xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'backstation_update_news.php', true);
                     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     //回傳過去的資料
-                    let news_data = `news_no=${this.news_no}&news_title=${this.news_title}&news_content=${this.news_content}&news_post_time=${this.news_post_time}&news_status=${this.news_status}`;
-                    xhr.send(news_data);
+                    let activity_data = `activity_no=${this.activity_no}&activity_name=${this.activity_name}&activity_subtitle=${this.activity_subtitle}&activity_synopsis=${this.activity_synopsis}&activity_info=${this.activity_info}&activity_price=${this.activity_price}&activity_suitable_guest=${this.activity_suitable_guest}&activity_note=${this.activity_note}`;
+                    xhr.send(activity_data);
                     //重新撈回資料庫資料，再寫進sessionStorage
                     xhr.onload = ()=>{
                         if(xhr.status == 200){
                             this.session = JSON.parse(xhr.responseText);
-                            sessionStorage.setItem("news", JSON.stringify(this.session)); 
+                            sessionStorage.setItem("activity", JSON.stringify(this.session)); 
                             alert("修改成功");
                             let thus = this
                             thus.router.go(0)
@@ -149,11 +141,11 @@ export default {
             }
         },
         goBack(e){
-                //取消預設submit事件
-                e.preventDefault()
-                sessionStorage.removeItem("activity", JSON.stringify(this.session));
-                let thus = this;
-                thus.router.push({path:'/ActivityPlan'})
+            //取消預設submit事件
+            e.preventDefault()
+            sessionStorage.removeItem("activity", JSON.stringify(this.session));
+            let thus = this;
+            thus.router.push({path:'/ActivityPlan'})
         }
     },
 }
