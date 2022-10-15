@@ -106,12 +106,12 @@ export default defineComponent({
   methods: {
     getBookedInfo() {
       fetch(
-        process.env
-          .VUE_APP_PHP_PATH`bookedSearch.php?whatMonth='${this.value.year()}-${
-          this.value.month() + 1
-        }'&areaNoGet=${this.whichArea}&howManyPeopleGet=${
-          this.howMany
-        }&whichTentType=${this.whichType}`
+        process.env.VUE_APP_PHP_PATH +
+          `bookedSearch.php?whatMonth='${this.value.year()}-${
+            this.value.month() + 1
+          }'&areaNoGet=${this.whichArea}&howManyPeopleGet=${
+            this.howMany
+          }&whichTentType=${this.whichType}`
       )
         .then((response) => {
           if (response) {
@@ -180,12 +180,15 @@ export default defineComponent({
   margin: 0;
   padding: 0;
   .date_content {
+    text-align: end;
     color: #8dccb9;
+    font-size: 12px;
   }
   .date_result_left {
+    text-align: end;
     span {
-      font-size: 20px;
-      color: #bc6c61;
+      font-size: 24px;
+      color: #0e685e;
       padding: 5px;
     }
   }
@@ -221,13 +224,20 @@ export default defineComponent({
     }
   }
   .events {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     .date_content {
-      font-size: 12px;
+      text-align: end;
       color: #8dccb9;
+      font-size: 12px;
     }
     .date_result_left {
+      text-align: end;
       span {
         font-size: 16px;
+        color: #0e685e;
+        padding: 5px;
       }
     }
   }

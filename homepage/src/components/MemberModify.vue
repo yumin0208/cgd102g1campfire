@@ -68,37 +68,37 @@
             <ul class="tabcontent_img">
                 <li>
                     <label for="sloth" class="select_img">
-                        <input type="radio" id="sloth" name="namepic" class="input_none" value="1" v-model="mem_pic" :checked="mem_pic==1">
+                        <input type="radio" id="sloth" name="namepic" class="input_none" value="1" v-model="mem_pic" :checked="mem_pic_change==1">
                         <img src="@/assets/images/report/report_avatar_1.png" >
                     </label>
                 </li>
                 <li>
                     <label for="bear" class="select_img">
-                        <input type="radio" id="bear" name="namepic" class="input_none" v-model="mem_pic" value="2" :checked="mem_pic==2">
+                        <input type="radio" id="bear" name="namepic" class="input_none" v-model="mem_pic" value="2" :checked="mem_pic_change==2">
                         <img src="@/assets/images/report/report_avatar_2.png" >
                     </label>
                 </li>
                 <li>
                     <label for="fox" class="select_img">
-                        <input type="radio" id="fox" name="namepic" class="input_none" value="3" v-model="mem_pic" :checked="mem_pic==3">
+                        <input type="radio" id="fox" name="namepic" class="input_none" value="3" v-model="mem_pic" :checked="mem_pic_change==3">
                         <img src="@/assets/images/report/report_avatar_3.png">
                     </label>
                 </li>
                 <li>
                     <label for="snake" class="select_img">
-                        <input type="radio" id="snake" name="namepic" class="input_none" value="4" v-model="mem_pic" :checked="mem_pic==4">
+                        <input type="radio" id="snake" name="namepic" class="input_none" value="4" v-model="mem_pic" :checked="mem_pic_change==4">
                         <img src="@/assets/images/report/report_avatar_4.png" >
                     </label>
                 </li>
                 <li>
                     <label for="penguin" class="select_img">
-                        <input type="radio" id="penguin" name="namepic" class="input_none" value="5" v-model="mem_pic" :checked="mem_pic==5">
+                        <input type="radio" id="penguin" name="namepic" class="input_none" value="5" v-model="mem_pic" :checked="mem_pic_change==5">
                         <img src="@/assets/images/report/report_avatar_5.png" >
                     </label>
                 </li>
                 <li>
                     <label for="dinosaur" class="select_img" >
-                        <input type="radio" id="dinosaur" name="namepic" class="input_none" value="6" v-model="mem_pic" :checked="mem_pic==6">
+                        <input type="radio" id="dinosaur" name="namepic" class="input_none" value="6" v-model="mem_pic" :checked="mem_pic_change==6">
                         <img src="@/assets/images/report/report_avatar_6.png">
                     </label>
                 </li>
@@ -134,7 +134,7 @@ export default {
             mem_city:'',
             mem_addr:'',
             mem_phone:'',
-            mem_pic:'',
+            mem_pic_change:'',
             mem_deta:[],
             router:useRouter()
         }
@@ -145,6 +145,7 @@ export default {
             this.member = JSON.parse(sessionStorage.getItem('member'));
             //抓取會員id，要去後端撈會員資料需要
             this.mem_id = this.member.mem_id;
+            this.mem_pic_change = this.member.mem_pic;
             //確認有抓到東西
             console.log(this.member)
             console.log(this.mem_id)
@@ -187,16 +188,10 @@ export default {
                 if(this.mem_name == '' || this.mem_nick_name == '' || this.mem_city == ''|| this.mem_addr == '' || this.mem_phone == ''){
                     alert("有欄位空白");
                     return;
-                }
-                else if(this.mem_email.search(emailFormat)!=0){
+                }else if(this.mem_email.search(emailFormat)!=0){
                     alert("信箱格式錯誤");
                     return;
-                }
-                else if(this.mem_pic == ''){
-                    alert("請選擇大頭貼");
-                    return;
-                }
-                else{
+                }else{
                 //沒有錯誤則將更新後的會員傳送到資料庫
                     var xhr = new XMLHttpRequest();
             

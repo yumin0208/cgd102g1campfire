@@ -10,7 +10,6 @@
                 count(c.discuss_no)comment_count
             from member m join discuss d on m.mem_no = d.mem_no
                         left join comment c on d.discuss_no = c.discuss_no
-            where d.discuss_status = 1
             group by d.discuss_no";
 
     $discuss = $pdo->query($sql);
