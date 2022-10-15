@@ -7,7 +7,8 @@
     // $discuss_no = $_REQUEST['discuss_no'];
     
     $sql1 = "select orders_no order_no, mem_id, mem_name, tent_no, tent_style_no, orders_time, payment_methods, payment_status, orders_total order_total, date_format(checkin_date, '%Y-%m-%d') checkin_date, date_format(checkout_date, '%Y-%m-%d') checkout_date
-    from orders join member on orders.mem_no = member.mem_no;";
+    from orders join member on orders.mem_no = member.mem_no
+    where checkin_date >= now();";
 
     $discuss = $pdo->query($sql1);
     $discusses = $discuss->fetchAll(PDO::FETCH_ASSOC);

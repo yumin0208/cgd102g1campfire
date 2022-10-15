@@ -38,7 +38,7 @@ export default {
           routes: [
             {
               path: '/Reservation',
-              myname: '預約狀態管理',
+              myname: '營地預訂狀態管理',
             },
             {
               path: '/IndividualTent',
