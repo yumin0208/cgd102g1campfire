@@ -4,10 +4,10 @@
 
     require_once("./connect_cgd102g1.php");
 
-    // $discuss_no = $_REQUEST['discuss_no'];
+    $tent_style_no = $_REQUEST['tent_style_no'];
     
-    $sql1 = "select orders_no order_no, mem_id, mem_name, tent_no, tent_style_no, orders_time, payment_methods, payment_status, orders_total order_total, date_format(checkin_date, '%Y-%m-%d') checkin_date, date_format(checkout_date, '%Y-%m-%d') checkout_date
-    from orders join member on orders.mem_no = member.mem_no;";
+    $sql1 = "select tent_no from tent
+    where tent_style_no =$tent_style_no;";
 
     $discuss = $pdo->query($sql1);
     $discusses = $discuss->fetchAll(PDO::FETCH_ASSOC);
