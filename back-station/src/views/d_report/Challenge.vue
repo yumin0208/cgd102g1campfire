@@ -74,7 +74,7 @@ export default {
     methods: {
         // 抓取報告資訊
         FetchAPIChallenge(){
-            fetch(process.env.VUE_APP_PHP_PATH + 'discussReportBack.php').then((response) => {
+            fetch(process.env.VUE_APP_PHP_PATH + 'backDiscussReport.php').then((response) => {
                 if(response){
                     this.fetchError = (response.status !== 200)
                     //json(): 返回 Promise，resolves 是 JSON 物件

@@ -245,7 +245,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "../assets/scss/style.scss";
-@import "../assets/scss/shoppingPayment.scss";
+@import "@/assets/scss/style.scss";
+@import "@/assets/scss/shoppingPayment.scss";
 
 </style>

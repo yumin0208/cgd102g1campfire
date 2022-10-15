@@ -21,18 +21,21 @@
     </div>
     <table>
         <tr class="table_title">
-        <th v-for="item in titles" :key="item">{{item}}</th>
+            <th v-for="item in titles" :key="item">{{item}}</th>
         </tr>
-        <tr class="item_content" v-for="item in discussReport" :key="item.discuss_no">
-        <td>{{item.discuss_no}}</td>
-        <td>{{item.mem_no}}</td>
-        <td>{{item.discuss_title}}</td>
-        <td>{{item.discuss_content}}</td>
-        <td>{{item.discuss_post_time}}</td>
-        <td>{{item.discuss_status}}</td>
-        <td>{{item.comment_count}}</td>
-        <td>{{item.background_type}}</td>
-        <!-- <td><button>更多</button></td> -->
+        <tr class="item_content" 
+            v-for="item in discuss" 
+            :key="item" 
+            @click="goInfo(item)"
+        >
+            <td>{{item.discuss_no}}</td>
+            <td>{{item.mem_no}}</td>
+            <td>{{item.discuss_title}}</td>
+            <td>{{item.discuss_content}}</td>
+            <td>{{item.discuss_post_time}}</td>
+            <td>{{item.discuss_status}}</td>
+            <td>{{item.comment_count}}</td>
+            <td>{{item.background_type}}</td>
         </tr>
     </table>
     </section>
@@ -44,9 +47,12 @@
 import Menu from "@/components/Menu.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+// 強制刷新，或跳轉頁面
+import { useRouter } from "vue-router";
 
 export default {
-    name: 'HomeView',
+    name: 'Report',
+    path:'/Report',
     components: {
         Menu,
         Header,
@@ -62,28 +68,36 @@ export default {
                 '會員編號',
                 '報告標題',
                 '報告內容',
-                '發布時間',
+                '發佈時間',
                 '報告狀態',
                 '留言數量',
                 '背景樣式',
             ],
-            discussReport: [],
+            // 將報告資料塞進
+            discuss: [],
+            router:useRouter(),
         };
     },
     methods: {
         // 抓取報告資訊
         FetchAPIDiscuss(){
-            fetch(process.env.VUE_APP_PHP_PATH + 'discussCard.php').then((response) => {
+            fetch(process.env.VUE_APP_PHP_PATH + 'backDiscussCard.php').then((response) => {
                 if(response){
                     this.fetchError = (response.status !== 200)
                     return response.json()
                 }
             }).then(responseText => {
-                this.discussReport = responseText;
-                console.log(this.discussReport);
+                this.discuss = responseText;
+                console.log(this.discuss);
             }).catch((err) => {
-                this.discussReport = []
+                this.discuss = [];
             })
+        },
+        goInfo(e){
+            console.log(e)
+            sessionStorage.setItem("discuss", JSON.stringify(e) );
+            let thus = this;
+            thus.router.push({path:'/ReportInfo'});
         },
     },
     created() {
