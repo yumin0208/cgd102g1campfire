@@ -1,11 +1,17 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomeView.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    chtName: '登入',
+    component: () => import('../views/i_login/Login.vue'),
   },
   {
     path: '/Reservation',
@@ -68,6 +74,12 @@ const routes = [
     component: () => import('../views/d_report/Report.vue'),
   },
   {
+    path: '/ReportInfo',
+    name: 'ReportInfo',
+    chtName: '營火報告詳細資料',
+    component: () => import('../views/d_report/ReportInfo.vue'),
+  },
+  {
     path: '/Comment',
     name: 'Comment',
     chtName: '留言管理',
@@ -102,6 +114,12 @@ const routes = [
     name: 'ProductsInfo',
     chtName: '商品資訊管理',
     component: () => import('../views/f_shopping/ProductsInfo.vue'),
+  },
+  {
+    path: '/ProductEdit',
+    name: 'ProductEdit',
+    chtName: '商品資訊修改',
+    component: () => import('../views/f_shopping/ProductEdit.vue'),
   },
   {
     path: '/ProductsPO',
@@ -145,11 +163,11 @@ const routes = [
     chtName: '員工資訊管理',
     component: () => import('../views/h_employee/Employee.vue'),
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

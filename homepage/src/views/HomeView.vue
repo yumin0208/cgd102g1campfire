@@ -155,6 +155,36 @@ export default {
       .ant-picker-panel {
         background-color: #f5f2e9;
         color: #8dccb9;
+        .ant-picker-date-panel {
+          .ant-picker-body {
+            .ant-picker-content {
+              thead {
+                tr {
+                  th {
+                    padding: 5px 10px;
+                    text-align: center;
+                    color: #8dccb9;
+                    font-size: 20px;
+                    border: 1px solid #8dccb9;
+                  }
+                }
+              }
+              tbody {
+                tr {
+                  td {
+                    .ant-picker-cell-inner {
+                      .ant-picker-calendar-date-value {
+                        color: #bc6c61;
+                        text-align: end;
+                        font-size: 24px;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
         .ant-picker-cell {
           pointer-events: none;
         }
@@ -163,6 +193,46 @@ export default {
         .ant-radio-group {
           visibility: hidden;
           opacity: 0;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .calender_container {
+    .calender_pos {
+      .ant-picker-calendar {
+        .ant-picker-panel {
+          .ant-picker-date-panel {
+            .ant-picker-body {
+              .ant-picker-content {
+                thead {
+                  tr {
+                    th {
+                      padding: 5px 10px;
+                      text-align: center;
+                      color: #8dccb9;
+                      font-size: 12px;
+                      border: 1px solid #8dccb9;
+                    }
+                  }
+                }
+                tbody {
+                  tr {
+                    td {
+                      .ant-picker-cell-inner {
+                        .ant-picker-calendar-date-value {
+                          color: #bc6c61;
+                          text-align: end;
+                          font-size: 16px;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

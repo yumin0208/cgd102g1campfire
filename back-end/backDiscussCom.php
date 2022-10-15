@@ -4,7 +4,8 @@
 
     require_once("./connect_cgd102g1.php");
 
-    $sql = "select * from comment";
+    $sql = "select * 
+            from comment";
 
     $comment = $pdo->query($sql);
     $comments = $comment->fetchAll(PDO::FETCH_ASSOC);

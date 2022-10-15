@@ -15,8 +15,8 @@
   </div>
   <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
-    <button>新增</button>
-    <button>修改</button>
+    <!-- <button>新增</button> -->
+    <router-link to="./productEdit.vue"><button>修改</button></router-link>
     <button>刪除</button>
   </div>
   <div class="table_roll">
@@ -26,7 +26,7 @@
           {{ item }}
         </th>
       </tr>
-      <tr class="item_content" v-for="item in products" :key="item">
+      <tr class="item_content" v-for="item in products" :key="item" @click="goInfo(item)">
         <td>{{ item.product_no }}</td>
         <td>{{ item.product_type_no }}</td>
         <td>{{ item.product_name }}</td>
@@ -48,6 +48,7 @@
 import Menu from "@/components/Menu.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import { useRouter } from "vue-router";
 
 export default {
 name: "HomeView",
@@ -77,6 +78,7 @@ data() {
       '詳細資訊',
     ],
     products: [],
+    router:useRouter()
   };
 },
 methods: {
@@ -95,7 +97,14 @@ methods: {
         this.products = [];
       });
   },
+  goInfo(e){
+    console.log(e)
+    sessionStorage.setItem("Products", JSON.stringify(e) );
+    let thus = this;
+    thus.router.push({path:'/ProductEdit'});
+  }
 },
+
 };
 </script>
 

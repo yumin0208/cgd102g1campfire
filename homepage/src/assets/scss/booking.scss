@@ -404,28 +404,8 @@
           }
           .bk_more_selector_container {
             width: 50%;
-            .ant-space {
-              width: 80%;
-              flex-direction: column;
-              align-items: center;
-              justify-content: space-evenly;
-              display: block;
+            .option_tent {
               margin: auto;
-              .ant-space-item {
-                display: block;
-                padding: 60px 0;
-                .ant-select {
-                  display: block;
-                  .ant-select-selector {
-                    background-color: transparent;
-                    border: none;
-                    border-bottom: 2px solid $color-aid-green1;
-                    font-size: 22px;
-                    font-weight: 600;
-                    color: $color-str-hov-green;
-                  }
-                }
-              }
             }
           }
         }

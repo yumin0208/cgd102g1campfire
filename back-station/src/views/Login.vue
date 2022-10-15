@@ -103,7 +103,7 @@
     email,
     helpers
   } from "@vuelidate/validators";
-  import appConfig from "../../../app.config";
+  import appConfig from "app.config";
   import axios from 'axios';
 
   export default {

@@ -36,11 +36,15 @@
                             <td data-th="單價">${{item.product_price}}</td>
                             <td data-th="數量">
                                 <div class="cart_btn_box">
-                                    <button @click="reduce_order(key)">-</button>
+                                    <button @click="reduce_order(key)">
+                                        <img class="cart_img" src="@/assets/images/shop/shopping_minus.png" alt="此圖片是減號">
+                                    </button>
                                     <div class="cart_qty_box">
                                         <p>{{item.product_qty}}</p>
                                     </div>
-                                    <button @click="plus_order(key)">+</button>
+                                    <button @click="plus_order(key)">
+                                        <img class="cart_img" src="@/assets/images/shop/shopping_plus.png" alt="此圖片是加號">
+                                    </button>
                                 </div>
                             </td>
                             <td data-th="小計" class="cart_col_item_font">${{item.product_price * item.product_qty}}</td>
@@ -169,6 +173,17 @@ export default {
         button{
         background-color: #fff;
         border: 0;
+        margin: auto;
+        }
+        .cart_qty_box{
+            padding: 5px;
+        }
+        .cart_img{
+            width: 16px;
+            cursor: pointer;
+            @include md(){
+                width: 13px;
+            }
         }
     }
     .details_link_path{

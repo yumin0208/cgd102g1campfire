@@ -196,12 +196,35 @@
               </p>
             </div>
             <div class="bk_more_selector_container">
-              <SelectWhichActivity
-                @update-result="updateWhichResult1"
-                :wherePick="wherePick"
-              />
-              <SelectWhichEquipment @update-result="updateWhichResult2" />
-              <SelectWhichMeal @update-result="updateWhichResult3" />
+              <div class="option_tent">
+                <select v-model="whichActivity" class="menu_choose">
+                  <option value="null">請選擇活動</option>
+                  <option value="1">
+                    {{ bookingWhich[wherePick - 1].whichActivityShow[0] }}
+                  </option>
+                  <option value="2">
+                    {{ bookingWhich[wherePick - 1].whichActivityShow[1] }}
+                  </option>
+                </select>
+              </div>
+              <div class="option_tent">
+                <select v-model="whichEquipment" class="menu_choose">
+                  <option value="null">請選擇裝備類型</option>
+                  <option value="1">懷舊露營燈具</option>
+                  <option value="2">野外廚房套鍋組</option>
+                  <option value="3">生存多功能工具</option>
+                  <option value="4">安全通電延長線</option>
+                </select>
+              </div>
+              <div class="option_tent">
+                <select v-model="whichMeal" class="menu_choose">
+                  <option value="null">請選擇想要的餐點</option>
+                  <option value="1">肉多多吃到飽</option>
+                  <option value="2">素食養身蔬菜</option>
+                  <option value="3">奢侈海鮮大餐</option>
+                  <option value="4">海陸雙重享受</option>
+                </select>
+              </div>
             </div>
           </div>
           <div class="bk_process_button_container">
@@ -296,9 +319,6 @@ import ChooseCamp from '@/components/ChooseCamp.vue';
 import DatePickerVue from '@/components/DatePicker.vue';
 import dayjs, { Dayjs } from 'dayjs';
 import DatePicker from '@/components/DatePicker.vue';
-import SelectWhichActivity from '@/components/SelectWhichActivity.vue';
-import SelectWhichEquipment from '@/components/SelectWhichEquipment.vue';
-import SelectWhichMeal from '@/components/SelectWhichMeal.vue';
 import BookingCarouselSmallOneVue from '@/components/BookingCarouselSmallOne.vue';
 import BookingCarouselSmallTwoVue from '@/components/BookingCarouselSmallTwo.vue';
 import BookingCarouselBigVue from '@/components/BookingCarouselBig.vue';
@@ -311,9 +331,6 @@ export default {
     ChooseCamp,
     DatePickerVue,
     DatePicker,
-    SelectWhichActivity,
-    SelectWhichEquipment,
-    SelectWhichMeal,
     BookingCarouselSmallOneVue,
     BookingCarouselSmallTwoVue,
     BookingCarouselBigVue,

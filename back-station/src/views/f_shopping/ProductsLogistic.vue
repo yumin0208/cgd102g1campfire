@@ -15,7 +15,7 @@
   </div>
   <div class="serch_bar">
     <input type="text" placeholder="搜尋">
-    <button>新增</button>
+    <!-- <button>新增</button> -->
     <button>修改</button>
     <button>刪除</button>
   </div>  
@@ -53,7 +53,7 @@ components: {
 data() {
   return {
     productsType: [],
-    chtName: '商品物流管理',
+    chtName: '商品類別管理',
     title: '營火商城',
     path:'/ProductsLogistic',
     titles:[
