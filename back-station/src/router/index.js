@@ -26,10 +26,22 @@ const routes = [
     component: () => import('../views/b_activity/Theme.vue'),
   },
   {
+    path: '/AreaInfo',
+    name: 'AreaInfo',
+    chtName: '主題地區詳細資料',
+    component: () => import('../views/b_activity/AreaInfo.vue'),
+  },
+  {
     path: '/ActivityPlan',
     name: 'ActivityPlan',
     chtName: '活動方案管理',
     component: () => import('../views/b_activity/ActivityPlan.vue'),
+  },
+  {
+    path: '/ActivityInfo',
+    name: 'ActivityInfo',
+    chtName: '主題地區詳細資料',
+    component: () => import('../views/b_activity/ActivityInfo.vue'),
   },
   {
     path: '/TentType',

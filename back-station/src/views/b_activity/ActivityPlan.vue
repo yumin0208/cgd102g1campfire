@@ -13,18 +13,18 @@
         </div>
     </div>
     </div>
-    <div class="serch_bar">
+    <!-- <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
         <button>新增</button>
         <button>修改</button>
         <button>刪除</button>
-    </div>
-    <div class="table_roll">
+    </div> -->
+    <div class="table_roll table_spacing">
         <table>
             <tr class="table_title">
                 <th v-for="item in titles" :key="item">{{item}}</th>
             </tr>
-            <tr class="item_content" v-for="item in activityPlan" :key="item.activity_no">
+            <tr class="item_content" v-for="item in activityPlan" :key="item.activity_no" @click="goInfo(item)">
                 <td>{{item.activity_no}}</td>
                 <td>{{item.area_no}}</td>
                 <td>{{item.activity_name}}</td>
@@ -49,7 +49,7 @@
 import Menu from "@/components/Menu.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-
+import { useRouter } from "vue-router";
 export default {
     name: 'HomeView',
     components: {
@@ -76,6 +76,7 @@ export default {
             '詳細資訊',
         ],
         activityPlan: [],
+        router:useRouter()
         };
     },
     methods: {
@@ -95,6 +96,12 @@ export default {
                 // this.discussCard = true
             })
         },
+        goInfo(e){
+            console.log(e)
+            sessionStorage.setItem("activity", JSON.stringify(e) );
+            let thus = this;
+            thus.router.push({path:'/ActivityInfo'});
+        }
     },
     created() {
         this.FetchAPIPlan();
@@ -105,5 +112,8 @@ export default {
 <style lang="scss" scoped>
 
 @import'@/assets/scss/style.scss';
+.table_spacing{
+    margin-top: 80px;
+}
 
 </style>

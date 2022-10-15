@@ -13,18 +13,18 @@
         </div>
     </div>
     </div>
-    <div class="serch_bar">
+    <!-- <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
         <button>新增</button>
         <button>修改</button>
         <button>刪除</button>
-    </div>
-    <div class="table_roll">
+    </div> -->
+    <div class="table_roll table_spacing">
         <table>
             <tr class="table_title">
                 <th v-for="item in titles" :key="item">{{item}}</th>
             </tr>
-            <tr class="item_content" v-for="item in activityArea" :key="item.area_no">
+            <tr class="item_content" v-for="item in activityArea" :key="item.area_no" @click="goInfo(item)">
                 <td>{{item.area_no}}</td>
                 <td>{{item.area_name}}</td>
                 <td>{{item.area_subtitle}}</td>
@@ -43,7 +43,7 @@
 import Menu from "@/components/Menu.vue";
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-
+import { useRouter } from "vue-router";
 export default {
     name: 'HomeView',
     components: {
@@ -64,6 +64,7 @@ export default {
                 '詳細資訊',
             ],
             activityArea: [],
+            router:useRouter()
         };
     },
     methods: {
@@ -83,6 +84,12 @@ export default {
                 // this.discussCard = true
             })
         },
+        goInfo(e){
+            console.log(e)
+            sessionStorage.setItem("area", JSON.stringify(e) );
+            let thus = this;
+            thus.router.push({path:'/AreaInfo'});
+        }
     },
     created() {
         this.FetchAPIArea();
@@ -94,4 +101,7 @@ export default {
 
 @import'@/assets/scss/style.scss';
 
+.table_spacing{
+    margin-top: 80px;
+}
 </style>
