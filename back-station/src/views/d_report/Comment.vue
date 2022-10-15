@@ -69,7 +69,7 @@ export default {
 	methods: {
 		// 抓取留言資訊
 		FetchAPIComment(){
-			fetch(process.env.VUE_APP_PHP_PATH + `discussComBack.php`
+			fetch(process.env.VUE_APP_PHP_PATH + `backDiscussCom.php`
 			).then((response) => {
 				if(response){
 					this.fetchError = (response.status !== 200)

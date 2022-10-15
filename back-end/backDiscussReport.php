@@ -4,7 +4,8 @@
 
     require_once("./connect_cgd102g1.php");
 
-    $sql = "select * from report";
+    $sql = "select * 
+            from report";
 
     $report = $pdo->query($sql);
     $reports = $report->fetchAll(PDO::FETCH_ASSOC);

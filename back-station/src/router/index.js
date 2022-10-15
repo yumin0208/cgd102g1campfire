@@ -56,6 +56,12 @@ const routes = [
     component: () => import('../views/d_report/Report.vue'),
   },
   {
+    path: '/ReportInfo',
+    name: 'ReportInfo',
+    chtName: '營火報告詳細資料',
+    component: () => import('../views/d_report/ReportInfo.vue'),
+  },
+  {
     path: '/Comment',
     name: 'Comment',
     chtName: '留言管理',
