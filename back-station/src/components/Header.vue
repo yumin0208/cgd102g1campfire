@@ -29,7 +29,7 @@ export default {
     };
   },
   methods:{
-    getMemData(){
+    getEmpData(){
       this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
       this.employee_name = this.emp_login.employee_name;
     },
@@ -44,13 +44,13 @@ export default {
     },
   },
   created(){
+    this.getEmpData()
     let checkLogin = sessionStorage.getItem('emp_login');
     if(checkLogin == null){
       alert("請先登入");
       let thus = this;
       thus.router.push({path:'/Login'})
     }
-    this.getMemData()
   },
 };
 </script>

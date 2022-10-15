@@ -40,6 +40,10 @@ export default {
               path: '/Reservation',
               myname: '營地預訂狀態管理',
             },
+            {
+              path: '/Booking',
+              myname: '預訂訂單管理',
+            },
             // {
             //   path: '/IndividualTent',
             //   myname: '個別營帳管理',
@@ -126,10 +130,6 @@ export default {
         {
           title: '會員中心',
           routes: [
-            {
-              path: '/Booking',
-              myname: '預訂訂單管理',
-            },
             {
               path: '/MemberList',
               myname: '會員資訊管理',

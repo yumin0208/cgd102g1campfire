@@ -66,7 +66,16 @@ import { useRouter } from "vue-router";
                 formData.append('employee_psw', this.employee_psw);
                 xhr.send(formData);
             },
-        }
+        },
+        created(){
+            let checkLogin = sessionStorage.getItem('emp_login');
+            if(checkLogin != null){
+            let thus = this;
+            thus.router.push({path:'/home'})
+            }else{
+                return
+            }
+        },
     }
 </script>
 <style>

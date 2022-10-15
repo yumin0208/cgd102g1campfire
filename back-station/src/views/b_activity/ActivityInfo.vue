@@ -79,10 +79,6 @@ export default {
             router:useRouter()
         }
     },
-    created(){
-        this.getActivityData()
-        this.fetchActivityData()
-    },
     methods:{
         getActivityData(){
             //抓到sessionStorage的資料
@@ -154,8 +150,31 @@ export default {
                 sessionStorage.removeItem("activity", JSON.stringify(this.session));
                 let thus = this;
                 thus.router.push({path:'/ActivityPlan'})
+        },
+        getEmpData(){
+            this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
+            this.employee_name = this.emp_login.employee_name;
         }
-    },
+        },
+        created() {
+            this.getEmpData();
+            let checkLogin = sessionStorage.getItem('emp_login');
+            if(checkLogin == null){
+                alert("請先登入");
+                let thus = this;
+                thus.router.push({path:'/Login'})
+            }else{
+                if(this.emp_login.employee_auth != 1){
+                    console.log(this.emp_login.employee_auth)
+                    alert("權限不足")
+                    let thus = this;
+                    thus.router.push({path:'/home'})
+                }else{
+                    this.getActivityData()
+                this.fetchActivityData()
+                }
+            }
+        },
 }
 </script>
 
