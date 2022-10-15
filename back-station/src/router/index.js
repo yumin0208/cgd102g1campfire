@@ -98,6 +98,12 @@ const routes = [
     component: () => import('../views/f_shopping/ProductsInfo.vue'),
   },
   {
+    path: '/ProductEdit',
+    name: 'ProductEdit',
+    chtName: '商品資訊修改',
+    component: () => import('../views/f_shopping/ProductEdit.vue'),
+  },
+  {
     path: '/ProductsPO',
     name: 'ProductsPO',
     chtName: '商品訂單管理',
