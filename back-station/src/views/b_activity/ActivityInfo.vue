@@ -53,9 +53,17 @@
 </template>
 
 <script>
+import Menu from "@/components/Menu.vue";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 import { useRouter } from "vue-router";
 
 export default {
+    components: {
+        Menu,
+        Header,
+        Footer
+    },
     data(){
         return{
             activity_name:'',
@@ -114,7 +122,7 @@ export default {
                 ) {
                 //取消預設submit事件
                     e.preventDefault()
-                if(this.activity_name == '' || this.activity_subtitle == '' ||this.activity_synopsis == ''||this.activity_info == ''||this.activity_price == ''||this.activity_suitable_guest == ''||this.activity_note){
+                if(this.activity_name == '' || this.activity_subtitle == '' ||this.activity_synopsis == ''||this.activity_info == ''||this.activity_price == ''||this.activity_suitable_guest == ''||this.activity_note =='' ){
                     alert("不可以有空白喔");
                     return;
                 }
@@ -122,7 +130,7 @@ export default {
                 //沒有錯誤則將更新後的會員傳送到資料庫
                     var xhr = new XMLHttpRequest();
             
-                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'backstation_update_news.php', true);
+                    xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'backstation_update_activity.php', true);
                     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     //回傳過去的資料
                     let activity_data = `activity_no=${this.activity_no}&activity_name=${this.activity_name}&activity_subtitle=${this.activity_subtitle}&activity_synopsis=${this.activity_synopsis}&activity_info=${this.activity_info}&activity_price=${this.activity_price}&activity_suitable_guest=${this.activity_suitable_guest}&activity_note=${this.activity_note}`;
@@ -134,18 +142,18 @@ export default {
                             sessionStorage.setItem("activity", JSON.stringify(this.session)); 
                             alert("修改成功");
                             let thus = this
-                            thus.router.go(0)
+                            thus.router.push({path:'/ActivityPlan'})
                         }
                     }  
                 }   
             }
         },
         goBack(e){
-            //取消預設submit事件
-            e.preventDefault()
-            sessionStorage.removeItem("activity", JSON.stringify(this.session));
-            let thus = this;
-            thus.router.push({path:'/ActivityPlan'})
+                //取消預設submit事件
+                e.preventDefault()
+                sessionStorage.removeItem("activity", JSON.stringify(this.session));
+                let thus = this;
+                thus.router.push({path:'/ActivityPlan'})
         }
     },
 }
