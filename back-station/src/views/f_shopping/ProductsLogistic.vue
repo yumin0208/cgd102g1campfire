@@ -53,7 +53,7 @@ components: {
 data() {
   return {
     productsType: [],
-    chtName: '商品物流管理',
+    chtName: '商品類別管理',
     title: '營火商城',
     path:'/ProductsLogistic',
     titles:[
