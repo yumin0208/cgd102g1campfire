@@ -55,21 +55,12 @@
 </template>
 
 <script>
-
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 // 強制刷新，或跳轉頁面
 import { useRouter } from "vue-router";
 
 export default {
     name: 'Report',
     path:'/Report',
-    components: {
-        Menu,
-        Header,
-        Footer,
-    },
     data() {
         return {
             chtName: '營火報告管理',

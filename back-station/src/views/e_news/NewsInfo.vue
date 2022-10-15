@@ -44,17 +44,10 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import { useRouter } from "vue-router";
 
 export default {
-    components: {
-        Menu,
-        Header,
-        Footer
-    },
+
     data(){
         return{
             news_title:'',

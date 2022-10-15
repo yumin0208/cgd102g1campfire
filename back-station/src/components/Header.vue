@@ -4,7 +4,7 @@
       <div class="nav_left">
         <div class="nav_serch">
           <h2 class="header_title">{{ projectName }}</h2>
-          <input type="text" placeholder="搜尋" />
+          <!-- <input type="text" placeholder="搜尋" /> -->
         </div>
       </div>
       <div class="nav_right">
@@ -40,7 +40,7 @@ export default {
         sessionStorage.removeItem("emp_login", JSON.stringify(this.session));
         alert("已登出");
         let thus = this;
-        thus.router.push({path:'/Login'})
+        thus.router.push({path:'/'})
     },
   },
   created(){

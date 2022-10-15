@@ -42,17 +42,7 @@
 
 <script>
 
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-
 export default {
-    name: 'HomeView',
-    components: {
-        Menu,
-        Header,
-        Footer,
-    },
     data() {
         return {
         chtName: '食材方案管理',
