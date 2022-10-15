@@ -8,6 +8,12 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/Login',
+    name: 'Login',
+    chtName: '登入',
+    component: () => import('../views/i_login/Login.vue'),
+  },
+  {
     path: '/Reservation',
     name: 'Reservation',
     chtName: '預約狀態管理',
