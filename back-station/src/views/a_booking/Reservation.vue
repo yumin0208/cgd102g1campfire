@@ -124,6 +124,7 @@ export default {
         .catch((err) => {
           this.reserve = [];
         });
+      this.FetchAPICurrentTent();
     },
     FetchAPICurrentTent() {
       //第一支程式已經抓到有幾筆訂單後，要用for迴圈去跑每筆訂單裡的訂單項目
@@ -173,7 +174,6 @@ export default {
   },
   created() {
     this.FetchAPIComment();
-    this.FetchAPICurrentTent();
   },
 };
 </script>
