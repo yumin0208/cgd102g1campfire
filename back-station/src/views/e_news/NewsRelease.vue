@@ -38,18 +38,9 @@
 
 <script>
 
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import { useRouter } from "vue-router";
 
 export default {
-name: 'HomeView',
-components: {
-  Menu,
-  Header,
-  Footer,
-},
 data() {
   return {
     chtName: '消息發布管理',

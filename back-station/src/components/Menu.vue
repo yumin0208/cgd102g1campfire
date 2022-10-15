@@ -1,6 +1,6 @@
 <template>
   <aside class="aside_menu">
-    <router-link to="/" class="project_logo">
+    <router-link to="/home" class="project_logo">
       <img :src="require(`../assets/Image/logo/logo_row_FFF.png`)" alt="Logo" />
     </router-link>
     <div class="menu_zone">
