@@ -172,18 +172,24 @@ export default {
         }
     },
     methods: {
+        scrollToTop1(){
+            window.scrollTo(0,1200)
+        },
         //當前頁面是第一頁，不能再往前
         prevPage(){
             if(this.current === 1) return
             this.current -= 1
+            this.scrollToTop1()
         },
         //當前頁面是最後一頁，不能再往後
         nextPage(){
             if(this.current >= this.paginateTotal) return
             this.current += 1
+            this.scrollToTop1()
         },
         selectPage(val){
             this.current = val
+            this.scrollToTop1()
         },
         // 登入燈箱，請先登入，檢舉
         loginBox (response) {
@@ -235,7 +241,10 @@ export default {
         activeBtn(){
             this.current = 1
         }
-    }
+    },
+    // mounted(){
+    //     this.scrollToTop1()
+    // }
 }
 </script>
 
