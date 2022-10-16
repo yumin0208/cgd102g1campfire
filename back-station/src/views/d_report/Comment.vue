@@ -26,7 +26,7 @@
                     type="button"
                     @click="activeBtn = 'timeDate'" 
                     :class="{btn_active:activeBtn === 'timeDate'}"
-            >最新檢舉
+            >最新留言
             </button>
 	</div>
 	<table>
