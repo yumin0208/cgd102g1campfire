@@ -167,6 +167,7 @@ export default {
             sessionStorage.removeItem("member", JSON.stringify(this.session));
             alert("已登出");
             let thus = this;
+            thus.router.go(0)
             thus.router.push({path:'/'})
 
         }
