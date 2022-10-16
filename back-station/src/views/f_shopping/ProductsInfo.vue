@@ -16,8 +16,8 @@
   <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
     <!-- <button>新增</button> -->
-    <router-link to="./productEdit.vue"><button>修改</button></router-link>
-    <button>刪除</button>
+    <!-- <router-link to="./productEdit.vue"><button>修改</button></router-link>
+    <button>刪除</button> -->
   </div>
   <div class="table_roll">
     <table>
