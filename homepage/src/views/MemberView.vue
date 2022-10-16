@@ -63,7 +63,14 @@ export default {
             alert("已登出");
             let thus = this;
             thus.router.push({path:'/'})
-        }
+        },
+        scrollToTop(){
+          window.scrollTo(0,0)
+        },
+    },
+    mounted(){
+        //要用到mounted，不能用在created中，因為Dom元件還沒被掛載，讀不到window
+        this.scrollToTop()
     }
 }
 </script>
