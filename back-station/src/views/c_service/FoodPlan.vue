@@ -41,7 +41,7 @@
 </template>
 
 <script>
-
+import { useRouter } from "vue-router";
 export default {
     data() {
         return {
@@ -58,6 +58,7 @@ export default {
             '詳細資訊',
         ],
         food: [],
+        router:useRouter()
         };
     },
     methods: {
@@ -76,9 +77,28 @@ export default {
             this.food = [];
             });
         },
+        getEmpData(){
+            this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
+            this.employee_name = this.emp_login.employee_name;
+        }
     },
     created() {
-        this.FetchAPIComment();
+        this.getEmpData();
+        let checkLogin = sessionStorage.getItem('emp_login');
+        if(checkLogin == null){
+        alert("請先登入");
+        let thus = this;
+        thus.router.push({path:'/Login'})
+        }else{
+        if(this.emp_login.employee_auth != 1){
+            console.log(this.emp_login.employee_auth)
+            alert("權限不足")
+            let thus = this;
+            thus.router.push({path:'/home'})
+        }else{
+            this.FetchAPIComment();
+        }
+        }
     },
 };
 </script>

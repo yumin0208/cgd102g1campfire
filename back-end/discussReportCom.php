@@ -13,7 +13,7 @@
                                 report_content,
                                 report_time,
                                 report_result)
-                VALUES('{$comment_no}','{$memNo}','{$report_content}',now(),1)";
+                VALUES('{$comment_no}','{$memNo}','{$report_content}',now(),0)";
         $pdo->exec($sql);
         }	
         catch(PDOException $e){

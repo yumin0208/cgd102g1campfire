@@ -26,6 +26,12 @@ const routes = [
     component: () => import('../views/a_booking/Reservation.vue'),
   },
   {
+    path: '/Booking',
+    name: 'CampBooking',
+    chtName: '預訂訂單管理',
+    component: () => import('../views/a_booking/Booking.vue'),
+  },
+  {
     path: '/IndividualTent',
     name: 'IndividualTent',
     chtName: '個別營帳管理',
@@ -144,12 +150,6 @@ const routes = [
     name: 'ProductsPayment',
     chtName: '商品付款管理',
     component: () => import('../views/f_shopping/ProductsPayment.vue'),
-  },
-  {
-    path: '/Booking',
-    name: 'CampBooking',
-    chtName: '預訂訂單管理',
-    component: () => import('../views/g_member/Booking.vue'),
   },
   {
     path: '/MemberList',

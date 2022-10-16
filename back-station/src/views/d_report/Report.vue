@@ -14,8 +14,6 @@
         </div>
     </div>
     <div class="serch_bar">
-        <!-- <input type="text" placeholder="搜尋"/> -->
-        <!-- <button>新增</button> -->
         <button 
                 class="btn_no" 
                 type="button"
@@ -130,9 +128,28 @@ export default {
             let thus = this;
             thus.router.push({path:'/ReportInfo'});
         },
+        getEmpData(){
+            this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
+            this.employee_name = this.emp_login.employee_name;
+        }
     },
     created() {
-        this.FetchAPIDiscuss();
+        this.getEmpData();
+        let checkLogin = sessionStorage.getItem('emp_login');
+        if(checkLogin == null){
+            alert("請先登入");
+            let thus = this;
+            thus.router.push({path:'/Login'})
+        }else{
+            if(this.emp_login.employee_auth != 1){
+                console.log(this.emp_login.employee_auth)
+                alert("權限不足")
+                let thus = this;
+                thus.router.push({path:'/home'})
+            }else{
+                this.FetchAPIDiscuss();
+            }
+        }
     },
 }
 </script>
