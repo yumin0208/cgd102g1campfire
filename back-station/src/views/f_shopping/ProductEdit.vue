@@ -59,7 +59,7 @@
                 發布時間：<span class="post_time">{{news_post_time}}</span>
             </div> -->
             <div class="btn">
-                <button class="update" id="update" @click="update">確認</button>
+                <!-- <button class="update" id="update" @click="update">確認</button> -->
                 <button class="go_back" id="go_back" @click="goBack">返回</button>
             </div>
         </form>
