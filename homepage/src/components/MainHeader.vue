@@ -160,18 +160,15 @@ export default {
             console.log(this.member)  
         },
         logout(){
-            // fetch("http://localhost/phpLab/firefly_camping_php/logout.php",{method:'GET'})
-            // .then((res)=>{location.replace("/")})
-            // .then()
+
             let xhr = new XMLHttpRequest();
-            xhr.open("get", "http://localhost/phpLab/firefly_camping_php/logout.php",true);
+            xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'logout.php',true);
             xhr.send(null);
             sessionStorage.removeItem("member", JSON.stringify(this.session));
             alert("已登出");
             let thus = this;
             thus.router.push({path:'/'})
-            // location.replace("/");
-            // session()->forget('mem_id');
+
         }
     }
 }

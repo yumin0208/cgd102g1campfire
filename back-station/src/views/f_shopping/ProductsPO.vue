@@ -41,18 +41,7 @@
 </template>
   
 <script>
-
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-
 export default {
-name: 'HomeView',
-components: {
-    Menu,
-    Header,
-    Footer,
-  },
 beforeMount() {
     // 後端抓資料
     this.FetchAPIProductOrderList();

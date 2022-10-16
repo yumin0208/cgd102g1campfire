@@ -1,6 +1,6 @@
 <?php
     header("Access-Control-Allow-Origin:*");//跨網域，需要這段才不會被攔截
-    // header("Content-Type:application/x-www-form-urlencoded");
+    header("Content-Type:application/x-www-form-urlencoded");
 
     function createDiscuss($mem_no, $discuss_title, $discuss_content, $background_type)
     {

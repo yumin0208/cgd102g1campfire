@@ -14,18 +14,28 @@
         </div>
     </div>
     <div class="serch_bar">
-        <!-- <input type="text" placeholder="搜尋"/> -->
-        <!-- <button>新增</button> -->
-        <!-- <button>修改</button> -->
-        <button>刪除</button>
+        <button 
+                class="btn_no" 
+                type="button"
+                @click="activeBtn = 'numberDate'" 
+                :class="{btn_active:activeBtn === 'numberDate'}"
+        >編號排序
+        </button>
+        <button 
+                class="btn_new" 
+                type="button"
+                @click="activeBtn = 'timeDate'" 
+                :class="{btn_active:activeBtn === 'timeDate'}"
+        >最新報告
+        </button>
     </div>
     <table>
         <tr class="table_title">
             <th v-for="item in titles" :key="item">{{item}}</th>
         </tr>
         <tr class="item_content" 
-            v-for="item in discuss" 
-            :key="item" 
+            v-for="item in filterData" 
+            :key="item.discuss_no" 
             @click="goInfo(item)"
         >
             <td>{{item.discuss_no}}</td>
@@ -43,21 +53,12 @@
 </template>
 
 <script>
-
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 // 強制刷新，或跳轉頁面
 import { useRouter } from "vue-router";
 
 export default {
     name: 'Report',
     path:'/Report',
-    components: {
-        Menu,
-        Header,
-        Footer,
-    },
     data() {
         return {
             chtName: '營火報告管理',
@@ -76,7 +77,35 @@ export default {
             // 將報告資料塞進
             discuss: [],
             router:useRouter(),
+            activeBtn:'timeDate',
+            current: 1,
+            paginate: 1000,
         };
+    },
+    computed: {
+        paginateTotal() {
+            //卡片長度 除以 一頁可顯示的數量，會有小數點所以要用Math無條件進位
+            return Math.ceil(this.discuss.length / this.paginate)
+        },
+        filterData() {
+            //一頁有幾筆數目，透過slice做計算，所以不能寫discussCard原始資料
+            //array.slice((page_number - 1) * page_size, page_number * page_size);
+            let arr = this.activeBtn == 'timeDate' ? this.timeDate : this.numberDate;
+            return arr.slice((this.current - 1) * this.paginate , this.current * this.paginate);
+        },
+        numberDate() {
+            //根據留言數做比較排序
+            // console.log(this.discussCard.comment_count);
+            return [...this.discuss].sort( function(a,b) {
+                return a.discuss_no - b.discuss_no;
+            });
+        },
+        timeDate() {
+            return [...this.discuss].sort( function(a,b) {
+                return Date.parse(b.discuss_post_time) - Date.parse(a.discuss_post_time);
+                //將時間轉換成秒數
+            });
+        },
     },
     methods: {
         // 抓取報告資訊
@@ -99,15 +128,42 @@ export default {
             let thus = this;
             thus.router.push({path:'/ReportInfo'});
         },
+        getEmpData(){
+            this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
+            this.employee_name = this.emp_login.employee_name;
+        }
     },
     created() {
-        this.FetchAPIDiscuss();
+        this.getEmpData();
+        let checkLogin = sessionStorage.getItem('emp_login');
+        if(checkLogin == null){
+            alert("請先登入");
+            let thus = this;
+            thus.router.push({path:'/Login'})
+        }else{
+            if(this.emp_login.employee_auth != 1){
+                console.log(this.emp_login.employee_auth)
+                alert("權限不足")
+                let thus = this;
+                thus.router.push({path:'/home'})
+            }else{
+                this.FetchAPIDiscuss();
+            }
+        }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-
 @import'@/assets/scss/style.scss';
 
+.serch_bar{
+    .btn_no , .btn_new{
+        width: 100px;
+    }
+}
+.btn_active{
+    background: #0e685e;
+    color: #ffff;
+}
 </style>

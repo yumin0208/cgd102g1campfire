@@ -126,7 +126,7 @@ export default {
         // },
         // //寫入新報告
         DiscussSend(){
-            let xhr = new XMLHttpRequest();
+            var xhr = new XMLHttpRequest();
             xhr.open("POST",process.env.VUE_APP_PHP_PATH + 'discussSend.php',true);
             // xhr.send(null);
 

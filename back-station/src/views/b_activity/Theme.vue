@@ -13,18 +13,18 @@
         </div>
     </div>
     </div>
-    <div class="serch_bar">
+    <!-- <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
         <button>新增</button>
         <button>修改</button>
         <button>刪除</button>
-    </div>
-    <div class="table_roll">
+    </div> -->
+    <div class="table_roll table_spacing">
         <table>
             <tr class="table_title">
                 <th v-for="item in titles" :key="item">{{item}}</th>
             </tr>
-            <tr class="item_content" v-for="item in activityArea" :key="item.area_no">
+            <tr class="item_content" v-for="item in activityArea" :key="item.area_no" @click="goInfo(item)">
                 <td>{{item.area_no}}</td>
                 <td>{{item.area_name}}</td>
                 <td>{{item.area_subtitle}}</td>
@@ -40,17 +40,8 @@
 
 <script>
 
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-
+import { useRouter } from "vue-router";
 export default {
-    name: 'HomeView',
-    components: {
-        Menu,
-        Header,
-        Footer,
-    },
     data() {
         return {
             chtName: '主題地區管理',
@@ -64,6 +55,7 @@ export default {
                 '詳細資訊',
             ],
             activityArea: [],
+            router:useRouter()
         };
     },
     methods: {
@@ -83,9 +75,34 @@ export default {
                 // this.discussCard = true
             })
         },
+        goInfo(e){
+            console.log(e)
+            sessionStorage.setItem("area", JSON.stringify(e) );
+            let thus = this;
+            thus.router.push({path:'/AreaInfo'});
+        },
+        getEmpData(){
+            this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
+            this.employee_name = this.emp_login.employee_name;
+        }
     },
     created() {
-        this.FetchAPIArea();
+        this.getEmpData();
+        let checkLogin = sessionStorage.getItem('emp_login');
+        if(checkLogin == null){
+            alert("請先登入");
+            let thus = this;
+            thus.router.push({path:'/Login'})
+        }else{
+            if(this.emp_login.employee_auth != 1){
+                console.log(this.emp_login.employee_auth)
+                alert("權限不足")
+                let thus = this;
+                thus.router.push({path:'/home'})
+            }else{
+                this.FetchAPIArea();
+            }
+        }
     },
 };
 </script>
@@ -94,4 +111,7 @@ export default {
 
 @import'@/assets/scss/style.scss';
 
+.table_spacing{
+    margin-top: 80px;
+}
 </style>

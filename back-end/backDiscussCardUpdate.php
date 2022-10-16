@@ -14,24 +14,23 @@
 
             $pdo->exec($sql);
 
-            // $discusses->bindValue(":discuss_no", $_REQUEST['discuss_no']); //代入資料
-            // $discusses->execute();//執行之
+            $sql2="select * 
+                    from discuss 
+                    where discuss_no=:discuss_no ";
+            $discuss = $pdo->prepare( $sql2 ); //先編譯好
+            $discuss->bindValue(":discuss_no", $_REQUEST['discuss_no']); //代入資料
+            $discuss->execute();//執行之
 
-            // $discussesRow = $discusses->fetch(PDO::FETCH_ASSOC);
-            // //送出更新後的資料
-            // $result = ["mem_email"=>$_SESSION["mem_email"],
-            //             "mem_no"=>$_SESSION["mem_no"],
-            //             "mem_id"=>$_SESSION["mem_id"],
-            //             "mem_name"=>$_SESSION["mem_name"],
-            //             "mem_nick_name"=>$_SESSION["mem_nick_name"],
-            //             "mem_email"=>$_SESSION["mem_email"],
-            //             "mem_city"=>$_SESSION["mem_city"],
-            //             "mem_addr"=>$_SESSION["mem_addr"],
-            //             "mem_phone"=>$_SESSION["mem_phone"],
-            //             "mem_status"=>$_SESSION["mem_status"]
-            //         ];
-        
-            // echo json_encode($result);
+            $discussRow = $discuss->fetch(PDO::FETCH_ASSOC);
+
+            //更新成功,將登入者的資料寫入session
+            $_SESSION["discuss_no"] = $discussRow["discuss_no"];
+            $_SESSION["discuss_status"] = $discussRow["discuss_status"];
+            //送出更新後的資料
+            $result = [
+                "discuss_no"=>$_SESSION["discuss_no"],
+                "discuss_status"=>$_SESSION["discuss_status"],
+            ];
 
         }catch(PDOException $e){
             echo $e->getMessage();

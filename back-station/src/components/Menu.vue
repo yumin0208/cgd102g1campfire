@@ -1,6 +1,6 @@
 <template>
   <aside class="aside_menu">
-    <router-link to="/" class="project_logo">
+    <router-link to="/home" class="project_logo">
       <img :src="require(`../assets/Image/logo/logo_row_FFF.png`)" alt="Logo" />
     </router-link>
     <div class="menu_zone">
@@ -39,6 +39,10 @@ export default {
             {
               path: '/Reservation',
               myname: '營地預訂狀態管理',
+            },
+            {
+              path: '/Booking',
+              myname: '預訂訂單管理',
             },
             // {
             //   path: '/IndividualTent',
@@ -126,10 +130,6 @@ export default {
         {
           title: '會員中心',
           routes: [
-            {
-              path: '/Booking',
-              myname: '預訂訂單管理',
-            },
             {
               path: '/MemberList',
               myname: '會員資訊管理',

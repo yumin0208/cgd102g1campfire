@@ -44,17 +44,10 @@
 </template>
 
 <script>
-import Menu from "@/components/Menu.vue";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
 import { useRouter } from "vue-router";
 
 export default {
-    components: {
-        Menu,
-        Header,
-        Footer
-    },
+
     data(){
         return{
             news_title:'',
@@ -65,10 +58,6 @@ export default {
             news_data:[],
             router:useRouter()
         }
-    },
-    created(){
-        this.getNewsData()
-        this.fetchNewsData()
     },
     methods:{
         getNewsData(){
@@ -143,6 +132,29 @@ export default {
                 sessionStorage.removeItem("news", JSON.stringify(this.session));
                 let thus = this;
                 thus.router.push({path:'/NewsRelease'})
+            }
+        },
+        getEmpData(){
+            this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
+            this.employee_name = this.emp_login.employee_name;
+        }
+    },
+    created() {
+        this.getEmpData();
+        let checkLogin = sessionStorage.getItem('emp_login');
+        if(checkLogin == null){
+            alert("請先登入");
+            let thus = this;
+            thus.router.push({path:'/Login'})
+        }else{
+            if(this.emp_login.employee_auth != 1){
+                console.log(this.emp_login.employee_auth)
+                alert("權限不足")
+                let thus = this;
+                thus.router.push({path:'/home'})
+            }else{
+                this.getNewsData()
+                this.fetchNewsData()
             }
         }
     },

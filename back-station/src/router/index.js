@@ -1,17 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import Login from '../views/i_login/Login.vue';
 
 const routes = [
   {
     path: '/',
+    name: 'Login',
+    component: Login,
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView,
   },
+  // {
+  //   path: '/Login',
+  //   name: 'Login',
+  //   chtName: '登入',
+  //   component: () => import('../views/i_login/Login.vue'),
+  // },
   {
     path: '/Reservation',
     name: 'Reservation',
     chtName: '預約狀態管理',
     component: () => import('../views/a_booking/Reservation.vue'),
+  },
+  {
+    path: '/Booking',
+    name: 'CampBooking',
+    chtName: '預訂訂單管理',
+    component: () => import('../views/a_booking/Booking.vue'),
   },
   {
     path: '/IndividualTent',
@@ -26,10 +44,22 @@ const routes = [
     component: () => import('../views/b_activity/Theme.vue'),
   },
   {
+    path: '/AreaInfo',
+    name: 'AreaInfo',
+    chtName: '主題地區詳細資料',
+    component: () => import('../views/b_activity/AreaInfo.vue'),
+  },
+  {
     path: '/ActivityPlan',
     name: 'ActivityPlan',
     chtName: '活動方案管理',
     component: () => import('../views/b_activity/ActivityPlan.vue'),
+  },
+  {
+    path: '/ActivityInfo',
+    name: 'ActivityInfo',
+    chtName: '主題地區詳細資料',
+    component: () => import('../views/b_activity/ActivityInfo.vue'),
   },
   {
     path: '/TentType',
@@ -120,12 +150,6 @@ const routes = [
     name: 'ProductsPayment',
     chtName: '商品付款管理',
     component: () => import('../views/f_shopping/ProductsPayment.vue'),
-  },
-  {
-    path: '/Booking',
-    name: 'CampBooking',
-    chtName: '預訂訂單管理',
-    component: () => import('../views/g_member/Booking.vue'),
   },
   {
     path: '/MemberList',
