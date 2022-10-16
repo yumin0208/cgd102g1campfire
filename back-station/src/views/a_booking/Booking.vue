@@ -15,13 +15,13 @@
         </div>
       </div>
     </div>
-    <div class="serch_bar">
+    <!-- <div class="serch_bar">
       <input type="text" placeholder="搜尋" />
       <button>新增</button>
       <button>修改</button>
       <button>刪除</button>
-    </div>
-    <div class="table_roll">
+    </div> -->
+    <div class="table_roll table_spacing">
       <table>
         <tr class="table_title">
           <th v-for="item in titles" :key="item">{{ item }}</th>
@@ -155,5 +155,8 @@ export default {
   option {
     font-size: 20px;
   }
+}
+.table_spacing{
+    margin-top: 80px;
 }
 </style>

@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div class="table_roll">
+    <div class="table_roll table_spacing">
       <table>
         <tr class="table_title">
           <th v-for="item in titles" :key="item">{{ item }}</th>
@@ -196,5 +196,8 @@ export default {
   option {
     font-size: 20px;
   }
+}
+.table_spacing{
+    margin-top: 80px;
 }
 </style>
