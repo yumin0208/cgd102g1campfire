@@ -144,13 +144,6 @@ export default {
             }
         },
         goBack(e){
-<<<<<<< HEAD
-            //取消預設submit事件
-            e.preventDefault()
-            sessionStorage.removeItem("activity", JSON.stringify(this.session));
-            let thus = this;
-            thus.router.push({path:'/ActivityPlan'})
-=======
                 //取消預設submit事件
                 e.preventDefault()
                 sessionStorage.removeItem("activity", JSON.stringify(this.session));
@@ -160,7 +153,6 @@ export default {
         getEmpData(){
             this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
             this.employee_name = this.emp_login.employee_name;
->>>>>>> 65b0d391a37edf03572ae0cbfd5c6263719650eb
         }
         },
         created() {
