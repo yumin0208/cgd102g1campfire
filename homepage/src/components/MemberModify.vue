@@ -235,6 +235,9 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        @include md(){
+            justify-content: flex-start;
+        } 
         .tabcontent_txt_group{
             display: flex;
             flex-wrap: wrap;
@@ -242,8 +245,12 @@ export default {
         .tabcontent_txt{
             padding: 0 10px;
             text-align: start;
+            @include md(){
+                margin-left: 15px;
+                width: 90px;
+            } 
             li{
-            padding: 10px 0;
+                padding: 10px 0;
             }
         }   
       }
@@ -286,8 +293,5 @@ export default {
 }
 .btn_confirm{
     cursor: pointer;
-}
-.input_addr{
-    width: 300px;
 }
 </style>
