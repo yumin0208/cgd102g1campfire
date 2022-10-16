@@ -113,18 +113,18 @@ export default {
               path: '/ProductsInfo',
               myname: '商品資訊管理',
             },
-            {
-              path: '/ProductsPO',
-              myname: '商品訂單管理',
-            },
-            {
-              path: '/ProductsLogistic',
-              myname: '商品類別管理',
-            },
-            {
-              path: '/ProductsPayment',
-              myname: '商品付款管理',
-            },
+            // {
+            //   path: '/ProductsPO',
+            //   myname: '商品訂單管理',
+            // },
+            // {
+            //   path: '/ProductsLogistic',
+            //   myname: '商品類別管理',
+            // },
+            // {
+            //   path: '/ProductsPayment',
+            //   myname: '商品付款管理',
+            // },
           ],
         },
         {
