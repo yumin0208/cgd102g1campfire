@@ -33,8 +33,8 @@
                 <input id="product_pic" type="text" v-model="product_pic">
             </div>
             <div class="row">
-                <label for="payment_status">商品狀態：</label>
-                <input id="payment_status" type="text" v-model="payment_status">
+                <label for="product_status">商品狀態：</label>
+                <input id="product_status" type="text" v-model="product_status">
             </div>
             <div class="row">
                 <label for="product_update">上架日期：</label>
@@ -59,7 +59,7 @@
                 發布時間：<span class="post_time">{{news_post_time}}</span>
             </div> -->
             <div class="btn">
-                <button class="update" id="update" @click="update">確認</button>
+                <!-- <button class="update" id="update" @click="update">確認</button> -->
                 <button class="go_back" id="go_back" @click="goBack">返回</button>
             </div>
         </form>
@@ -79,10 +79,12 @@ export default {
             product_name:'',
             product_price:'',
             product_pic:'',
-            payment_status:'',
+            product_status:'',
             product_update:'',
             product_qty:'',
             product_data:[],
+            productmodifydata:{},
+            products:'',
             router:useRouter()
         }
     },
@@ -93,13 +95,13 @@ export default {
     methods:{
         getProductsData(){
             //抓到sessionStorage的資料
-            this.products = JSON.parse(sessionStorage.getItem('products'));
+            this.products = JSON.parse(sessionStorage.getItem('Products'));
             //抓取文章編號，要去後端撈資料
-            this.product_no = this.product_no;
+            this.product_no = this.products.product_no;
             //確認有抓到東西
         },
         fetchProductsData(){
-            fetch(process.env.VUE_APP_PHP_PATH + `product.php=${this.product_no}`)                
+            fetch(process.env.VUE_APP_PHP_PATH + `backstation_product_modify.php?product_no=${this.product_no}`)                
             .then((response) => {
                 this.fetchError = (response.status !== 200)
             //json(): 返回 Promise，resolves 是 JSON 物件
@@ -115,7 +117,7 @@ export default {
                 this.product_name = responseText.product_name;
                 this.product_price = responseText.product_price;
                 this.product_pic = responseText.product_pic;
-                this.payment_status = responseText.payment_status;
+                this.product_status = responseText.product_status;
                 this.product_update = responseText.product_update;
                 this.product_qty = responseText.product_qty;
             }).catch((err) => {

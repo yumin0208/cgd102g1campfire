@@ -133,24 +133,24 @@ const routes = [
     chtName: '商品資訊修改',
     component: () => import('../views/f_shopping/ProductEdit.vue'),
   },
-  {
-    path: '/ProductsPO',
-    name: 'ProductsPO',
-    chtName: '商品訂單管理',
-    component: () => import('../views/f_shopping/ProductsPO.vue'),
-  },
-  {
-    path: '/ProductsLogistic',
-    name: 'ProductsLogistic',
-    chtName: '商品物流管理',
-    component: () => import('../views/f_shopping/ProductsLogistic.vue'),
-  },
-  {
-    path: '/ProductsPayment',
-    name: 'ProductsPayment',
-    chtName: '商品付款管理',
-    component: () => import('../views/f_shopping/ProductsPayment.vue'),
-  },
+  // {
+  //   path: '/ProductsPO',
+  //   name: 'ProductsPO',
+  //   chtName: '商品訂單管理',
+  //   component: () => import('../views/f_shopping/ProductsPO.vue'),
+  // },
+  // {
+  //   path: '/ProductsLogistic',
+  //   name: 'ProductsLogistic',
+  //   chtName: '商品物流管理',
+  //   component: () => import('../views/f_shopping/ProductsLogistic.vue'),
+  // },
+  // {
+  //   path: '/ProductsPayment',
+  //   name: 'ProductsPayment',
+  //   chtName: '商品付款管理',
+  //   component: () => import('../views/f_shopping/ProductsPayment.vue'),
+  // },
   {
     path: '/MemberList',
     name: 'MemberList',

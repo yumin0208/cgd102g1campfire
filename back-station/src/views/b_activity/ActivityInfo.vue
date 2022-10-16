@@ -121,8 +121,7 @@ export default {
                 if(this.activity_name == '' || this.activity_subtitle == '' ||this.activity_synopsis == ''||this.activity_info == ''||this.activity_price == ''||this.activity_suitable_guest == ''||this.activity_note =='' ){
                     alert("不可以有空白喔");
                     return;
-                }
-                else{
+                }else{
                 //沒有錯誤則將更新後的會員傳送到資料庫
                     var xhr = new XMLHttpRequest();
             

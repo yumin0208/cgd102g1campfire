@@ -13,12 +13,12 @@
         </div>
     </div>
     </div>
-    <div class="serch_bar">
+    <!-- <div class="serch_bar">
     <input type="text" placeholder="搜尋"/>
         <button>新增</button>
         <button>修改</button>
         <button>刪除</button>
-    </div>
+    </div> -->
     <div class="table_roll">
         <table>
             <tr class="table_title">
@@ -30,7 +30,7 @@
                 <td>{{item.equip_price}}</td>
                 <td>{{item.equip_pic}}</td>
                 <td>{{item.equip_info}}</td>
-                <td><button>更多</button></td>
+                <!-- <td><button>更多</button></td> -->
             </tr>
         </table>
     </div>
@@ -54,7 +54,7 @@ export default {
             '裝備價格',
             '裝備圖片',
             '裝備介紹',
-            '詳細資訊',
+            // '詳細資訊',
         ],
         equip: [],
         };
@@ -104,5 +104,7 @@ export default {
 <style lang="scss" scoped>
 
 @import'@/assets/scss/style.scss';
-
+.table_roll{
+    margin-top: 80px;
+}
 </style>

@@ -54,7 +54,7 @@ mem_no int not null,
 discuss_title varchar(50),
 discuss_content varchar(1000),
 discuss_post_time DATETIME Not Null,
-discuss_status TINYINT not null,
+discuss_statusemployeeemployeeemployee TINYINT not null,
 comment_count INT,
 background_type TINYINT Not Null,
 constraint fk_discuss_mem_no foreign key (mem_no) references member (mem_no)
