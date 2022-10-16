@@ -15,13 +15,13 @@
         </div>
       </div>
     </div>
-    <div class="serch_bar">
+    <!-- <div class="serch_bar">
       <input type="text" placeholder="搜尋" />
       <button>新增</button>
       <button>修改</button>
       <button>刪除</button>
-    </div>
-    <div class="table_roll">
+    </div> -->
+    <div class="table_roll table_spacing">
       <table>
         <thead>
           <tr class="table_title">
@@ -94,4 +94,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/style.scss';
+.table_spacing{
+    margin-top: 80px;
+}
 </style>
