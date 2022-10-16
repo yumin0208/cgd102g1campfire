@@ -169,6 +169,18 @@ const routes = [
     chtName: '員工資訊管理',
     component: () => import('../views/h_employee/Employee.vue'),
   },
+  {
+    path: '/EmployeeInfo',
+    name: 'EmployeeInfo',
+    chtName: '員工資訊管理',
+    component: () => import('../views/h_employee/EmployeeInfo.vue'),
+  },
+  {
+    path: '/EmployeeAdd',
+    name: 'EmployeeAdd',
+    chtName: '新增員工',
+    component: () => import('../views/h_employee/EmployeeAdd.vue'),
+  },
 ];
 
 const router = createRouter({

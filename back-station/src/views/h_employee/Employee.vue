@@ -15,14 +15,14 @@
     </div>
     <div class="serch_bar">
     <!-- <input type="text" placeholder="搜尋"/> -->
-        <button>新增</button>
+        <button><router-link to="/EmployeeAdd">新增</router-link></button>
     </div>
     <div class="table_roll">
         <table>
     <tr class="table_title">
         <th v-for="item in titles" :key="item">{{item}}</th>
     </tr>
-    <tr class="item_content" v-for="item in employee" :key="item">
+    <tr class="item_content" v-for="item in employee" :key="item" @click="goInfo(item)">
         <td>{{item.employee_no}}</td>
         <td>{{item.employee_name}}</td>
         <td>{{item.employee_auth}}</td>
@@ -30,7 +30,6 @@
         <td>{{item.employee_email}}</td>
         <td>{{item.employee_phone}}</td>
         <td>{{item.employee_status}}</td>
-        <td><button>更多</button></td>
     </tr>
     </table>
     </div>
@@ -65,7 +64,6 @@ export default {
             '員工信箱',
             '員工電話',
             '員工狀態',
-            '詳細資訊',
         ],
         employee: [],
         router:useRouter()
@@ -86,6 +84,11 @@ export default {
             .catch((err) => {
             this.employee = [];
             });
+        },
+        goInfo(e){
+            sessionStorage.setItem("employee", JSON.stringify(e) );
+            let thus = this;
+            thus.router.push({path:'/EmployeeInfo'});
         },
         getEmpData(){
             this.emp_login = JSON.parse(sessionStorage.getItem('emp_login'));
